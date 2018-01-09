@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 using Xamarin.Forms;
 
 namespace WhenToDig
@@ -13,7 +9,7 @@ namespace WhenToDig
 		{
 			InitializeComponent();
 
-			MainPage = new WhenToDig.MainPage();
+			MainPage = new NavigationPage(new WhenToDig.MainPage());
 		}
 
 		protected override void OnStart ()

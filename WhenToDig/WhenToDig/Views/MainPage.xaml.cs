@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WhenToDig.ViewModels;
 using Xamarin.Forms;
 
 namespace WhenToDig
@@ -12,6 +13,7 @@ namespace WhenToDig
 		public MainPage()
 		{
 			InitializeComponent();
-		}
+            BindingContext = new MainPageViewModel(Navigation);
+        }
 	}
 }

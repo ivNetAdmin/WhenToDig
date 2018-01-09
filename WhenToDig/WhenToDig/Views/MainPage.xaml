@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WhenToDig"
+             x:Class="WhenToDig.MainPage"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{Binding PlantListIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="1"/>
+        <ToolbarItem Icon="{Binding JobListIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="2"/>
+        <ToolbarItem Icon="{Binding FrostListIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="3"/>
+        <ToolbarItem Icon="{Binding ReviewIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="4"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <Label Text="Main Page" 
+           VerticalOptions="Center" 
+           HorizontalOptions="Center" />
+    </ContentPage.Content>
+
+</ContentPage>
