@@ -4,25 +4,18 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using WhenToDig.Helpers;
 using WhenToDig.Views;
 using Xamarin.Forms;
 
 namespace WhenToDig.ViewModels
 {
     public class BaseModel : INotifyPropertyChanged
-    {
-        public enum WTGPage {
-            Home = 0,
-            PlantList = 1,
-            JobList = 2,
-            FrostList = 3,
-            Review = 4
-        }
-
+    {        
         #region Constructors
         public BaseModel()
         {
-            NavigationClickedCommand = new Command<string>(NavigationClicked);            
+            NavigationClickedCommand = new Command<WTGPage>(NavigationClicked);
         }       
 
         #endregion
@@ -38,30 +31,34 @@ namespace WhenToDig.ViewModels
         public ImageSource JobListIcon { get { return ImageSource.FromFile("icon.png"); } }
         public ImageSource FrostListIcon { get { return ImageSource.FromFile("icon.png"); } }
         public ImageSource ReviewIcon { get { return ImageSource.FromFile("icon.png"); } }
+        public ImageSource AddIcon { get { return ImageSource.FromFile("add.png"); } }
         #endregion
 
         #region Navigation Commands
-        public ICommand NavigationClickedCommand { get; private set; }
+        public ICommand NavigationClickedCommand { get; private set; }        
 
-        private void NavigationClicked(string pageId)
+        private void NavigationClicked(WTGPage pageId)
         {
-            switch (Convert.ToInt32(pageId))
+            switch (pageId)
             {
-                case (int)WTGPage.PlantList:
+                case WTGPage.PlantList:
                     Navigation.PushAsync(new PlantListPage());
                     break;
-                case (int)WTGPage.JobList:
+                case WTGPage.JobList:
                     Navigation.PushAsync(new JobListPage());
                     break;
-                case (int)WTGPage.FrostList:
+                case WTGPage.FrostList:
                     Navigation.PushAsync(new FrostListPage());                    
                     break;
-                case (int)WTGPage.Review:
+                case WTGPage.Review:
                     Navigation.PushAsync(new ReviewPage());                    
+                    break;
+                case WTGPage.AddPlant:
+                    Navigation.PushAsync(new AddPlantPage());
                     break;
                 default:
                     //App.Current.MainPage = new NavigationPage(new MainPage());
-
+                    Navigation.PopToRootAsync();
                     break;
 
             }

@@ -1,17 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:helpers="clr-namespace:WhenToDig.Helpers"      
-             x:Class="WhenToDig.Views.ReviewPage"
+             x:Class="WhenToDig.Views.AddPlantPage"
              Title="{Binding Title}">
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="{Binding MainPageIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Home}"/>
-    </ContentPage.ToolbarItems>
-
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Review Page"
+            <Label Text="Add New Plant"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

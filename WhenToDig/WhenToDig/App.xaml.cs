@@ -1,4 +1,5 @@
 ﻿
+using System;
 using Xamarin.Forms;
 
 namespace WhenToDig
@@ -8,8 +9,13 @@ namespace WhenToDig
 		public App ()
 		{
 			InitializeComponent();
-
-			MainPage = new NavigationPage(new WhenToDig.MainPage());
+            try
+            {
+                MainPage = new NavigationPage(new WhenToDig.MainPage());
+            }catch(Exception ex)
+            {
+                var cakes = ex;
+            }
 		}
 
 		protected override void OnStart ()
