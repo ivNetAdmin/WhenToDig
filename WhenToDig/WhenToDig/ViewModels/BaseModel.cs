@@ -32,6 +32,9 @@ namespace WhenToDig.ViewModels
         public ImageSource FrostListIcon { get { return ImageSource.FromFile("icon.png"); } }
         public ImageSource ReviewIcon { get { return ImageSource.FromFile("icon.png"); } }
         public ImageSource AddIcon { get { return ImageSource.FromFile("add.png"); } }
+        public ImageSource CancelIcon { get { return ImageSource.FromFile("cancel.png"); } }
+        public ImageSource DeleteIcon { get { return ImageSource.FromFile("delete.png"); } }
+        public ImageSource SaveIcon { get { return ImageSource.FromFile("save.png"); } }
         #endregion
 
         #region Navigation Commands
@@ -55,6 +58,10 @@ namespace WhenToDig.ViewModels
                     break;
                 case WTGPage.AddPlant:
                     Navigation.PushAsync(new AddPlantPage());
+                    break;
+
+                case WTGPage.Cancel:
+                    Navigation.PopAsync();
                     break;
                 default:
                     //App.Current.MainPage = new NavigationPage(new MainPage());

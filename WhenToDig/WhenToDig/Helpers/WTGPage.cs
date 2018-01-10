@@ -12,7 +12,11 @@ namespace WhenToDig.Helpers
         FrostList = 3,
         Review = 4,
         AddPlant = 11,
-        AddJob = 12,
-        AddFrost = 13
+        AddJob = 21,
+        AddFrost = 31,
+        SavePlant = 12,
+        SaveJob = 22,
+        SaveFrost = 32,
+        Cancel = 99
     }
 }
