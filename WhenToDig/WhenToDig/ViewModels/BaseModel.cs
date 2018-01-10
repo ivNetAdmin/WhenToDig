@@ -60,7 +60,8 @@ namespace WhenToDig.ViewModels
                     Navigation.PushAsync(new ReviewPage());                    
                     break;
                 default:
-                    App.Current.MainPage = new NavigationPage(new MainPage());
+                    //App.Current.MainPage = new NavigationPage(new MainPage());
+
                     break;
 
             }
