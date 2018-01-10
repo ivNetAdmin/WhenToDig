@@ -1,4 +1,5 @@
 ﻿
+using Realms;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -11,11 +12,13 @@ using Xamarin.Forms;
 namespace WhenToDig.ViewModels
 {
     public class BaseModel : INotifyPropertyChanged
-    {        
+    {
+        internal Realm _realmInstance = Realm.GetInstance();
+
         #region Constructors
         public BaseModel()
         {
-            NavigationClickedCommand = new Command<WTGPage>(NavigationClicked);
+
         }       
 
         #endregion
@@ -38,39 +41,41 @@ namespace WhenToDig.ViewModels
         #endregion
 
         #region Navigation Commands
-        public ICommand NavigationClickedCommand { get; private set; }        
+        public ICommand NavigationClickedCommand {
 
-        private void NavigationClicked(WTGPage pageId)
-        {
-            switch (pageId)
+            get
             {
-                case WTGPage.PlantList:
-                    Navigation.PushAsync(new PlantListPage());
-                    break;
-                case WTGPage.JobList:
-                    Navigation.PushAsync(new JobListPage());
-                    break;
-                case WTGPage.FrostList:
-                    Navigation.PushAsync(new FrostListPage());                    
-                    break;
-                case WTGPage.Review:
-                    Navigation.PushAsync(new ReviewPage());                    
-                    break;
-                case WTGPage.AddPlant:
-                    Navigation.PushAsync(new AddPlantPage());
-                    break;
-
-                case WTGPage.Cancel:
-                    Navigation.PopAsync();
-                    break;
-                default:
-                    //App.Current.MainPage = new NavigationPage(new MainPage());
-                    Navigation.PopToRootAsync();
-                    break;
-
+                return new Command<WTGPage>((pageId) =>
+                {
+                    switch (pageId)
+                    {
+                        case WTGPage.PlantList:
+                            Navigation.PushAsync(new PlantListPage());
+                            break;
+                        case WTGPage.JobList:
+                            Navigation.PushAsync(new JobListPage());
+                            break;
+                        case WTGPage.FrostList:
+                            Navigation.PushAsync(new FrostListPage());
+                            break;
+                        case WTGPage.Review:
+                            Navigation.PushAsync(new ReviewPage());
+                            break;
+                        case WTGPage.AddPlant:
+                            Navigation.PushAsync(new AddPlantPage());
+                            break;
+                        case WTGPage.Cancel:
+                            Navigation.PopAsync();
+                            break;
+                        default:
+                            //App.Current.MainPage = new NavigationPage(new MainPage());
+                            Navigation.PopToRootAsync();
+                            break;
+                    }
+                });
             }
-        }
-       
+        }        
+
         #endregion
 
         #region Page Events

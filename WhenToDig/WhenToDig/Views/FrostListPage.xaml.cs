@@ -15,7 +15,14 @@ namespace WhenToDig.Views
 		public FrostListPage ()
 		{
 			InitializeComponent ();
+        }
+
+        #region Page Events
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             BindingContext = new FrostListViewModel(Navigation);
         }
-	}
+        #endregion
+    }
 }

@@ -15,7 +15,14 @@ namespace WhenToDig.Views
 		public PlantListPage ()
 		{            
             InitializeComponent ();
+        }
+
+        #region Page Events
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             BindingContext = new PlantListViewModel(Navigation);
         }
-	}
+        #endregion
+    }
 }

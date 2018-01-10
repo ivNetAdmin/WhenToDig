@@ -15,7 +15,14 @@ namespace WhenToDig.Views
 		public JobListPage()
 		{
 			InitializeComponent ();
+        }
+
+        #region Page Events
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             BindingContext = new JobListViewModel(Navigation);
         }
-	}
+        #endregion
+    }
 }
