@@ -3,9 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:helpers="clr-namespace:WhenToDig.Helpers"   
              xmlns:behaviors="clr-namespace:WhenToDig.Behaviors"   
+             xmlns:converters="clr-namespace:WhenToDig.Converters"
              x:Class="WhenToDig.Views.PlantListPage"
              Title="{Binding Title}">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:SelectedItemEventArgsToSelectedItemConverter
+                x:Key="SelectedItemConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="{Binding AddIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.AddPlant}"/>
         <ToolbarItem Icon="{Binding MainPageIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Home}"/>
@@ -14,7 +22,10 @@
     <ContentPage.Content>
         <ListView ItemsSource="{Binding Plants}" HasUnevenRows="True">
             <ListView.Behaviors>
-                <behaviors:ItemTappedBehavior />
+                <behaviors:EventToCommandBehavior
+                    EventName="ItemSelected"
+                    Command="{Binding ItemSelectedCommand}"
+                    Converter="{StaticResource SelectedItemConverter}"/>
             </ListView.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
