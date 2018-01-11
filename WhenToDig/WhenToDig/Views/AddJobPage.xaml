@@ -34,11 +34,23 @@
                                 <Picker Title="Type" HorizontalOptions="FillAndExpand"
                                     ItemsSource="{Binding TypeList}"
                                     ItemDisplayBinding="{Binding .}" 
-                                    SelectedItem="{Binding SelectedType}" />
+                                    SelectedItem="{Binding Job.Type}" />
                             </StackLayout>
                         </ViewCell.View>
                     </ViewCell>
 
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Orientation="Horizontal" Padding="13, 0">
+                                <Label Text="Plant"/>
+                                <Picker Title="Plant" HorizontalOptions="FillAndExpand"
+                                    ItemsSource="{Binding PlantList}"
+                                    ItemDisplayBinding="{Binding .}" 
+                                    SelectedItem="{Binding Job.Plant}" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                    
                 </TableSection>
                 <TableSection Title="Notes">
                     <ViewCell>

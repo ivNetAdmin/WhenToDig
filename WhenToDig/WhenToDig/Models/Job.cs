@@ -9,6 +9,7 @@ namespace WhenToDig.Models
         public string JobId { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
+        public string Plant { get; set; }
         public string Notes { get; set; }
         public DateTimeOffset Date { get; set; }
     }

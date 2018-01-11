@@ -17,13 +17,14 @@ namespace WhenToDig.ViewModels
             Title = "Add Job";
 
             TypeList = new ObservableCollection<string> { "Cultivate", "Preparation", "General" };
+
+            PlantList = new ObservableCollection<string> { "Carrot", "Pea", "Bean" };
         }
         #endregion
 
-
         #region Properties
         private Job _job = new Job();
-        public Job Plant
+        public Job Job
         {
             get { return _job; }
             set
@@ -43,6 +44,17 @@ namespace WhenToDig.ViewModels
                 OnPropertyChanged(); // Added the OnPropertyChanged Method
             }
         }
+
+        private ObservableCollection<string> _plantList;
+        public ObservableCollection<string> PlantList
+        {
+            get { return _plantList; }
+            set
+            {
+                _plantList = value;
+                OnPropertyChanged(); // Added the OnPropertyChanged Method
+            }
+        }
         #endregion
 
         #region Commands
@@ -56,7 +68,7 @@ namespace WhenToDig.ViewModels
                         _job.JobId = Guid.NewGuid().ToString();                        
                         _realmInstance.Write(() =>
                         {
-                            _realmInstance.Add(_job); // Add the whole set of details
+                           // _realmInstance.Add(_job); // Add the whole set of details
                         });
 
                         Navigation.PopAsync();
