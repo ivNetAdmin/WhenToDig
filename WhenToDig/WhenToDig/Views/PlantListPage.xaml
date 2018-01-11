@@ -20,7 +20,7 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Plants}" HasUnevenRows="True">
+        <ListView x:Name="PlantList" ItemsSource="{Binding Plants}" HasUnevenRows="True">
             <ListView.Behaviors>
                 <behaviors:EventToCommandBehavior
                     EventName="ItemSelected"

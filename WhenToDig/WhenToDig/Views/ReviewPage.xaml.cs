@@ -14,8 +14,21 @@ namespace WhenToDig.Views
 	{
 		public ReviewPage ()
 		{
-			InitializeComponent ();
+			InitializeComponent ();            
+        }
+
+        #region Page Events
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             BindingContext = new ReviewViewModel(Navigation);
         }
-	}
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            ((ReviewViewModel)BindingContext).DisposeRealm();
+        }
+        #endregion
+    }
 }

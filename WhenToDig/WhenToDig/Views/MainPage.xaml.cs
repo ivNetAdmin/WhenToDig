@@ -12,8 +12,21 @@ namespace WhenToDig
 	{
 		public MainPage()
 		{
-			InitializeComponent();
+			InitializeComponent();            
+        }
+
+        #region Page Events
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             BindingContext = new MainPageViewModel(Navigation);
         }
-	}
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            ((MainPageViewModel)BindingContext).DisposeRealm();
+        }
+        #endregion
+    }
 }

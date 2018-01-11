@@ -23,6 +23,12 @@ namespace WhenToDig.Views
             base.OnAppearing();
             BindingContext = new FrostListViewModel(Navigation);
         }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            ((FrostListViewModel)BindingContext).DisposeRealm();
+        }
         #endregion
     }
 }

@@ -12,8 +12,6 @@ namespace WhenToDig.ViewModels
 {
     public class AddPlantViewModel : BaseModel
     {
-        //Realm _realmInstance = Realm.GetInstance();
-
         #region Constructors
         public AddPlantViewModel(INavigation navigation)
         {          
@@ -33,23 +31,49 @@ namespace WhenToDig.ViewModels
                 OnPropertyChanged(); // Add the OnPropertyChanged();
             }
         }
-     
+
+        private string _plantNameRequired = "Required field";
+        public string PlantNameRequired
+        {
+            get { return _plantNameRequired; }
+            set
+            {
+                _plantNameRequired = value;
+                OnPropertyChanged(); // Add the OnPropertyChanged();
+            }
+        }
+
+        private string _plantNameRequiredColour = "default";
+        public string PlantNameRequiredColour
+        {
+            get { return _plantNameRequiredColour; }
+            set
+            {
+                _plantNameRequiredColour = value;
+                OnPropertyChanged(); // Add the OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Commands
         public Command AddPlantCommand // for ADD
         {
             get
-            {
+            {                
                 return new Command(() => {
-                    // for auto increment the id upon adding
-                    _plant.PlantId = _realmInstance.All<Plant>().Count() + 1;
-                    _realmInstance.Write(() =>
-                    {
-                        _realmInstance.Add(_plant); // Add the whole set of details
+                    if (!string.IsNullOrEmpty(_plant.Name))
+                    {                        
+                        // for auto increment the id upon adding
+                        _plant.PlantId = Guid.NewGuid().ToString();
+                        if (string.IsNullOrEmpty(_plant.Variety)) _plant.Variety = "Common";
+                        _realmInstance.Write(() =>
+                        {
+                            _realmInstance.Add(_plant); // Add the whole set of details
                     });
 
-                    Navigation.PopAsync();
+                        Navigation.PopAsync();
+                    }
                 });
             }
         }

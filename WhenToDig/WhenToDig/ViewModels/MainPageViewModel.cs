@@ -1,4 +1,5 @@
 ﻿
+using Realms;
 using Xamarin.Forms;
 
 namespace WhenToDig.ViewModels
@@ -9,7 +10,7 @@ namespace WhenToDig.ViewModels
         public MainPageViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
-            Title = "When To Dig";
+            Title = "When To Dig";           
         }
         #endregion
     }

@@ -23,6 +23,12 @@ namespace WhenToDig.Views
             base.OnAppearing();
             BindingContext = new JobListViewModel(Navigation);
         }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            ((JobListViewModel)BindingContext).DisposeRealm();
+        }
         #endregion
     }
 }

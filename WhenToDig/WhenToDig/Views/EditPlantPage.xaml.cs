@@ -13,10 +13,26 @@ namespace WhenToDig.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EditPlantPage : ContentPage
 	{
-		public EditPlantPage (Plant plant)
+        string _plantId;
+
+        public EditPlantPage (string plantId)
 		{
 			InitializeComponent ();
-            BindingContext = new EditPlantViewModel(Navigation, plant);
+            _plantId = plantId;
         }
-	}
+
+        #region Page Events
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = new EditPlantViewModel(Navigation, _plantId);
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            ((EditPlantViewModel)BindingContext).DisposeRealm();
+        }
+        #endregion
+    }
 }

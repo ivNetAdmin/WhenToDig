@@ -13,13 +13,13 @@ namespace WhenToDig.ViewModels
 {
     public class BaseModel : INotifyPropertyChanged
     {
-        internal Realm _realmInstance = Realm.GetInstance();
+        internal Realm _realmInstance;
 
         #region Constructors
         public BaseModel()
         {
-
-        }       
+             _realmInstance = Realm.GetInstance();
+        }
 
         #endregion
 
@@ -86,5 +86,11 @@ namespace WhenToDig.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
+        internal void DisposeRealm()
+        {
+            //if (_realmInstance != null)
+            //    _realmInstance.Dispose();
+        }
     }
 }

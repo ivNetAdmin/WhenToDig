@@ -20,8 +20,15 @@ namespace WhenToDig.Views
         #region Page Events
         protected override void OnAppearing()
         {
-            base.OnAppearing();
+            base.OnAppearing();            
             BindingContext = new PlantListViewModel(Navigation);
+            PlantList.SelectedItem = null;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            ((PlantListViewModel)BindingContext).DisposeRealm();
         }
         #endregion
     }

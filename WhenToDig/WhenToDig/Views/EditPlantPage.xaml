@@ -1,12 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:WhenToDig.Helpers"   
              x:Class="WhenToDig.Views.EditPlantPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{Binding SaveIcon}" Command="{Binding UpdatePlantCommand}"/>
+        <ToolbarItem Icon="{Binding DeleteIcon}" Command="{Binding DeletePlantCommand}"/>
+        <ToolbarItem Icon="{Binding CancelIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Cancel}"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <TableView Intent="Form" HasUnevenRows="True">
+            <TableRoot>
+                <TableSection Title="Plant Details">
+                    <EntryCell Label="Name" Text="{Binding Plant.Name, Mode=TwoWay}" Placeholder="Enter Plant Name" />
+                    <EntryCell Label="Variety" Text="{Binding Plant.Variety, Mode=TwoWay}" Placeholder="Enter Plant Variety (default: 'common'" />
+                </TableSection>
+                <TableSection Title="Notes">
+                    <ViewCell>
+                        <ContentView HeightRequest="200" Margin="15,10,10,10">
+                            <Editor Text="{Binding Plant.Notes, Mode=TwoWay}"/>
+                        </ContentView>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
     </ContentPage.Content>
 </ContentPage>

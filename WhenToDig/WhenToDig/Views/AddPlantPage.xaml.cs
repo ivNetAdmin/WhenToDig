@@ -14,8 +14,21 @@ namespace WhenToDig.Views
 	{
 		public AddPlantPage ()
 		{
-			InitializeComponent ();
+			InitializeComponent ();            
+        }
+
+        #region Page Events
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             BindingContext = new AddPlantViewModel(Navigation);
         }
-	}
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            ((AddPlantViewModel)BindingContext).DisposeRealm();
+        }
+        #endregion
+    }
 }

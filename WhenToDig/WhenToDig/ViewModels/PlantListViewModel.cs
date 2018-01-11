@@ -23,7 +23,7 @@ namespace WhenToDig.ViewModels
 
             Plants = new ObservableCollection<Plant>(_realmInstance.All<Plant>().ToList());
 
-            ItemSelectedCommand = new Command<Plant>(HandleItemSelected);
+            ItemSelectedCommand = new Command<Plant>(HandleItemSelected);          
         }
         #endregion
 
@@ -39,16 +39,16 @@ namespace WhenToDig.ViewModels
             }
         }
 
-        private string selectedItemText;
-        public string SelectedItemText
-        {
-            get { return selectedItemText; }
-            set
-            {
-                selectedItemText = value;
-                RaisePropertyChanged();
-            }
-        }
+        //private string selectedItemText;
+        //public string SelectedItemText
+        //{
+        //    get { return selectedItemText; }
+        //    set
+        //    {
+        //        selectedItemText = value;
+        //        RaisePropertyChanged();
+        //    }
+        //}
         #endregion
 
         #region Commands
@@ -60,16 +60,14 @@ namespace WhenToDig.ViewModels
         protected void RaisePropertyChanged(
     [CallerMemberName] string caller = "")
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(caller));
-            }
+            PropertyChanged(this, new PropertyChangedEventArgs(caller));
         }
         #endregion
 
         private void HandleItemSelected(Plant plant)
         {
-            Navigation.PushAsync(new EditPlantPage(plant));
+            if (plant == null) return;
+            Navigation.PushAsync(new EditPlantPage(plant.PlantId));
            // selectedItemText = plant.Name;
         }
     }
