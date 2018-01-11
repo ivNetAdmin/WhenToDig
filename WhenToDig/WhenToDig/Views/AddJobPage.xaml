@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:WhenToDig.Behaviors" 
+             xmlns:helpers="clr-namespace:WhenToDig.Helpers" 
+             x:Class="WhenToDig.Views.AddJobPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{Binding SaveIcon}" Command="{Binding AddJobCommand}"/>
+        <ToolbarItem Icon="{Binding CancelIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Cancel}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <TableView Intent="Form" HasUnevenRows="True">
+            <TableRoot>
+                <TableSection Title="Job Details">
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Orientation="Horizontal" Margin="15,10,10,10">
+                                <Label Text="Name"/>
+                                <Entry Text="{Binding Job.Name, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
+                                    <Entry.Behaviors>
+                                        <behaviors:RequiredValidationBehavior />
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Orientation="Horizontal" Padding="13, 0">
+                                <Label Text="Type"/>
+                                <Picker Title="Type" HorizontalOptions="FillAndExpand"
+                                    ItemsSource="{Binding TypeList}"
+                                    ItemDisplayBinding="{Binding .}" 
+                                    SelectedItem="{Binding SelectedType}" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+
+                </TableSection>
+                <TableSection Title="Notes">
+                    <ViewCell>
+                        <ContentView HeightRequest="200" Margin="15,10,10,10">
+                            <Editor Text="{Binding Plant.Notes, Mode=TwoWay}"/>
+                        </ContentView>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

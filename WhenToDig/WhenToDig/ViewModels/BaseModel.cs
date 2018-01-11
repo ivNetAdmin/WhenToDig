@@ -64,6 +64,9 @@ namespace WhenToDig.ViewModels
                         case WTGPage.AddPlant:
                             Navigation.PushAsync(new AddPlantPage());
                             break;
+                        case WTGPage.AddJob:
+                            Navigation.PushAsync(new AddJobPage());
+                            break;
                         case WTGPage.Cancel:
                             Navigation.PopAsync();
                             break;

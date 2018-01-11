@@ -31,29 +31,6 @@ namespace WhenToDig.ViewModels
                 OnPropertyChanged(); // Add the OnPropertyChanged();
             }
         }
-
-        private string _plantNameRequired = "Required field";
-        public string PlantNameRequired
-        {
-            get { return _plantNameRequired; }
-            set
-            {
-                _plantNameRequired = value;
-                OnPropertyChanged(); // Add the OnPropertyChanged();
-            }
-        }
-
-        private string _plantNameRequiredColour = "default";
-        public string PlantNameRequiredColour
-        {
-            get { return _plantNameRequiredColour; }
-            set
-            {
-                _plantNameRequiredColour = value;
-                OnPropertyChanged(); // Add the OnPropertyChanged();
-            }
-        }
-
         #endregion
 
         #region Commands
@@ -64,7 +41,6 @@ namespace WhenToDig.ViewModels
                 return new Command(() => {
                     if (!string.IsNullOrEmpty(_plant.Name))
                     {                        
-                        // for auto increment the id upon adding
                         _plant.PlantId = Guid.NewGuid().ToString();
                         if (string.IsNullOrEmpty(_plant.Variety)) _plant.Variety = "Common";
                         _realmInstance.Write(() =>
