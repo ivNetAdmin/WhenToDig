@@ -21,7 +21,10 @@ namespace WhenToDig.ViewModels
             this.Navigation = navigation;
             Title = "Plant List";
 
-            Plants = new ObservableCollection<Plant>(_realmInstance.All<Plant>().ToList());
+            Plants = new ObservableCollection<Plant>(
+                _realmInstance.All<Plant>()
+                .OrderBy(x=>x.Name)
+                .ThenBy(x=>x.Variety).ToList());
 
             ItemSelectedCommand = new Command<Plant>(HandleItemSelected);          
         }
@@ -38,17 +41,7 @@ namespace WhenToDig.ViewModels
                 OnPropertyChanged(); // Added the OnPropertyChanged Method
             }
         }
-
-        //private string selectedItemText;
-        //public string SelectedItemText
-        //{
-        //    get { return selectedItemText; }
-        //    set
-        //    {
-        //        selectedItemText = value;
-        //        RaisePropertyChanged();
-        //    }
-        //}
+      
         #endregion
 
         #region Commands
