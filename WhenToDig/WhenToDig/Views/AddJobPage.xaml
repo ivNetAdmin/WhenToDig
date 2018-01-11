@@ -31,7 +31,7 @@
                         <ViewCell.View>
                             <StackLayout Orientation="Horizontal" Padding="13, 0">
                                 <Label Text="Type"/>
-                                <Picker Title="Type" HorizontalOptions="FillAndExpand"
+                                <Picker x:Name="TypeList" HorizontalOptions="FillAndExpand"
                                     ItemsSource="{Binding TypeList}"
                                     ItemDisplayBinding="{Binding .}" 
                                     SelectedItem="{Binding Job.Type}" />
@@ -43,7 +43,7 @@
                         <ViewCell.View>
                             <StackLayout Orientation="Horizontal" Padding="13, 0">
                                 <Label Text="Plant"/>
-                                <Picker Title="Plant" HorizontalOptions="FillAndExpand"
+                                <Picker HorizontalOptions="FillAndExpand"
                                     ItemsSource="{Binding PlantList}"
                                     ItemDisplayBinding="{Binding .}" 
                                     SelectedItem="{Binding Job.Plant}" />
@@ -55,7 +55,7 @@
                 <TableSection Title="Notes">
                     <ViewCell>
                         <ContentView HeightRequest="200" Margin="15,10,10,10">
-                            <Editor Text="{Binding Plant.Notes, Mode=TwoWay}"/>
+                            <Editor Text="{Binding Job.Notes, Mode=TwoWay}"/>
                         </ContentView>
                     </ViewCell>
                 </TableSection>

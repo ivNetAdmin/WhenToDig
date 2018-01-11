@@ -22,6 +22,7 @@ namespace WhenToDig.Views
         {
             base.OnAppearing();
             BindingContext = new AddJobViewModel(Navigation);
+            TypeList.SelectedItem = "General";
         }
 
         protected override void OnDisappearing()

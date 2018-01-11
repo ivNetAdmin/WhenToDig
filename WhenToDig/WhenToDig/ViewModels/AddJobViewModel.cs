@@ -16,7 +16,7 @@ namespace WhenToDig.ViewModels
             this.Navigation = navigation;
             Title = "Add Job";
 
-            TypeList = new ObservableCollection<string> { "Cultivate", "Preparation", "General" };
+            TypeList = new ObservableCollection<string> { "Cultivate", "General", "Preparation" };
 
             PlantList = new ObservableCollection<string> { "Carrot", "Pea", "Bean" };
         }
@@ -65,10 +65,11 @@ namespace WhenToDig.ViewModels
                 return new Command(() => {
                     if (!string.IsNullOrEmpty(_job.Name))
                     {               
-                        _job.JobId = Guid.NewGuid().ToString();                        
+                        _job.JobId = Guid.NewGuid().ToString();
+                        if (string.IsNullOrEmpty(_job.Type)) _job.Type = "General";
                         _realmInstance.Write(() =>
                         {
-                           // _realmInstance.Add(_job); // Add the whole set of details
+                            _realmInstance.Add(_job); // Add the whole set of details
                         });
 
                         Navigation.PopAsync();
