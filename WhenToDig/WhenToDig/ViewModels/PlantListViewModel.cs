@@ -40,8 +40,7 @@ namespace WhenToDig.ViewModels
                 _listOfPlants = value;
                 OnPropertyChanged(); // Added the OnPropertyChanged Method
             }
-        }
-      
+        }      
         #endregion
 
         #region Commands
@@ -55,13 +54,12 @@ namespace WhenToDig.ViewModels
         {
             PropertyChanged(this, new PropertyChangedEventArgs(caller));
         }
-        #endregion
-
         private void HandleItemSelected(Plant plant)
         {
             if (plant == null) return;
             Navigation.PushAsync(new EditPlantPage(plant.PlantId));
-           // selectedItemText = plant.Name;
+            // selectedItemText = plant.Name;
         }
+        #endregion       
     }
 }

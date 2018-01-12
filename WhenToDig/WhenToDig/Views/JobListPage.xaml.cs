@@ -22,6 +22,7 @@ namespace WhenToDig.Views
         {
             base.OnAppearing();
             BindingContext = new JobListViewModel(Navigation);
+            JobList.SelectedItem = null;
         }
 
         protected override void OnDisappearing()

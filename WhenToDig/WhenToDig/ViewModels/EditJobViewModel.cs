@@ -7,25 +7,23 @@ using Xamarin.Forms;
 
 namespace WhenToDig.ViewModels
 {
-    public class AddJobViewModel : BaseModel
+    public class EditJobViewModel : BaseModel
     {
+        private Job _job;
 
         #region Constructors
-        public AddJobViewModel(INavigation navigation)
+        public EditJobViewModel(INavigation navigation, string jobId)
         {
             this.Navigation = navigation;
-            Title = "Add Job";
-            
+            _job = _realmInstance.Find<Job>(jobId);
+
             TypeList = new ObservableCollection<string> { "Cultivate", "General", "Preparation" };
 
             PlantList = new ObservableCollection<string> { "Carrot", "Pea", "Bean" };
-
-            Job.Date = DateTime.Today; 
         }
         #endregion
 
         #region Properties
-        private Job _job = new Job();
         public Job Job
         {
             get { return _job; }
@@ -60,22 +58,35 @@ namespace WhenToDig.ViewModels
         #endregion
 
         #region Commands
-        public Command AddJobCommand // for ADD
+        public Command UpdateJobCommand // for ADD
         {
             get
             {
                 return new Command(() => {
                     if (!string.IsNullOrEmpty(_job.Name))
-                    {               
-                        _job.JobId = Guid.NewGuid().ToString();
-                        if (string.IsNullOrEmpty(_job.Type)) _job.Type = "General";
+                    {
                         _realmInstance.Write(() =>
                         {
-                            _realmInstance.Add(_job); // Add the whole set of details
-                        });
+                            _realmInstance.Add(_job, update: true); // Add the whole set of details
+                    });
 
                         Navigation.PopAsync();
                     }
+                });
+            }
+        }
+
+        public Command DeleteJobCommand // for DELETE
+        {
+            get
+            {
+                return new Command(() => {
+                    _realmInstance.Write(() =>
+                    {
+                        _realmInstance.Remove(_job);
+                    });
+
+                    Navigation.PopAsync();
                 });
             }
         }

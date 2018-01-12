@@ -1,20 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:helpers="clr-namespace:WhenToDig.Helpers"      
+             xmlns:behaviors="clr-namespace:WhenToDig.Behaviors" 
+             xmlns:helpers="clr-namespace:WhenToDig.Helpers"  
+             xmlns:converters="clr-namespace:WhenToDig.Converters"
              x:Class="WhenToDig.Views.JobListPage"
              Title="{Binding Title}">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:SelectedItemEventArgsToSelectedItemConverter
+                x:Key="SelectedItemConverter" />
+            <converters:StringNullOrEmptyBoolConverter
+                x:Key="StringNullOrEmptyBoolConverter" />
+            <converters:NativeTypeConverter
+                x:Key="NativeTypeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="{Binding AddIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.AddJob}"/>
         <ToolbarItem Icon="{Binding MainPageIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Home}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Job List Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ListView x:Name="JobList" ItemsSource="{Binding Jobs}" HasUnevenRows="True" Margin="10,10,10,10">
+            <ListView.Behaviors>
+                <behaviors:EventToCommandBehavior
+                    EventName="ItemSelected"
+                    Command="{Binding ItemSelectedCommand}"
+                    Converter="{StaticResource SelectedItemConverter}"/>
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical" Margin="5,5,5,0">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Date, 
+                                    Converter={StaticResource NativeTypeConverter}, 
+                                    ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}"/>
+                                <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                <Label Text="{Binding Type}" FontAttributes="Italic"/>
+                                <Label Text="{Binding Plant}"/>
+                            </StackLayout>
+                            <Label Text="{Binding Notes}" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}" Margin="10,0,0,0"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>

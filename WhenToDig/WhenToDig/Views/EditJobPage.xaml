@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:behaviors="clr-namespace:WhenToDig.Behaviors" 
              xmlns:converters="clr-namespace:WhenToDig.Converters"
-             xmlns:helpers="clr-namespace:WhenToDig.Helpers" 
-             x:Class="WhenToDig.Views.AddJobPage">
+             xmlns:helpers="clr-namespace:WhenToDig.Helpers"   
+             x:Class="WhenToDig.Views.EditJobPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -14,7 +14,8 @@
     </ContentPage.Resources>
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="{Binding SaveIcon}" Command="{Binding AddJobCommand}"/>
+        <ToolbarItem Icon="{Binding SaveIcon}" Command="{Binding UpdateJobCommand}"/>
+        <ToolbarItem Icon="{Binding DeleteIcon}" Command="{Binding DeleteJobCommand}"/>
         <ToolbarItem Icon="{Binding CancelIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Cancel}"/>
     </ContentPage.ToolbarItems>
 
@@ -33,7 +34,7 @@
                             </StackLayout>
                         </ViewCell.View>
                     </ViewCell>
-                    
+
                     <ViewCell>
                         <ViewCell.View>
                             <StackLayout Orientation="Horizontal" Margin="15,10,10,10">
@@ -70,7 +71,7 @@
                             </StackLayout>
                         </ViewCell.View>
                     </ViewCell>
-                    
+
                 </TableSection>
                 <TableSection Title="Notes">
                     <ViewCell>

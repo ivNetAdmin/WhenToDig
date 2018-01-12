@@ -36,13 +36,16 @@ namespace WhenToDig.ViewModels
         {
             get
             {
-                return new Command(() => {                    
-                    _realmInstance.Write(() =>
+                return new Command(() => {
+                    if (!string.IsNullOrEmpty(_plant.Name))
                     {
-                        _realmInstance.Add(_plant, update: true); // Add the whole set of details
+                        _realmInstance.Write(() =>
+                        {
+                            _realmInstance.Add(_plant, update: true); // Add the whole set of details
                     });
 
-                    Navigation.PopAsync();
+                        Navigation.PopAsync();
+                    }
                 });
             }
         }
