@@ -59,12 +59,12 @@ namespace WhenToDig.ViewModels
                             break;
                         case WTGPage.JobList:
                             Navigation.PushAsync(new JobListPage());
+                            break;                      
+                        case WTGPage.YieldList:
+                            Navigation.PushAsync(new YieldListPage());
                             break;
                         case WTGPage.FrostList:
                             Navigation.PushAsync(new FrostListPage());
-                            break;
-                        case WTGPage.YieldList:
-                            Navigation.PushAsync(new YieldListPage());
                             break;
                         case WTGPage.Review:
                             Navigation.PushAsync(new ReviewPage());
@@ -77,6 +77,9 @@ namespace WhenToDig.ViewModels
                             break;
                         case WTGPage.AddYield:
                             Navigation.PushAsync(new AddYieldPage());
+                            break;
+                        case WTGPage.AddFrost:
+                            Navigation.PushAsync(new AddFrostPage());
                             break;
                         case WTGPage.Cancel:
                             Navigation.PopAsync();
@@ -173,6 +176,14 @@ namespace WhenToDig.ViewModels
             }
 
             return rtnList;
+        }
+        internal ObservableCollection<Frost> GetFrosts()
+        {
+            return new ObservableCollection<Frost>(
+                 _realmInstance.All<Frost>()
+                 .OrderBy(x => x.Year)
+                 .ThenBy(x => x.Month)
+                 .ThenBy(x => x.Day).ToList());
         }
         #endregion
         internal void DisposeRealm()
