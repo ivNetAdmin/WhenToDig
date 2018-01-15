@@ -9,6 +9,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="{Binding PlantListIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.PlantList}"/>
         <ToolbarItem Icon="{Binding JobListIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.JobList}"/>
+        <ToolbarItem Icon="{Binding YieldListIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.YieldList}"/>
         <ToolbarItem Icon="{Binding FrostListIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.FrostList}"/>
         <ToolbarItem Icon="{Binding ReviewIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Review}"/>
     </ContentPage.ToolbarItems>

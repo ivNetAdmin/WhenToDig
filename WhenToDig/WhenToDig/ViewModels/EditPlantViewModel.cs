@@ -15,6 +15,8 @@ namespace WhenToDig.ViewModels
         public EditPlantViewModel(INavigation navigation, string plantId)
         {
             this.Navigation = navigation;
+            Title = "Update Plant";
+
             _plant = _realmInstance.Find<Plant>(plantId);
         }
         #endregion

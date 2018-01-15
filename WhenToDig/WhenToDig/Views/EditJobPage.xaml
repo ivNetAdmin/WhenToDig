@@ -4,7 +4,8 @@
              xmlns:behaviors="clr-namespace:WhenToDig.Behaviors" 
              xmlns:converters="clr-namespace:WhenToDig.Converters"
              xmlns:helpers="clr-namespace:WhenToDig.Helpers"   
-             x:Class="WhenToDig.Views.EditJobPage">
+             x:Class="WhenToDig.Views.EditJobPage"
+             Title="{Binding Title}">
 
     <ContentPage.Resources>
         <ResourceDictionary>

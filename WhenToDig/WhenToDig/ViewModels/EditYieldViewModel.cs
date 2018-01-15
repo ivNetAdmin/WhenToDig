@@ -7,69 +7,67 @@ using Xamarin.Forms;
 
 namespace WhenToDig.ViewModels
 {
-    public class EditJobViewModel : BaseModel
+    public class EditYieldViewModel : BaseModel
     {
-        private Job _job;
+        private Yield _yield;
 
         #region Constructors
-        public EditJobViewModel(INavigation navigation, string jobId)
+        public EditYieldViewModel(INavigation navigation, string yieldId)
         {
             this.Navigation = navigation;
-            Title = "Update Job";
+            Title = "Update Yield";
 
-            _job = _realmInstance.Find<Job>(jobId);
+            Plants = GetPlantNameVarieties();
+            Years = GetYears();
 
-            TypeList = new ObservableCollection<string> { "Cultivate", "General", "Preparation" };
-            PlantList = GetPlantNames();
+            _yield = _realmInstance.Find<Yield>(yieldId);
         }
         #endregion
 
         #region Properties
-        public Job Job
+        public Yield Yield
         {
-            get { return _job; }
+            get { return _yield; }
             set
             {
-                _job = value;
+                _yield = value;
                 OnPropertyChanged(); // Add the OnPropertyChanged();
             }
         }
-
-        private ObservableCollection<string> _typeList;
-        public ObservableCollection<string> TypeList
+        private ObservableCollection<string> _listOfPlants;
+        public ObservableCollection<string> Plants
         {
-            get { return _typeList; }
+            get { return _listOfPlants; }
             set
             {
-                _typeList = value;
+                _listOfPlants = value;
                 OnPropertyChanged(); // Added the OnPropertyChanged Method
             }
         }
-
-        private ObservableCollection<string> _plantList;
-        public ObservableCollection<string> PlantList
+        private ObservableCollection<int> _listOfYears;
+        public ObservableCollection<int> Years
         {
-            get { return _plantList; }
+            get { return _listOfYears; }
             set
             {
-                _plantList = value;
+                _listOfYears = value;
                 OnPropertyChanged(); // Added the OnPropertyChanged Method
             }
         }
         #endregion
 
         #region Commands
-        public Command UpdateJobCommand // for ADD
+        public Command UpdateYieldCommand // for ADD
         {
             get
             {
                 return new Command(() => {
-                    if (!string.IsNullOrEmpty(_job.Name))
+                    if (!string.IsNullOrEmpty(_yield.Crop))
                     {
                         _realmInstance.Write(() =>
                         {
-                            _realmInstance.Add(_job, update: true); // Add the whole set of details
-                    });
+                            _realmInstance.Add(_yield, update: true); // Add the whole set of details
+                        });
 
                         Navigation.PopAsync();
                     }
@@ -77,14 +75,14 @@ namespace WhenToDig.ViewModels
             }
         }
 
-        public Command DeleteJobCommand // for DELETE
+        public Command DeleteYieldCommand // for DELETE
         {
             get
             {
                 return new Command(() => {
                     _realmInstance.Write(() =>
                     {
-                        _realmInstance.Remove(_job);
+                        _realmInstance.Remove(_yield);
                     });
 
                     Navigation.PopAsync();

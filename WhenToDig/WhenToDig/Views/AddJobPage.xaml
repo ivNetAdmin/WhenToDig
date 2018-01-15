@@ -63,7 +63,7 @@
                         <ViewCell.View>
                             <StackLayout Orientation="Horizontal" Padding="13, 0">
                                 <Label Text="Plant"/>
-                                <Picker HorizontalOptions="FillAndExpand"
+                                <Picker x:Name="PlantList" HorizontalOptions="FillAndExpand"
                                     ItemsSource="{Binding PlantList}"
                                     ItemDisplayBinding="{Binding .}" 
                                     SelectedItem="{Binding Job.Plant}" />

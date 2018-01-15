@@ -41,11 +41,11 @@ namespace WhenToDig.ViewModels
                 return new Command(() => {
                     if (!string.IsNullOrEmpty(_plant.Name))
                     {                        
-                        _plant.PlantId = Guid.NewGuid().ToString();
                         if (string.IsNullOrEmpty(_plant.Variety)) _plant.Variety = "Common";
+                        _plant.PlantId = string.Format("{0}{1}", _plant.Name, _plant.Variety).ToLower();
                         _realmInstance.Write(() =>
                         {
-                            _realmInstance.Add(_plant); // Add the whole set of details
+                            _realmInstance.Add(_plant,true); // Add the whole set of details
                     });
 
                         Navigation.PopAsync();

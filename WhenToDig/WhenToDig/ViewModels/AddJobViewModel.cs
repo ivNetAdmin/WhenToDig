@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using WhenToDig.Models;
 using Xamarin.Forms;
@@ -15,13 +16,13 @@ namespace WhenToDig.ViewModels
         {
             this.Navigation = navigation;
             Title = "Add Job";
-            
+
             TypeList = new ObservableCollection<string> { "Cultivate", "General", "Preparation" };
 
-            PlantList = new ObservableCollection<string> { "Carrot", "Pea", "Bean" };
+            PlantList = GetPlantNames();           
 
-            Job.Date = DateTime.Today; 
-        }
+            Job.Date = DateTime.Today;
+        }        
         #endregion
 
         #region Properties
@@ -64,14 +65,21 @@ namespace WhenToDig.ViewModels
         {
             get
             {
-                return new Command(() => {
+                return new Command(() =>
+                {
                     if (!string.IsNullOrEmpty(_job.Name))
-                    {               
-                        _job.JobId = Guid.NewGuid().ToString();
+                    {
                         if (string.IsNullOrEmpty(_job.Type)) _job.Type = "General";
+                        if (string.IsNullOrEmpty(_job.Plant)) _job.Type = "All";
+                        _job.JobId = string.Format("{0}{1}{2}{3}", 
+                            _job.Name, 
+                            _job.Plant, 
+                            _job.Type, 
+                            _job.Date.ToString("yyyyMMdd")).ToLower();
+
                         _realmInstance.Write(() =>
                         {
-                            _realmInstance.Add(_job); // Add the whole set of details
+                            _realmInstance.Add(_job, true); // Add the whole set of details
                         });
 
                         Navigation.PopAsync();

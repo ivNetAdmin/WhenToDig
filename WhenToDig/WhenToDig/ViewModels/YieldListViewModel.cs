@@ -1,9 +1,7 @@
-﻿using Realms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
@@ -13,27 +11,28 @@ using Xamarin.Forms;
 
 namespace WhenToDig.ViewModels
 {
-    public class JobListViewModel : BaseModel
-    {        
+    public class YieldListViewModel : BaseModel
+    {
         #region Constructors
-        public JobListViewModel(INavigation navigation)
+        public YieldListViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
-            Title = "Job List";
+            Title = "Yield List";
+            Yields = GetYields();
 
-            Jobs = GetJobs();
-            ItemSelectedCommand = new Command<Job>(HandleItemSelected);
-        }        
+            ItemSelectedCommand = new Command<Yield>(HandleItemSelected);
+
+        }     
         #endregion
 
-        #region Properties
-        private ObservableCollection<Job> _listOfJobs;
-        public ObservableCollection<Job> Jobs
+        #region Properties        
+        private ObservableCollection<Yield> _listOfYields;
+        public ObservableCollection<Yield> Yields
         {
-            get { return _listOfJobs; }
+            get { return _listOfYields; }
             set
             {
-                _listOfJobs = value;
+                _listOfYields = value;
                 OnPropertyChanged(); // Added the OnPropertyChanged Method
             }
         }
@@ -50,12 +49,12 @@ namespace WhenToDig.ViewModels
         {
             PropertyChanged(this, new PropertyChangedEventArgs(caller));
         }
-
-        private void HandleItemSelected(Job job)
+        private void HandleItemSelected(Yield yield)
         {
-            if (job == null) return;
-            Navigation.PushAsync(new EditJobPage(job.JobId));
+            if (yield == null) return;
+            Navigation.PushAsync(new EditYieldPage(yield.YieldId));
+            // selectedItemText = plant.Name;
         }
-        #endregion
+        #endregion       
     }
 }

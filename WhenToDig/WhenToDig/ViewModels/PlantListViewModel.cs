@@ -21,13 +21,10 @@ namespace WhenToDig.ViewModels
             this.Navigation = navigation;
             Title = "Plant List";
 
-            Plants = new ObservableCollection<Plant>(
-                _realmInstance.All<Plant>()
-                .OrderBy(x=>x.Name)
-                .ThenBy(x=>x.Variety).ToList());
+            Plants = GetPlants(); 
 
             ItemSelectedCommand = new Command<Plant>(HandleItemSelected);          
-        }
+        }        
         #endregion
 
         #region Properties

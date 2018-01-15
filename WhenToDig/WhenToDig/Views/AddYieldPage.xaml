@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:WhenToDig.Behaviors" 
+             xmlns:converters="clr-namespace:WhenToDig.Converters"
+             xmlns:helpers="clr-namespace:WhenToDig.Helpers" 
+             x:Class="WhenToDig.Views.AddYieldPage"
+             Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:NativeTypeConverter
+                x:Key="NativeTypeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{Binding SaveIcon}" Command="{Binding AddYieldCommand}"/>
+        <ToolbarItem Icon="{Binding CancelIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Cancel}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <TableView Intent="Form" HasUnevenRows="True">
+            <TableRoot>
+                <TableSection Title="Yield Details">
+
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Orientation="Horizontal" Padding="13, 0">
+                                <Label Text="Year"/>
+                                <Picker x:Name="YearList" HorizontalOptions="FillAndExpand"
+                                    ItemsSource="{Binding Years}"
+                                    ItemDisplayBinding="{Binding .}" 
+                                    SelectedItem="{Binding Yield.Year}" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Orientation="Horizontal" Padding="13, 0">
+                                <Label Text="Plant Variety"/>
+                                <Picker x:Name="PlantList" HorizontalOptions="FillAndExpand"
+                                    ItemsSource="{Binding Plants}"
+                                    ItemDisplayBinding="{Binding .}" 
+                                    SelectedItem="{Binding Yield.Plant}" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Orientation="Horizontal" Margin="15,10,10,10">
+                                <Label Text="Crop"/>
+                                <Entry Text="{Binding Yield.Crop, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
+                                    <Entry.Behaviors>
+                                        <behaviors:RequiredValidationBehavior />
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+
+
+                </TableSection>
+                <TableSection Title="Notes">
+                    <ViewCell>
+                        <ContentView HeightRequest="200" Margin="15,10,10,10">
+                            <Editor Text="{Binding Yield.Notes, Mode=TwoWay}"/>
+                        </ContentView>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

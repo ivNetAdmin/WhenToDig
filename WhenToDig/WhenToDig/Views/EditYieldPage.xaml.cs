@@ -10,27 +10,27 @@ using Xamarin.Forms.Xaml;
 namespace WhenToDig.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AddJobPage : ContentPage
+	public partial class EditYieldPage : ContentPage
 	{
-		public AddJobPage ()
+        string _yieldId;
+        public EditYieldPage (string yieldId)
 		{
 			InitializeComponent ();
-		}
+            _yieldId = yieldId;
+        }
 
         #region Page Events
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            BindingContext = new AddJobViewModel(Navigation);
-            TypeList.SelectedItem = "General";
-            PlantList.SelectedItem = "All";
+            BindingContext = new EditYieldViewModel(Navigation, _yieldId);
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            ((AddJobViewModel)BindingContext).DisposeRealm();
+            ((EditYieldViewModel)BindingContext).DisposeRealm();
         }
-        #endregion       
+        #endregion
     }
 }
