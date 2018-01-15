@@ -30,7 +30,7 @@ namespace WhenToDig.ViewModels
         #endregion
 
         #region Commands
-        public Command AddPlantCommand // for ADD
+        public Command AddFrostCommand // for ADD
         {
             get
             {
@@ -39,6 +39,10 @@ namespace WhenToDig.ViewModels
                     if (!string.IsNullOrEmpty(frostId))
                     {
                         _frost.FrostId = frostId;
+                        _frost.Year = _frost.Date.Year;
+                        _frost.Month = _frost.Date.Month;
+                        _frost.Day = _frost.Date.Day;
+
                         _realmInstance.Write(() =>
                         {
                             _realmInstance.Add(_frost, true); // Add the whole set of details
