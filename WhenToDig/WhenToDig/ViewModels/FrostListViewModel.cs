@@ -53,7 +53,6 @@ namespace WhenToDig.ViewModels
         {
             if (frost == null) return;
             Navigation.PushAsync(new EditFrostPage(frost.FrostId));
-            // selectedItemText = plant.Name;
         }
         #endregion       
     }
