@@ -38,7 +38,7 @@
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Year}" FontAttributes="Bold"/>
                                 <Label Text="{Binding Plant}" FontAttributes="Italic"/>
-                                <Label Text="{Binding Crop}" />
+                                <Label Text="{Binding Crop}" HorizontalOptions="End"/>
                             </StackLayout>
                             <Label Text="{Binding Notes}" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}" Margin="10,0,0,0"/>
                         </StackLayout>

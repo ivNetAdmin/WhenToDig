@@ -38,7 +38,7 @@ namespace WhenToDig.ViewModels
             get
             {
                 return new Command(() => {
-                    var frostId = string.Format("{0}{0}{0}", _frost.Year, _frost.Month, _frost.Day);
+                    var frostId = string.Format("{0}{1}{2}", _frost.Date.Year, _frost.Date.Month, _frost.Date.Day);
                     if (!string.IsNullOrEmpty(frostId))
                     {
                         _frost.FrostId = frostId;

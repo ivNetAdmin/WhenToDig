@@ -7,6 +7,13 @@
              x:Class="WhenToDig.Views.EditFrostPage"
              Title="{Binding Title}">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:NativeTypeConverter
+                x:Key="NativeTypeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="{Binding SaveIcon}" Command="{Binding UpdateFrostCommand}"/>
         <ToolbarItem Icon="{Binding DeleteIcon}" Command="{Binding DeleteFrostCommand}"/>

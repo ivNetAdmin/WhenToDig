@@ -22,6 +22,7 @@ namespace WhenToDig.Views
         {
             base.OnAppearing();
             BindingContext = new YieldListViewModel(Navigation);
+            YieldList.SelectedItem = null;
         }
 
         protected override void OnDisappearing()

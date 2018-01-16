@@ -22,6 +22,7 @@ namespace WhenToDig.Views
         {
             base.OnAppearing();
             BindingContext = new FrostListViewModel(Navigation);
+            FrostList.SelectedItem = null;
         }
 
         protected override void OnDisappearing()

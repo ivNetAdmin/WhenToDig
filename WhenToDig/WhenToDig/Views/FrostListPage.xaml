@@ -13,9 +13,11 @@
                 x:Key="SelectedItemConverter" />
             <converters:StringNullOrEmptyBoolConverter
                 x:Key="StringNullOrEmptyBoolConverter" />
+            <converters:NativeTypeConverter
+                x:Key="NativeTypeConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="{Binding AddIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.AddFrost}"/>
         <ToolbarItem Icon="{Binding MainPageIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Home}"/>
