@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace WhenToDig.ViewModels
 {
@@ -11,8 +8,8 @@ namespace WhenToDig.ViewModels
         public ReviewViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
-            Title = "Review";
+            Title = "Review";                 
         }
-        #endregion
+        #endregion     
     }
 }

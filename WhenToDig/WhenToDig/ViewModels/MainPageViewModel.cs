@@ -10,7 +10,7 @@ namespace WhenToDig.ViewModels
         public MainPageViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
-            Title = "When To Dig";           
+            Title = "DiGiT";           
         }
         #endregion
     }
