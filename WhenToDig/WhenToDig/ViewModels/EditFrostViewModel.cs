@@ -52,7 +52,7 @@ namespace WhenToDig.ViewModels
             }
         }
 
-        public Command DeletePlantCommand // for DELETE
+        public Command DeleteFrostCommand // for DELETE
         {
             get
             {
