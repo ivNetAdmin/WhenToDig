@@ -65,7 +65,7 @@
                                                     <StackLayout Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                                         <Label Text="{Binding Month}" FontAttributes="Bold"/>
                                                     </StackLayout>
-                                                    <StackLayout Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="{Binding Count}"  Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="AntiqueWhite">
+                                                    <StackLayout Grid.Row="0" Grid.Column="1"   Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="AntiqueWhite">
                                                         <Label Text="{Binding Count}" FontAttributes="Italic" HorizontalOptions="FillAndExpand"/>
                                                     </StackLayout>
                                                     <StackLayout Grid.Row="0" Grid.Column="{Binding StartSpan}" Grid.ColumnSpan="{Binding CountWidth}"  Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="Gray">

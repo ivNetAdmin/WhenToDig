@@ -13,9 +13,10 @@ namespace WhenToDig.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ReviewPage : CarouselPage
     {
-		public ReviewPage ()
-		{
-			InitializeComponent ();
+        public ReviewPage()
+        {
+
+            InitializeComponent();
             this.Children.Add(new ReviewContentYieldPage(new ReviewContentYieldViewModel()));
             this.Children.Add(new ReviewContentFrostPage(new ReviewContentFrostViewModel()));
             this.Children.Add(new ReviewContentJobPage(new ReviewContentJobViewModel()));
@@ -32,9 +33,6 @@ namespace WhenToDig.Views
             //};
 
             //this.Children = contentPages;
-
-
-
         }
 
         #region Page Events

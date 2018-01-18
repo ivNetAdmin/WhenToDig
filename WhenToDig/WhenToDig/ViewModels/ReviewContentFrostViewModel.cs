@@ -157,7 +157,7 @@ namespace WhenToDig.ViewModels
 
             foreach(var frostCount in frostCounts)
             {
-                frostCount.MaxFrostCount = maxFrostCount+2;
+                frostCount.MaxFrostCount = maxFrostCount;
             }
 
             #region initialise view

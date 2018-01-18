@@ -12,9 +12,9 @@ namespace WhenToDig.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ReviewContentFrostPage : ContentPage
 	{
-		public ReviewContentFrostPage (ReviewContentFrostViewModel vm)
-		{
-			InitializeComponent ();
+        public ReviewContentFrostPage(ReviewContentFrostViewModel vm)
+        {
+            InitializeComponent();
             BindingContext = vm;
         }
 

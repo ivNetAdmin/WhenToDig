@@ -10,7 +10,7 @@ namespace WhenToDig
 		{
 			InitializeComponent();
             try
-            {
+            {             
                 MainPage = new NavigationPage(new WhenToDig.MainPage());
             }catch(Exception ex)
             {

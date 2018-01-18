@@ -21,7 +21,7 @@ namespace WhenToDig.Helpers
         {
             get
             {
-                return MaxFrostCount - (Count-1);
+                return 1; // Count + 1;
             }
         }
         

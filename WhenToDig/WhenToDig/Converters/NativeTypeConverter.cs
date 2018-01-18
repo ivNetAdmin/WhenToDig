@@ -10,6 +10,7 @@ namespace WhenToDig.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+
             // No format provided.
             if (parameter == null)
                 return value;
@@ -32,7 +33,6 @@ namespace WhenToDig.Converters
                 return DateTime.Parse(value.ToString());
             if (type == "DateTimeOffset")
                 return DateTimeOffset.Parse(value.ToString());
-          
 
             return value;
         }
