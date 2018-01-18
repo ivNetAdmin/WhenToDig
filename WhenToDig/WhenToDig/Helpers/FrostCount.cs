@@ -13,7 +13,7 @@ namespace WhenToDig.Helpers
         {
             get
             {
-                return MaxFrostCount - Count;
+                return (MaxFrostCount + 1) - Count;
             }
         }
 
@@ -21,7 +21,7 @@ namespace WhenToDig.Helpers
         {
             get
             {
-                return 1; // Count + 1;
+                return Count;
             }
         }
         
