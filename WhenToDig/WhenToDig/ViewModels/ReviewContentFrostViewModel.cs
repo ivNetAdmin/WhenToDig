@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using WhenToDig.Helpers;
 using WhenToDig.Models;
 
 namespace WhenToDig.ViewModels
@@ -11,61 +12,111 @@ namespace WhenToDig.ViewModels
         public ReviewContentFrostViewModel()
         {
             var frosts = new List<Frost>(GetFrosts());
-            var months = new int[12];
+            ProcessFrostData(frosts);           
+        }
 
-            var eariestMonth = 0;
-            var latestMonth = 0;
+        private void ProcessFrostData(List<Frost> frosts)
+        {
+            var monthNames = new string[12] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+            var months = new int[12];
+            var firstYear = 0;
+            var lastYear = 0;
+            var earliestFrost = new DateTimeOffset();
+            var latestFrost = new DateTimeOffset();
+            var years = new List<string>();
+
             foreach (var frost in frosts)
             {
-                var frostMonth = frost.Date.Month;
+                var yearSplitDate = new DateTimeOffset(new DateTime(frost.Date.Year, 8, 1));
+                var frostDate = frost.Date;
 
+                #region set variables first time around
                 if (frosts.IndexOf(frost) == 0)
                 {
-                    eariestMonth = latestMonth = frostMonth;
-                    EariestMonthYear = LatestMonthYear = frost.Date.Year;
+                    earliestFrost = frost.Date.Date;
+                    firstYear = lastYear = frost.Date.Year;
                 }
+                #endregion
 
-                
-
-                if (eariestMonth > frostMonth)
+                #region  determine first and last frost dates
+                if (frostDate > yearSplitDate)
                 {
-                    eariestMonth = frostMonth;
-                    EariestMonthYear = frost.Date.Year;
+                    // earliest frost
+                    if (frostDate.Date
+                        <= new DateTimeOffset(new DateTime(frost.Date.Year, earliestFrost.Month, earliestFrost.Day)))
+                    {
+                        earliestFrost = frost.Date;
+                    }
                 }
+                else
+                {
+                    // latest frost
+                    if (frostDate.Date
+                        >= new DateTimeOffset(new DateTime(frost.Date.Year, latestFrost.Month, latestFrost.Day)))
+                    {
+                        latestFrost = frost.Date;
+                    }
+                }
+                #endregion
 
-                months[frostMonth - 1] = months[frostMonth - 1] + 1;
+                #region determine date range
+                if (frostDate.Year > lastYear) lastYear = frostDate.Year;
+                if (frostDate.Year < firstYear) firstYear = frostDate.Year;
+                #endregion
+
+                months[frost.Date.Month - 1] = months[frost.Date.Month - 1] + 1;
             }
 
-            Months = new ObservableCollection<int>(months);
+            years.Add("All");
+            for (int i = firstYear; i<=lastYear; i++)
+            {
+                years.Add(i.ToString());
+            }
+
+            var frostCounts = new List<FrostCount>();
+            for (int i = earliestFrost.Date.Month-1; i < 12; i++)
+            {
+                frostCounts.Add(new FrostCount { Month = monthNames[i], Count = months[i] });
+            }
+            for (int i = 0; i < latestFrost.Date.Month; i++)
+            {
+                frostCounts.Add(new FrostCount { Month = monthNames[i], Count = months[i] });
+            }
+
+            #region initialise view
+            Months = new ObservableCollection<FrostCount>(frostCounts);
+            Years = new ObservableCollection<string>(years);
+            EarliestFrost = earliestFrost;
+            LatestFrost = latestFrost;
+            #endregion
         }
 
         #region Properties
-        private int _eariestMonthYear;
-        public int EariestMonthYear
+
+        private DateTimeOffset _earliestFrost;
+        public DateTimeOffset EarliestFrost
         {
-            get { return _eariestMonthYear; }
+            get { return _earliestFrost; }
             set
             {
-                _eariestMonthYear = value;
+                _earliestFrost = value;
                 OnPropertyChanged(); // Added the OnPropertyChanged Method
             }
         }
 
-        private int _latestMonthYear;
-        public int LatestMonthYear
+        private DateTimeOffset _latestFrost;
+        public DateTimeOffset LatestFrost
         {
-            get { return _latestMonthYear; }
+            get { return _latestFrost; }
             set
             {
-                _latestMonthYear = value;
+                _latestFrost = value;
                 OnPropertyChanged(); // Added the OnPropertyChanged Method
             }
         }
 
-
-        #region Properties
-        private ObservableCollection<int> _listOfMonths;
-        public ObservableCollection<int> Months
+        private ObservableCollection<FrostCount> _listOfMonths;
+        public ObservableCollection<FrostCount> Months
         {
             get { return _listOfMonths; }
             set
@@ -74,7 +125,29 @@ namespace WhenToDig.ViewModels
                 OnPropertyChanged(); // Added the OnPropertyChanged Method
             }
         }
-        #endregion
+
+        private ObservableCollection<string> _listOfYears;
+        public ObservableCollection<string> Years
+        {
+            get { return _listOfYears; }
+            set
+            {
+                _listOfYears = value;
+                OnPropertyChanged(); // Added the OnPropertyChanged Method
+            }
+        }
+
+        private string _year;
+        public string Year
+        {
+            get { return _year; }
+            set
+            {
+                _year = value;
+                OnPropertyChanged(); // Added the OnPropertyChanged Method
+            }
+        }
         #endregion
     }
+
 }

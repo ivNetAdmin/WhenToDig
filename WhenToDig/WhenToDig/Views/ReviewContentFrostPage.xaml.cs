@@ -17,5 +17,19 @@ namespace WhenToDig.Views
 			InitializeComponent ();
             BindingContext = vm;
         }
-	}
+
+        #region Page Events
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();            
+            YearList.SelectedItem = "All";
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            ((ReviewContentFrostViewModel)BindingContext).DisposeRealm();
+        }
+        #endregion
+    }
 }
