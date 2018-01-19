@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
 using WhenToDig.Helpers;
 using WhenToDig.Models;
+using Xamarin.Forms;
 
 namespace WhenToDig.ViewModels
 {
     public class ReviewContentFrostViewModel : BaseModel
     {
         public ReviewContentFrostViewModel()
-        {  
-            var frosts = new List<Frost>(GetFrosts());
-            ProcessFrostData(frosts);           
+        {
+            GetYearList();
+            //ProcessFrostData();
         }
      
         #region Properties
@@ -78,8 +82,9 @@ namespace WhenToDig.ViewModels
             get { return _year; }
             set
             {
-                _year = value;
+                _year = value;                
                 OnPropertyChanged(); // Added the OnPropertyChanged Method
+                ProcessFrostData();
             }
         }
 
@@ -95,15 +100,32 @@ namespace WhenToDig.ViewModels
         }
         #endregion
 
-        private void ProcessFrostData(List<Frost> frosts)
+        private void GetYearList()
         {
+            var years = new List<string> { "All" };
+            var frosts = new List<Frost>(GetFrosts("All"));
+            foreach (var frost in frosts)
+            {
+                var year = frost.Year.ToString();
+                if (!years.Contains(year))
+                {
+                    years.Add(year);
+                }
+            }
+
+            Years = new ObservableCollection<string>(years);
+        }
+
+        private void ProcessFrostData()
+        {           
+            var frosts = new List<Frost>(GetFrosts(_year));
+
             var monthNames = new string[12] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
             var months = new int[12];
             var firstYear = 0;
             var lastYear = 0;
             var earliestFrost = new DateTimeOffset();
-            var latestFrost = new DateTimeOffset();
-            var years = new List<string>();
+            var latestFrost = new DateTimeOffset();            
             var maxFrostCount = 0;
             var frostCounts = new List<FrostCount>();
             var frostNotes = new List<Frost>();
@@ -156,15 +178,9 @@ namespace WhenToDig.ViewModels
 
                 months[frost.Date.Month - 1] = months[frost.Date.Month - 1] + 1;
             }
-
-            years.Add("All");
+            
             if (firstYear * lastYear > 0)
-            {
-                for (int i = firstYear; i <= lastYear; i++)
-                {
-                    years.Add(i.ToString());
-                }
-                
+            {                               
                 for (int i = earliestFrost.Date.Month - 1; i < 12; i++)
                 {
                     if (months[i] > 0)
@@ -190,10 +206,10 @@ namespace WhenToDig.ViewModels
 
             #region initialise view
             Months = new ObservableCollection<FrostCount>(frostCounts);
-            Notes = new ObservableCollection<Frost>(frostNotes);
-            Years = new ObservableCollection<string>(years);
+            Notes = new ObservableCollection<Frost>(frostNotes);                  
             EarliestFrost = earliestFrost;
-            LatestFrost = latestFrost;
+            LatestFrost = latestFrost;            
+  
             #endregion
         }
 

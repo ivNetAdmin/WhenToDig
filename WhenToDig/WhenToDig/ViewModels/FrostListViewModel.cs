@@ -19,7 +19,7 @@ namespace WhenToDig.ViewModels
             this.Navigation = navigation;
             Title = "Frost List";
 
-            Frosts = GetFrosts();
+            Frosts = GetFrosts("All");
 
             ItemSelectedCommand = new Command<Frost>(HandleItemSelected);
         }

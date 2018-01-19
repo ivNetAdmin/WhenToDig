@@ -177,13 +177,33 @@ namespace WhenToDig.ViewModels
 
             return rtnList;
         }
-        internal ObservableCollection<Frost> GetFrosts()
+        internal ObservableCollection<Frost> GetFrosts(string year)
         {
-            return new ObservableCollection<Frost>(
-                 _realmInstance.All<Frost>()
-                 .OrderBy(x => x.Year)
-                 .ThenBy(x => x.Month)
-                 .ThenBy(x => x.Day).ToList());
+            try
+            {
+                if (year == "All")
+                {
+                    return new ObservableCollection<Frost>(
+                         _realmInstance.All<Frost>()
+                         .OrderBy(x => x.Year)
+                         .ThenBy(x => x.Month)
+                         .ThenBy(x => x.Day).ToList());
+                }
+                else
+                {
+                    var intYear = Convert.ToInt16(year);
+                    return new ObservableCollection<Frost>(
+                         _realmInstance.All<Frost>()
+                         .Where(x => x.Year == intYear)
+                         .OrderBy(x => x.Year)
+                         .ThenBy(x => x.Month)
+                         .ThenBy(x => x.Day).ToList());
+                }
+            }catch(Exception ex)
+            {
+                var cakes = ex;
+            }
+            return null;
         }
         #endregion
         internal void DisposeRealm()
