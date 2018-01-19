@@ -94,6 +94,7 @@ namespace WhenToDig.ViewModels
             var latestFrost = new DateTimeOffset();
             var years = new List<string>();
             var maxFrostCount = 0;
+            var frostCounts = new List<FrostCount>();
 
             foreach (var frost in frosts)
             {
@@ -138,26 +139,34 @@ namespace WhenToDig.ViewModels
             }
 
             years.Add("All");
-            for (int i = firstYear; i <= lastYear; i++)
+            if (firstYear * lastYear > 0)
             {
-                years.Add(i.ToString());
-            }
+                for (int i = firstYear; i <= lastYear; i++)
+                {
+                    years.Add(i.ToString());
+                }
+                
+                for (int i = earliestFrost.Date.Month - 1; i < 12; i++)
+                {
+                    if (months[i] > 0)
+                    {
+                        frostCounts.Add(new FrostCount { Month = monthNames[i], Count = months[i] });
+                        if (maxFrostCount < months[i]) maxFrostCount = months[i];
+                    }
+                }
+                for (int i = 0; i < latestFrost.Date.Month; i++)
+                {
+                    if (months[i] > 0)
+                    {
+                        frostCounts.Add(new FrostCount { Month = monthNames[i], Count = months[i] });
+                        if (maxFrostCount < months[i]) maxFrostCount = months[i];
+                    }
+                }
 
-            var frostCounts = new List<FrostCount>();
-            for (int i = earliestFrost.Date.Month - 1; i < 12; i++)
-            {
-                frostCounts.Add(new FrostCount { Month = monthNames[i], Count = months[i] });
-                if (maxFrostCount < months[i]) maxFrostCount = months[i];
-            }
-            for (int i = 0; i < latestFrost.Date.Month; i++)
-            {
-                frostCounts.Add(new FrostCount { Month = monthNames[i], Count = months[i] });
-                if (maxFrostCount < months[i]) maxFrostCount = months[i];
-            }
-
-            foreach(var frostCount in frostCounts)
-            {
-                frostCount.MaxFrostCount = maxFrostCount;
+                foreach (var frostCount in frostCounts)
+                {
+                    frostCount.MaxFrostCount = maxFrostCount;
+                }
             }
 
             #region initialise view

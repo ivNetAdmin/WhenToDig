@@ -21,7 +21,7 @@ namespace WhenToDig.Helpers
         {
             get
             {
-                return Count;
+                return Count + 1;
             }
         }
         
