@@ -60,6 +60,17 @@ namespace WhenToDig.ViewModels
                 OnPropertyChanged(); // Added the OnPropertyChanged Method
             }
         }
+		
+		private ObservableCollection<Frost> _listOfNotes;
+        public ObservableCollection<Frost> Notes
+        {
+            get { return _listOfNotes; }
+            set
+            {
+                _listOfNotes = value;
+                OnPropertyChanged(); // Added the OnPropertyChanged Method
+            }
+        }
 
         private string _year;
         public string Year
@@ -95,6 +106,7 @@ namespace WhenToDig.ViewModels
             var years = new List<string>();
             var maxFrostCount = 0;
             var frostCounts = new List<FrostCount>();
+            var frostNotes = new List<Frost>();
 
             foreach (var frost in frosts)
             {
@@ -135,6 +147,13 @@ namespace WhenToDig.ViewModels
                 if (frostDate.Year < firstYear) firstYear = frostDate.Year;
                 #endregion
 
+                #region collect any notes
+                if (!string.IsNullOrEmpty(frost.Notes))
+                {
+                    frostNotes.Add(frost);
+                }                
+                #endregion
+
                 months[frost.Date.Month - 1] = months[frost.Date.Month - 1] + 1;
             }
 
@@ -171,6 +190,7 @@ namespace WhenToDig.ViewModels
 
             #region initialise view
             Months = new ObservableCollection<FrostCount>(frostCounts);
+            Notes = new ObservableCollection<Frost>(frostNotes);
             Years = new ObservableCollection<string>(years);
             EarliestFrost = earliestFrost;
             LatestFrost = latestFrost;
