@@ -106,7 +106,7 @@ namespace WhenToDig.ViewModels
             var frosts = new List<Frost>(GetFrosts("All"));
             foreach (var frost in frosts)
             {
-                var year = frost.Year.ToString();
+                var year = string.Format("{0}/{1}", frost.Year, frost.Year + 1);
                 if (!years.Contains(year))
                 {
                     years.Add(year);
@@ -129,6 +129,7 @@ namespace WhenToDig.ViewModels
             var maxFrostCount = 0;
             var frostCounts = new List<FrostCount>();
             var frostNotes = new List<Frost>();
+            var duplicateFrosts = new List<string>();
 
             foreach (var frost in frosts)
             {
@@ -137,8 +138,7 @@ namespace WhenToDig.ViewModels
 
                 #region set variables first time around
                 if (frosts.IndexOf(frost) == 0)
-                {
-                    earliestFrost = frost.Date.Date;
+                {                    
                     firstYear = lastYear = frost.Date.Year;
                 }
                 #endregion
@@ -147,15 +147,23 @@ namespace WhenToDig.ViewModels
                 if (frostDate > yearSplitDate)
                 {
                     // earliest frost
+                    if (earliestFrost == DateTime.MinValue)
+                    {
+                        earliestFrost = frost.Date;
+                    }
                     if (frostDate.Date
                         <= new DateTimeOffset(new DateTime(frost.Date.Year, earliestFrost.Month, earliestFrost.Day)))
                     {
                         earliestFrost = frost.Date;
-                    }
+                    }                   
                 }
                 else
                 {
                     // latest frost
+                    if (latestFrost == DateTime.MinValue)
+                    {
+                        latestFrost = frost.Date;
+                    }
                     if (frostDate.Date
                         >= new DateTimeOffset(new DateTime(frost.Date.Year, latestFrost.Month, latestFrost.Day)))
                     {
@@ -178,23 +186,70 @@ namespace WhenToDig.ViewModels
 
                 months[frost.Date.Month - 1] = months[frost.Date.Month - 1] + 1;
             }
-            
+
+            #region check for missing early or late dates
+            if (latestFrost == DateTime.MinValue)
+            {
+                foreach (var frost in frosts)
+                {
+                    var frostDate = frost.Date;
+                    if (frosts.IndexOf(frost) == 0)
+                    {
+                        latestFrost = frost.Date;
+                    }
+
+                    if (frostDate.Date
+                       >= new DateTimeOffset(new DateTime(frost.Date.Year, latestFrost.Month, latestFrost.Day)))
+                    {
+                        latestFrost = frost.Date;
+                    }
+                }
+            }
+            if (earliestFrost == DateTime.MinValue)
+            {
+                foreach (var frost in frosts)
+                {
+                    var frostDate = frost.Date;
+                    if (frosts.IndexOf(frost) == 0)
+                    {
+                        earliestFrost = frost.Date;
+                    }
+
+                    if (frostDate.Date
+                        <= new DateTimeOffset(new DateTime(frost.Date.Year, earliestFrost.Month, earliestFrost.Day)))
+                    {
+                        earliestFrost = frost.Date;
+                    }
+                }
+            }
+            #endregion
+
             if (firstYear * lastYear > 0)
             {                               
                 for (int i = earliestFrost.Date.Month - 1; i < 12; i++)
                 {
                     if (months[i] > 0)
-                    {
-                        frostCounts.Add(new FrostCount { Month = monthNames[i], Count = months[i] });
-                        if (maxFrostCount < months[i]) maxFrostCount = months[i];
+                    {                        
+                        if (!duplicateFrosts.Contains(string.Format("{0}{1}",monthNames[i],months[i])))
+                        {
+                            duplicateFrosts.Add(string.Format("{0}{1}", monthNames[i], months[i]));
+
+                            frostCounts.Add(new FrostCount { Month = monthNames[i], Count = months[i] });
+                            if (maxFrostCount < months[i]) maxFrostCount = months[i];
+                        }
                     }
                 }
                 for (int i = 0; i < latestFrost.Date.Month; i++)
                 {
                     if (months[i] > 0)
                     {
-                        frostCounts.Add(new FrostCount { Month = monthNames[i], Count = months[i] });
-                        if (maxFrostCount < months[i]) maxFrostCount = months[i];
+                        if (!duplicateFrosts.Contains(string.Format("{0}{1}", monthNames[i], months[i])))
+                        {
+                            duplicateFrosts.Add(string.Format("{0}{1}", monthNames[i], months[i]));
+
+                            frostCounts.Add(new FrostCount { Month = monthNames[i], Count = months[i] });
+                            if (maxFrostCount < months[i]) maxFrostCount = months[i];
+                        }
                     }
                 }
 

@@ -179,31 +179,26 @@ namespace WhenToDig.ViewModels
         }
         internal ObservableCollection<Frost> GetFrosts(string year)
         {
-            try
+            if (year == "All")
             {
-                if (year == "All")
-                {
-                    return new ObservableCollection<Frost>(
-                         _realmInstance.All<Frost>()
-                         .OrderBy(x => x.Year)
-                         .ThenBy(x => x.Month)
-                         .ThenBy(x => x.Day).ToList());
-                }
-                else
-                {
-                    var intYear = Convert.ToInt16(year);
-                    return new ObservableCollection<Frost>(
-                         _realmInstance.All<Frost>()
-                         .Where(x => x.Year == intYear)
-                         .OrderBy(x => x.Year)
-                         .ThenBy(x => x.Month)
-                         .ThenBy(x => x.Day).ToList());
-                }
-            }catch(Exception ex)
-            {
-                var cakes = ex;
+                return new ObservableCollection<Frost>(
+                     _realmInstance.All<Frost>()
+                     .OrderBy(x => x.Year)
+                     .ThenBy(x => x.Month)
+                     .ThenBy(x => x.Day).ToList());
             }
-            return null;
+            else
+            {
+                var yearPair = year.Split('/');
+                var firstYear = Convert.ToInt16(yearPair[0]);
+                var secondYear = Convert.ToInt16(yearPair[1]);
+                return new ObservableCollection<Frost>(
+                     _realmInstance.All<Frost>()
+                     .Where(x => (x.Year == firstYear && x.Month > 8) || x.Year == secondYear && x.Month <= 8)
+                     .OrderBy(x => x.Year)
+                     .ThenBy(x => x.Month)
+                     .ThenBy(x => x.Day).ToList());
+            }
         }
         #endregion
         internal void DisposeRealm()

@@ -43,7 +43,10 @@ namespace WhenToDig.Converters
                 return value.ToString();
 
             if(format== "DateTimeOffsetString")
-                return DateTimeOffset.Parse(value.ToString()).ToString("dd-MM-yyyy");
+                return DateTimeOffset.Parse(value.ToString()).ToString("dd-MMM-yy");
+
+            if(format == "DateTimeOffsetFrostString")
+                return DateTimeOffset.Parse(value.ToString()).ToString("dd-MMM");
 
             return string.Format(format, value);
         }

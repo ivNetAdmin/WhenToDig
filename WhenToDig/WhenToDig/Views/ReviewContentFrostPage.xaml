@@ -25,13 +25,13 @@
                     <Label Text="Earliest:" FontAttributes="Bold"/>
                     <Label Text="{Binding EarliestFrost, 
                                         Converter={StaticResource NativeTypeConverter}, 
-                                        ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}"/>
+                                        ConverterParameter='DateTimeOffsetString,DateTimeOffsetFrostString'}}"/>
                 </StackLayout>
             <StackLayout Orientation="Horizontal">
                     <Label Text="Latest:" FontAttributes="Bold"/>
                     <Label Text="{Binding LatestFrost, 
                                         Converter={StaticResource NativeTypeConverter}, 
-                                        ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}"/>
+                                        ConverterParameter='DateTimeOffsetString,DateTimeOffsetFrostString'}}"/>
                 </StackLayout>
             </StackLayout>
             <StackLayout Orientation="Horizontal" Padding="0, 0">

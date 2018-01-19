@@ -29,7 +29,7 @@
                             <StackLayout Orientation="Horizontal" Margin="15,10,10,10">
                                 <Label Text="Date"/>
                                 <DatePicker Date="{Binding Job.Date, Mode=TwoWay, Converter={StaticResource NativeTypeConverter}, ConverterParameter=DateTimeOffset}">
-                                    <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+                                    <DatePicker.Format>dd-MMM-yy</DatePicker.Format>
                                 </DatePicker>
                             </StackLayout>
                         </ViewCell.View>
