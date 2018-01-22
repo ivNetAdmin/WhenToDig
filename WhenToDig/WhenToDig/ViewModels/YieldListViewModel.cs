@@ -18,7 +18,7 @@ namespace WhenToDig.ViewModels
         {
             this.Navigation = navigation;
             Title = "Yield List";
-            Yields = GetYields();
+            Yields = GetYields("All");
 
             ItemSelectedCommand = new Command<Yield>(HandleItemSelected);
 

@@ -156,12 +156,27 @@ namespace WhenToDig.ViewModels
 
             return new ObservableCollection<string>(plantnames);
         }        
-        internal ObservableCollection<Yield> GetYields()
+        internal ObservableCollection<Yield> GetYields(string year)
         {
-            return new ObservableCollection<Yield>(
+            if (year == "All")
+            {
+                return new ObservableCollection<Yield>(
                  _realmInstance.All<Yield>()
-                 .OrderBy(x => x.Year)
-                 .ThenBy(x => x.Plant).ToList());
+                 .OrderByDescending(x => x.Crop)
+                     .ThenBy(x => x.Plant)
+                     .ThenBy(x => x.Year).ToList());
+            }
+            else
+            {
+                var intYear = Convert.ToInt16(year);
+                  return new ObservableCollection<Yield>(
+                      
+                     _realmInstance.All<Yield>()
+                     .Where(x => (x.Year == intYear))
+                     .OrderByDescending(x => x.Crop)
+                     .ThenBy(x => x.Plant)
+                     .ThenBy(x => x.Year).ToList());
+            }
         }
         internal ObservableCollection<int> GetYears()
         {
