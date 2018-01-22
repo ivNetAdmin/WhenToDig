@@ -133,7 +133,7 @@ namespace WhenToDig.ViewModels
 
             foreach (var frost in frosts)
             {
-                var yearSplitDate = new DateTimeOffset(new DateTime(frost.Date.Year, 8, 1));
+                var yearSplitDate = new DateTimeOffset(new DateTime(frost.Date.Year, 10, 1));
                 var frostDate = frost.Date;
 
                 #region set variables first time around

@@ -23,10 +23,9 @@
         <TableView Intent="Form" HasUnevenRows="True">
             <TableRoot>
                 <TableSection Title="Frost Details">
-
                     <ViewCell>
                         <ViewCell.View>
-                            <StackLayout Orientation="Horizontal" Margin="15,10,10,10">
+                            <StackLayout Orientation="Horizontal" Margin="15,10,10,10" HorizontalOptions="FillAndExpand">
                                 <Label Text="Date"/>
                                 <DatePicker Date="{Binding Frost.Date, Mode=TwoWay, Converter={StaticResource NativeTypeConverter}, ConverterParameter=DateTimeOffset}">
                                     <DatePicker.Format>dd-MMM-yy</DatePicker.Format>

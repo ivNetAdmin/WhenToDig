@@ -12,22 +12,22 @@
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout Orientation="Horizontal" Padding="0, 0">
+        <StackLayout Padding="10,10,10,10">
+            <StackLayout Orientation="Horizontal">
                 <Label Text="Year"/>
                 <Picker x:Name="YearList" HorizontalOptions="FillAndExpand"
                                     ItemsSource="{Binding Years}"
                                     ItemDisplayBinding="{Binding .}" 
                                     SelectedItem="{Binding Year}"/>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Padding="0, 0">
+            <StackLayout Orientation="Horizontal" Padding="10,10,10,10">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Earliest:" FontAttributes="Bold"/>
                     <Label Text="{Binding EarliestFrost, 
                                         Converter={StaticResource NativeTypeConverter}, 
                                         ConverterParameter='DateTimeOffsetString,DateTimeOffsetFrostString'}}"/>
                 </StackLayout>
-            <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
                     <Label Text="Latest:" FontAttributes="Bold"/>
                     <Label Text="{Binding LatestFrost, 
                                         Converter={StaticResource NativeTypeConverter}, 
