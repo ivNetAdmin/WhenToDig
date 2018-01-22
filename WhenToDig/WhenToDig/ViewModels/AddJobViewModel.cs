@@ -19,7 +19,7 @@ namespace WhenToDig.ViewModels
 
             TypeList = new ObservableCollection<string> { "Cultivate", "General", "Preparation" };
 
-            PlantList = GetPlantNames();           
+            PlantList = GetPlantNameVarieties();           
 
             Job.Date = DateTimeOffset.Now;
         }        

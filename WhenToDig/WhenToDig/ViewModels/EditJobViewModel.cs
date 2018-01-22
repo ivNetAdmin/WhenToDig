@@ -20,7 +20,7 @@ namespace WhenToDig.ViewModels
             _job = _realmInstance.Find<Job>(jobId);
 
             TypeList = new ObservableCollection<string> { "Cultivate", "General", "Preparation" };
-            PlantList = GetPlantNames();
+            PlantList = GetPlantNameVarieties();
         }
         #endregion
 
