@@ -29,11 +29,16 @@ namespace WhenToDig.Converters
                 return decimal.Parse(value.ToString());
             if (type == "Int")
                 return int.Parse(value.ToString());
-            if (type == "DateTime")
-                return DateTime.Parse(value.ToString());
+            //if (type == "DateTime")
+            //    return DateTime.Parse(value.ToString());
             if (type == "DateTimeOffset")
-                return DateTimeOffset.Parse(value.ToString());
-
+            {
+                if (value.GetType() == typeof(DateTime))
+                {
+                    return new DateTimeOffset(new DateTime(((DateTime)value).Year, ((DateTime)value).Month, ((DateTime)value).Day));
+                }
+                return ((DateTimeOffset)value).LocalDateTime;
+            }
             return value;
         }
 
@@ -42,13 +47,17 @@ namespace WhenToDig.Converters
             if (value != null && string.IsNullOrEmpty(format))
                 return value.ToString();
 
-            if(format== "DateTimeOffsetString")
-                return DateTimeOffset.Parse(value.ToString()).ToString("dd-MMM-yy");
+            if (format == "DateTimeOffsetString")
+                return (((DateTimeOffset)value).LocalDateTime).ToString("dd-MMM-yy");
+
+            //return DateTimeOffset.Parse(value.ToString()).ToString("dd-MMM-yy");
 
             if(format == "DateTimeOffsetFrostString")
-                return DateTimeOffset.Parse(value.ToString()).ToString("dd-MMM");
+                return (((DateTimeOffset)value).LocalDateTime).ToString("dd-MMM");
 
-            return string.Format(format, value);
+            //return DateTimeOffset.Parse(value.ToString()).ToString("dd-MMM");
+
+            return string.Format(format, ((DateTimeOffset)value).LocalDateTime);
         }
     }
 }

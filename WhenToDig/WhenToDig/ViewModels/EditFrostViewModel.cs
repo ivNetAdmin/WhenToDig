@@ -37,17 +37,16 @@ namespace WhenToDig.ViewModels
         {
             get
             {
-                return new Command(() => {
-                    var frostId = string.Format("{0}{1}{2}", _frost.Date.Year, _frost.Date.Month, _frost.Date.Day);
-                    if (!string.IsNullOrEmpty(frostId))
+                return new Command(() =>
+                {
+                    _realmInstance.Write(() =>
                     {
-                        _frost.FrostId = frostId;
-                        _realmInstance.Write(() =>
-                        {
-                            _realmInstance.Add(_frost, true); // Add the whole set of details
+                        _frost.Year = _frost.Date.Year;
+                        _frost.Month = _frost.Date.Month;
+                        _frost.Day = _frost.Date.Day;
+                        _realmInstance.Add(_frost, true); // Add the whole set of details
                         });
-                        Navigation.PopAsync();
-                    }
+                    Navigation.PopAsync();
                 });
             }
         }

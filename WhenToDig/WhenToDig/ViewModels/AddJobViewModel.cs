@@ -21,7 +21,7 @@ namespace WhenToDig.ViewModels
 
             PlantList = GetPlantNames();           
 
-            Job.Date = DateTime.Today;
+            Job.Date = DateTimeOffset.Now;
         }        
         #endregion
 

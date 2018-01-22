@@ -14,7 +14,7 @@ namespace WhenToDig.ViewModels
             this.Navigation = navigation;
             Title = "Add Frost";
 
-            Frost.Date = DateTime.Today;
+            Frost.Date = DateTimeOffset.Now;
         }
         #endregion
 
