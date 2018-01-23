@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using WhenToDig.Models;
@@ -9,18 +10,51 @@ namespace WhenToDig.ViewModels
 {
     public class ReviewContentYieldJobsViewModel : BaseModel
     {
-        private Yield _yield;
+        
         public ReviewContentYieldJobsViewModel(INavigation navigation, string yieldId)
         {
             this.Navigation = navigation;
-            Title = "Yield Jobs";
 
-            _yield = _realmInstance.Find<Yield>(yieldId);
+            Yield = _realmInstance.Find<Yield>(yieldId);
 
-            var relatedJobs = GetRelatedJobs(_yield.Plant, _yield.Year);
-            var unrelatedJobs = GetUnRelatedJobs(_yield.Year);
+            RelatedJobs = new ObservableCollection<Job>(GetRelatedJobs(_yield.Plant, _yield.Year));
+            UnrelatedJobs = new ObservableCollection<Job>(GetUnRelatedJobs(_yield.Year));
         }
 
+        #region Properties
+        private Yield _yield;
+        public Yield Yield
+        {
+            get { return _yield; }
+            set
+            {
+                _yield = value;
+                OnPropertyChanged(); // Add the OnPropertyChanged();
+            }
+        }
+        private ObservableCollection<Job> _listOfRelatedJobs;
+        public ObservableCollection<Job> RelatedJobs
+        {
+            get { return _listOfRelatedJobs; }
+            set
+            {
+                _listOfRelatedJobs = value;
+                OnPropertyChanged(); // Added the OnPropertyChanged Method
+            }
+        }
+        private ObservableCollection<Job> _listOfUnrelatedJobs;
+        public ObservableCollection<Job> UnrelatedJobs
+        {
+            get { return _listOfUnrelatedJobs; }
+            set
+            {
+                _listOfUnrelatedJobs = value;
+                OnPropertyChanged(); // Added the OnPropertyChanged Method
+            }
+        }
+        #endregion
+
+        #region Privaye methods
         private List<Job> GetRelatedJobs(string plant,int year)
         {
             var startDate = new DateTimeOffset(new DateTime(year - 1, 9, 30));
@@ -43,5 +77,6 @@ namespace WhenToDig.ViewModels
                 .ThenBy(x => x.Date).ToList());
 
         }
+        #endregion
     }
 }

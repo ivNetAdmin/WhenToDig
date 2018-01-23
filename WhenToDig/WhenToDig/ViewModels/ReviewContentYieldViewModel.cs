@@ -13,8 +13,10 @@ namespace WhenToDig.ViewModels
 {
     public class ReviewContentYieldViewModel : BaseModel
     {
-        public ReviewContentYieldViewModel()
+        public ReviewContentYieldViewModel(INavigation navigation)
         {
+            this.Navigation = navigation;
+
             GetYearList();
 
             ItemSelectedCommand = new Command<Yield>(HandleItemSelected);

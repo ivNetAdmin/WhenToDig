@@ -17,7 +17,7 @@ namespace WhenToDig.Views
         {
 
             InitializeComponent();
-            this.Children.Add(new ReviewContentYieldPage(new ReviewContentYieldViewModel()));
+            this.Children.Add(new ReviewContentYieldPage(new ReviewContentYieldViewModel(Navigation)));
             this.Children.Add(new ReviewContentFrostPage(new ReviewContentFrostViewModel()));
             this.Children.Add(new ReviewContentJobPage(new ReviewContentJobViewModel()));
             this.Children.Add(new ReviewContentPlantPage(new ReviewContentPlantViewModel()));
