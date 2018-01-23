@@ -76,7 +76,7 @@ namespace WhenToDig.ViewModels
                             _job.Name,
                             _job.Plant,
                             _job.Type,
-                            _job.Date.ToString("yyyyMMdd")).ToLower();
+                            _job.Date.ToString("yyyyMMdd")).ToLower().Replace(" ", "");
 
                         _realmInstance.Write(() =>
                         {

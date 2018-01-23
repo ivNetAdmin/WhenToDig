@@ -63,7 +63,7 @@ namespace WhenToDig.ViewModels
                     {
                         _yield.YieldId = string.Format("{0}{1}",
                         _yield.Plant,
-                        _yield.Year).ToLower();
+                        _yield.Year).ToLower().Replace(" ", "");
 
                         _realmInstance.Write(() =>
                         {

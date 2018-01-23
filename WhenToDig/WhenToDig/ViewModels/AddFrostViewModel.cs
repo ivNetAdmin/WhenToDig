@@ -40,7 +40,7 @@ namespace WhenToDig.ViewModels
                     var frostId = string.Format("{0}{1}{2}", _frost.Date.Year, _frost.Date.Month, _frost.Date.Day);
                     if (!string.IsNullOrEmpty(frostId))
                     {
-                        _frost.FrostId = frostId;
+                        _frost.FrostId = frostId.ToLower().Replace(" ", "");
                         _frost.Year = _frost.Date.Year;
                         _frost.Month = _frost.Date.Month;
                         _frost.Day = _frost.Date.Day;

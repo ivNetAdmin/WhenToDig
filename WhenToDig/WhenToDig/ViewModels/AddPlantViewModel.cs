@@ -42,7 +42,7 @@ namespace WhenToDig.ViewModels
                     if (!string.IsNullOrEmpty(_plant.Name))
                     {                        
                         if (string.IsNullOrEmpty(_plant.Variety)) _plant.Variety = "Common";
-                        _plant.PlantId = string.Format("{0}{1}", _plant.Name, _plant.Variety).ToLower();
+                        _plant.PlantId = string.Format("{0}{1}", _plant.Name, _plant.Variety).ToLower().Replace(" ", "");
                         _realmInstance.Write(() =>
                         {
                             _realmInstance.Add(_plant,true); // Add the whole set of details

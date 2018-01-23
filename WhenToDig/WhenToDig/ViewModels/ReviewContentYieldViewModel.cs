@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
 using WhenToDig.Models;
+using WhenToDig.Views;
+using Xamarin.Forms;
 
 namespace WhenToDig.ViewModels
 {
@@ -11,6 +16,8 @@ namespace WhenToDig.ViewModels
         public ReviewContentYieldViewModel()
         {
             GetYearList();
+
+            ItemSelectedCommand = new Command<Yield>(HandleItemSelected);
         }
 
         #region Properties
@@ -48,6 +55,24 @@ namespace WhenToDig.ViewModels
             }
         }
         #endregion
+
+        #region Commands
+        public ICommand ItemSelectedCommand { get; private set; }
+        #endregion
+
+        #region Events
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void RaisePropertyChanged(
+    [CallerMemberName] string caller = "")
+        {
+            PropertyChanged(this, new PropertyChangedEventArgs(caller));
+        }
+        private void HandleItemSelected(Yield yield)
+        {
+            if (yield == null) return;
+            Navigation.PushAsync(new ReviewContentYieldJobsPage(yield.YieldId));
+        }
+        #endregion       
 
         #region Private
         private void GetYearList()
