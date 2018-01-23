@@ -71,10 +71,11 @@ namespace WhenToDig.ViewModels
                     {
                         if (string.IsNullOrEmpty(_job.Type)) _job.Type = "General";
                         if (string.IsNullOrEmpty(_job.Plant)) _job.Type = "All";
-                        _job.JobId = string.Format("{0}{1}{2}{3}", 
-                            _job.Name, 
-                            _job.Plant, 
-                            _job.Type, 
+
+                        _job.JobId = string.Format("{0}{1}{2}{3}",
+                            _job.Name,
+                            _job.Plant,
+                            _job.Type,
                             _job.Date.ToString("yyyyMMdd")).ToLower();
 
                         _realmInstance.Write(() =>

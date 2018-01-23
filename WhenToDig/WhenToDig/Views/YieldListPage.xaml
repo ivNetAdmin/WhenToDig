@@ -44,7 +44,14 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Label Text="{Binding Year}" Grid.Row="0" Grid.Column="0"/>
-                            <Label Text="{Binding Plant}" Grid.Row="0" Grid.Column="1" FontAttributes="Bold"/>
+                            <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                                <Label Text="{Binding Plant, 
+                                        Converter={StaticResource NativeTypeConverter}, 
+                                        ConverterParameter='PlantName,PlantName'}}" FontAttributes="Bold"/>
+                                <Label Text="{Binding Plant, 
+                                        Converter={StaticResource NativeTypeConverter}, 
+                                        ConverterParameter='PlantName,PlantVariety'}}" FontAttributes="Italic"/>
+                            </StackLayout>
                             <Label Text="{Binding Crop}" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"/>
                         </Grid>
                     </ViewCell>

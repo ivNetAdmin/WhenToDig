@@ -68,7 +68,7 @@ namespace WhenToDig.ViewModels
 
         private void ProcessYieldData()
         {
-            Yields = GetYields(_year);
+            Yields = GetYields(_year, "review");
         }
         #endregion
     }

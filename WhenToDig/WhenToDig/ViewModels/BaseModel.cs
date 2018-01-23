@@ -147,7 +147,7 @@ namespace WhenToDig.ViewModels
             var plantnames = new List<string>();
             foreach (var plant in plants)
             {
-                var plantVariety = string.Format("{0} {1}", plant.Name, plant.Variety);
+                var plantVariety = string.Format("{0} * {1}", plant.Name, plant.Variety);
                 if (!plantnames.Contains(plantVariety))
                 {
                     plantnames.Add(plantVariety);
@@ -155,27 +155,36 @@ namespace WhenToDig.ViewModels
             }
 
             return new ObservableCollection<string>(plantnames);
-        }        
-        internal ObservableCollection<Yield> GetYields(string year)
+        }
+        internal ObservableCollection<Yield> GetYields(string year, string orderType = "list")
         {
             if (year == "All")
             {
-                return new ObservableCollection<Yield>(
-                 _realmInstance.All<Yield>()
-                 .OrderByDescending(x => x.Crop)
-                     .ThenBy(x => x.Plant)
-                     .ThenBy(x => x.Year).ToList());
+                if (orderType == "review")
+                {
+                    return new ObservableCollection<Yield>(
+                     _realmInstance.All<Yield>()
+                     .OrderByDescending(x => x.Crop)
+                         .ThenBy(x => x.Plant)
+                         .ThenBy(x => x.Year).ToList());
+                }
+                else {
+                    return new ObservableCollection<Yield>(
+                         _realmInstance.All<Yield>()
+                         .OrderByDescending(x => x.Year)
+                             .ThenBy(x => x.Plant).ToList());
+                }
             }
             else
             {
                 var intYear = Convert.ToInt16(year);
-                  return new ObservableCollection<Yield>(
-                      
-                     _realmInstance.All<Yield>()
-                     .Where(x => (x.Year == intYear))
-                     .OrderByDescending(x => x.Crop)
-                     .ThenBy(x => x.Plant)
-                     .ThenBy(x => x.Year).ToList());
+                return new ObservableCollection<Yield>(
+
+                   _realmInstance.All<Yield>()
+                   .Where(x => (x.Year == intYear))
+                   .OrderByDescending(x => x.Crop)
+                   .ThenBy(x => x.Plant)
+                   .ThenBy(x => x.Year).ToList());
             }
         }
         internal ObservableCollection<int> GetYears()

@@ -23,6 +23,7 @@ namespace WhenToDig.ViewModels
 
             Jobs = GetJobs();
             ItemSelectedCommand = new Command<Job>(HandleItemSelected);
+            
         }        
         #endregion
 

@@ -21,6 +21,7 @@ namespace WhenToDig.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
             BindingContext = new AddJobViewModel(Navigation);
             TypeList.SelectedItem = "General";
             PlantList.SelectedItem = "All";
