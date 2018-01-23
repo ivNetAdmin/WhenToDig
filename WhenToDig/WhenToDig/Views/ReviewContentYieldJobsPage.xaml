@@ -1,12 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:WhenToDig.Converters"
              x:Class="WhenToDig.Views.ReviewContentYieldJobsPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:NativeTypeConverter
+                x:Key="NativeTypeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <TableView Intent="Data" HasUnevenRows="True">
+            <TableRoot>
+                <TableSection Title="Yield Details">
+
+                    <ViewCell>
+                        <ViewCell.View>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Yield.Year}" Grid.Row="0" Grid.Column="0"/>
+                                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                                    <Label Text="{Binding Yield.Plant, 
+                                        Converter={StaticResource NativeTypeConverter}, 
+                                        ConverterParameter='PlantName,PlantName'}}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Yield.Plant, 
+                                        Converter={StaticResource NativeTypeConverter}, 
+                                        ConverterParameter='PlantName,PlantVariety'}}" FontAttributes="Italic"/>
+                                </StackLayout>
+                                <Label Text="{Binding Yield.Crop}" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"/>
+                            </Grid>
+                        </ViewCell.View>
+                    </ViewCell>
+
+                   
+                </TableSection>
+                <TableSection Title="Notes">
+                    <ViewCell>
+                        <ContentView HeightRequest="200" Margin="15,10,10,10">
+                            <Editor Text="{Binding Yield.Notes, Mode=TwoWay}"/>
+                        </ContentView>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
     </ContentPage.Content>
 </ContentPage>
