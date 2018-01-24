@@ -14,12 +14,14 @@ namespace WhenToDig.ViewModels
         public ReviewContentYieldJobsViewModel(INavigation navigation, string yieldId)
         {
             this.Navigation = navigation;
+            Title = "Yield Review";
 
             Yield = _realmInstance.Find<Yield>(yieldId);
 
             RelatedJobs = new ObservableCollection<Job>(GetRelatedJobs(_yield.Plant, _yield.Year));
             UnrelatedJobs = new ObservableCollection<Job>(GetUnRelatedJobs(_yield.Year));
-        }
+            MoreYields = new ObservableCollection<Yield>(GetMoreYields(_yield.Plant, _yield.Year));
+        }      
 
         #region Properties
         private Yield _yield;
@@ -52,9 +54,19 @@ namespace WhenToDig.ViewModels
                 OnPropertyChanged(); // Added the OnPropertyChanged Method
             }
         }
+        private ObservableCollection<Yield> _listOfMoreYields;
+        public ObservableCollection<Yield> MoreYields
+        {
+            get { return _listOfMoreYields; }
+            set
+            {
+                _listOfMoreYields = value;
+                OnPropertyChanged(); // Added the OnPropertyChanged Method
+            }
+        }
         #endregion
 
-        #region Privaye methods
+        #region Private methods
         private List<Job> GetRelatedJobs(string plant,int year)
         {
             var startDate = new DateTimeOffset(new DateTime(year - 1, 9, 30));
@@ -75,6 +87,15 @@ namespace WhenToDig.ViewModels
                 .Where(x => x.Type == "General" && x.Date > startDate && x.Date < endDate)
                 .OrderBy(x => x.Type)
                 .ThenBy(x => x.Date).ToList());
+
+        }
+        private List<Yield> GetMoreYields(string plant, int year)
+        {
+            return new List<Yield>(
+               _realmInstance.All<Yield>()
+               .Where(x => x.Plant == plant && x.Year != year)
+               .OrderByDescending(x => x.Crop)
+               .ThenBy(x => x.Year).ToList());
 
         }
         #endregion

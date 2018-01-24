@@ -15,7 +15,7 @@ namespace WhenToDig.ViewModels
     {
         public ReviewContentYieldViewModel(INavigation navigation)
         {
-            this.Navigation = navigation;
+            this.Navigation = navigation;            
 
             GetYearList();
 
