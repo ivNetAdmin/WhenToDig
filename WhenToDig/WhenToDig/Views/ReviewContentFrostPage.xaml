@@ -13,6 +13,7 @@
     
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10">
+            <Label Text="{Binding Title}" FontAttributes="Bold"/>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Year"/>
                 <Picker x:Name="YearList" HorizontalOptions="FillAndExpand"

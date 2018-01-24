@@ -16,7 +16,7 @@ namespace WhenToDig.ViewModels
         public ReviewContentFrostViewModel()
         {
             GetYearList();
-            //ProcessFrostData();
+            Title = "Frost Review";
         }
      
         #region Properties

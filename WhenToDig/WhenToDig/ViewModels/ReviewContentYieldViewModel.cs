@@ -15,7 +15,8 @@ namespace WhenToDig.ViewModels
     {
         public ReviewContentYieldViewModel(INavigation navigation)
         {
-            this.Navigation = navigation;            
+            this.Navigation = navigation;
+            Title = "Yield Review";
 
             GetYearList();
 
