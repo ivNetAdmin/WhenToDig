@@ -19,9 +19,12 @@ namespace WhenToDig.ViewModels
             this.Navigation = navigation;
             Title = "dIgIt";
 
+            SetPropertiesCollections();
+
             _currentDate = DateTimeOffset.Now;
-            SetDateRange();
-        }
+            DisplayCalendarDate = _currentDate.ToString("MMM yyyy");
+            // SetDateRange();
+        }        
         #endregion
 
         #region Properties
@@ -133,7 +136,7 @@ namespace WhenToDig.ViewModels
                             break;
                     }
                     DisplayCalendarDate = _currentDate.ToString("MMM yyyy");
-                    SetDateRange(true);
+                    SetDateRange();
                 });
             }
         }
@@ -151,8 +154,15 @@ namespace WhenToDig.ViewModels
         }
         #endregion
 
-        #region private methods
-        private void SetDateRange(bool getJobs = false)
+        #region Public methods
+        public void PageAppearingSetDateRange()
+        {
+            SetDateRange();
+        }
+        #endregion
+
+        #region Private methods
+        private void SetDateRange()
         {
             #region set calendar variables
             var fistOfTheMonth = new DateTime(_currentDate.Year, _currentDate.Month, 1);
@@ -165,21 +175,19 @@ namespace WhenToDig.ViewModels
             _dateRangeTextColour.Clear();
             _calendarDates.Clear();
             _dateRangeVisible.Clear();
+            _jobList.Clear();
             #endregion
 
             #region get jobs for date range
-            if (getJobs)
+            var jobs = GetJobsForDateRange(startDate, endDate);
+
+            foreach (var job in jobs)
             {
-                var jobs = GetJobsForDateRange(startDate, endDate);
+                var fontColour = Color.DarkSlateGray;
+                if (job.Date.Month < _currentDate.Month || job.Date.Month > _currentDate.Month) fontColour = Color.Gray;
 
-                foreach (var job in jobs)
-                {
-                    var fontColour = Color.DarkSlateGray;
-                    if (job.Date.Month < _currentDate.Month || job.Date.Month > _currentDate.Month) fontColour = Color.Gray;
-
-                    job.TextColor = fontColour;
-                    JobList.Add(job);
-                }
+                job.TextColor = fontColour;
+                _jobList.Add(job);
             }
             #endregion
 
@@ -202,21 +210,16 @@ namespace WhenToDig.ViewModels
 
                 if (i == 35 && day < 10) visible = false;
                 _dateRangeVisible.Add(visible);
+                
+                SetCellBackgroundImage(date);
 
-                if (getJobs)
-                {
-                    SetCellBackgroundImage(date);
-                }
-                else
-                {
-                    _dateRangeJobType.Add("ttblank.png");
-                }
             }
             CalendarDates = _calendarDates;
             DateRangeDate = _dateRangeDate;
             DateRangeJobType = _dateRangeJobType;
             DateRangeTextColour = _dateRangeTextColour;
             DateRangeVisible = _dateRangeVisible;
+            JobList = _jobList;
 
             #endregion
         }
@@ -263,6 +266,18 @@ namespace WhenToDig.ViewModels
                 .OrderBy(j => j.Date)
                 .ThenBy(j => j.Type).ToList());
 
+        }
+
+        private void SetPropertiesCollections()
+        {
+            for (int i = 0; i < 42; i++)
+            {
+                _dateRangeDate.Add(string.Empty);
+                _dateRangeJobType.Add(string.Empty);
+                _dateRangeTextColour.Add(Color.White);
+                _calendarDates.Add(new DateTime());
+                _dateRangeVisible.Add(false);
+            }
         }
         #endregion
     }
