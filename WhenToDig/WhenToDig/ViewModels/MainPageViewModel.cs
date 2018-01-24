@@ -1,16 +1,268 @@
 ﻿
 using Realms;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using WhenToDig.Models;
 using Xamarin.Forms;
 
 namespace WhenToDig.ViewModels
 {
     public class MainPageViewModel : BaseModel
     {
+        private DateTimeOffset _currentDate;
+
         #region Constructors
         public MainPageViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
-            Title = "DiGiT";           
+            Title = "dIgIt";
+
+            _currentDate = DateTimeOffset.Now;
+            SetDateRange();
+        }
+        #endregion
+
+        #region Properties
+        private string _displayCalendarDate;
+        public string DisplayCalendarDate
+        {
+            get { return _displayCalendarDate; }
+            set
+            {
+                if (_displayCalendarDate != value)
+                {
+                    _displayCalendarDate = value;                   
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private ObservableCollection<Job> _jobList = new ObservableCollection<Job>();
+        public ObservableCollection<Job> JobList
+        {
+            get { return _jobList; }
+            set
+            {
+                _jobList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<Color> _dateRangeTextColour = new ObservableCollection<Color>();
+        public ObservableCollection<Color> DateRangeTextColour
+        {
+            get { return _dateRangeTextColour; }
+            set
+            {
+                _dateRangeTextColour = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<DateTime> _calendarDates = new ObservableCollection<DateTime>();
+        public ObservableCollection<DateTime> CalendarDates
+        {
+            get { return _calendarDates; }
+            set
+            {
+                if (_calendarDates != value)
+                {
+                    _calendarDates = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private ObservableCollection<string> _dateRangeDate = new ObservableCollection<string>();
+        public ObservableCollection<string> DateRangeDate
+        {
+            get { return _dateRangeDate; }
+            set
+            {
+                _dateRangeDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<Boolean> _dateRangeVisible = new ObservableCollection<Boolean>();
+        public ObservableCollection<Boolean> DateRangeVisible
+        {
+            get { return _dateRangeVisible; }
+            set
+            {
+                _dateRangeVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<string> _dateRangeJobType = new ObservableCollection<string>();
+        public ObservableCollection<String> DateRangeJobType
+        {
+            get { return _dateRangeJobType; }
+            set
+            {
+                _dateRangeJobType = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        #region Commands
+        public Command ChangeCalendarCommand // for ADD
+        {
+            get
+            {
+                return new Command((param) =>
+                {
+
+                    switch ((string)param)
+                    {
+                        case "NextMonth":
+                            _currentDate = _currentDate.AddMonths(1);
+                            break;
+                        case "NextYear":
+                            _currentDate = _currentDate.AddYears(1);
+                            break;
+                        case "LastMonth":
+                            _currentDate = _currentDate.AddMonths(-1);
+                            break;
+                        case "LastYear":
+                            _currentDate = _currentDate.AddYears(-1);
+                            break;
+                    }
+                    DisplayCalendarDate = _currentDate.ToString("MMM yyyy");
+                    SetDateRange(true);
+                });
+            }
+        }
+
+        public Command CalendarDatePickedCommand
+        {
+            get
+            {
+                return new Command((param) =>
+                {
+                    var cakes = param;
+                    //var job = new Job { Description = string.Empty, PlantName = string.Empty, Notes = string.Empty, Date = new DateTimeOffset((DateTime)param), Type = 1 };
+                });
+            }
+        }
+        #endregion
+
+        #region private methods
+        private void SetDateRange(bool getJobs = false)
+        {
+            #region set calendar variables
+            var fistOfTheMonth = new DateTime(_currentDate.Year, _currentDate.Month, 1);
+            var firstDayofMonth = fistOfTheMonth.DayOfWeek;
+            var startDate = (int)firstDayofMonth == 0 ? fistOfTheMonth.AddDays(-6) : fistOfTheMonth.AddDays(-1 * ((int)firstDayofMonth - 1));
+            var endDate = startDate.AddDays(42);
+            var visible = true;
+            _dateRangeDate.Clear();
+            _dateRangeJobType.Clear();
+            _dateRangeTextColour.Clear();
+            _calendarDates.Clear();
+            _dateRangeVisible.Clear();
+            #endregion
+
+            #region get jobs for date range
+            if (getJobs)
+            {
+                var jobs = GetJobsForDateRange(startDate, endDate);
+
+                foreach (var job in jobs)
+                {
+                    var fontColour = Color.DarkSlateGray;
+                    if (job.Date.Month < _currentDate.Month || job.Date.Month > _currentDate.Month) fontColour = Color.Gray;
+
+                    job.TextColor = fontColour;
+                    JobList.Add(job);
+                }
+            }
+            #endregion
+
+            #region set calendar cell values
+            for (int i = 0; i < 42; i++)
+            {
+                var date = startDate.Date.AddDays(i);
+                var day = date.Day;
+                var fontColour = Color.White;
+
+                if (date.Day == DateTime.Now.Day
+                    && date.Month == DateTime.Now.Month
+                    && date.Year == DateTime.Now.Year) fontColour = Color.Aqua;
+                if (i < 7 && day > 10) fontColour = Color.Gray;
+                if (i > 20 && day < 10) fontColour = Color.Gray;
+
+                _dateRangeTextColour.Add(fontColour);
+                _dateRangeDate.Add(day.ToString("D2"));
+                _calendarDates.Add(date);
+
+                if (i == 35 && day < 10) visible = false;
+                _dateRangeVisible.Add(visible);
+
+                if (getJobs)
+                {
+                    SetCellBackgroundImage(date);
+                }
+                else
+                {
+                    _dateRangeJobType.Add("ttblank.png");
+                }
+            }
+            CalendarDates = _calendarDates;
+            DateRangeDate = _dateRangeDate;
+            DateRangeJobType = _dateRangeJobType;
+            DateRangeTextColour = _dateRangeTextColour;
+            DateRangeVisible = _dateRangeVisible;
+
+            #endregion
+        }
+        private void SetCellBackgroundImage(DateTime date)
+        {
+            var startDate = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
+            var endDate = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
+
+            var jobs = GetJobsForDateRange(startDate, endDate);
+
+            var types = new string[3];
+
+            foreach (var job in jobs)
+            {
+                switch (job.Type)
+                {
+                    case "Cultivate":
+                        types[0] = "c";
+                        break;
+                    case "General":
+                        types[1] = "g";
+                        break;
+                    case "Preparation":
+                        types[2] = "p";
+                        break;
+                }
+            }
+            var image = string.Format("tt{0}{1}{2}.png", types[0], types[1], types[2]);
+            if (image.Length == 6)
+            {
+                _dateRangeJobType.Add("ttblank.png");
+            }
+            else
+            {
+                _dateRangeJobType.Add(image);
+            }
+
+        }
+        private List<Job> GetJobsForDateRange(DateTime startDate, DateTime endDate)
+        {
+            return new List<Job>(
+                _realmInstance.All<Job>()
+                .Where(j => j.Date >= startDate && j.Date <= endDate)
+                .OrderBy(j => j.Date)
+                .ThenBy(j => j.Type).ToList());
+
         }
         #endregion
     }

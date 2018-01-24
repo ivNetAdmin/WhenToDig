@@ -19,7 +19,14 @@ namespace WhenToDig
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            BindingContext = new MainPageViewModel(Navigation);
+            try
+            {
+                BindingContext = new MainPageViewModel(Navigation);
+            }catch(Exception ex)
+                {
+                var cakes = ex;
+            }
+            ((MainPageViewModel)BindingContext).DisplayCalendarDate = DateTimeOffset.Now.ToString("MMM yyyy");
         }
 
         protected override void OnDisappearing()

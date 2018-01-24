@@ -79,10 +79,12 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\add.png" />
     <AndroidResource Include="Resources\drawable\cancel.png" />
     <AndroidResource Include="Resources\drawable\delete.png" />
     <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\drawable\save.png" />
+    <AndroidResource Include="Resources\drawable\ttblank.png" />
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
     <AndroidResource Include="Resources\values\styles.xml">
@@ -97,7 +99,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
-    <AndroidResource Include="Resources\drawable\add.png" />
+    <AndroidResource Include="Resources\drawable\ttc.png" />
+    <AndroidResource Include="Resources\drawable\ttcg.png" />
+    <AndroidResource Include="Resources\drawable\ttcgp.png" />
+    <AndroidResource Include="Resources\drawable\ttcp.png" />
+    <AndroidResource Include="Resources\drawable\ttg.png" />
+    <AndroidResource Include="Resources\drawable\ttgp.png" />
+    <AndroidResource Include="Resources\drawable\ttp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

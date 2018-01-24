@@ -2333,26 +2333,8 @@ namespace WhenToDig.Droid
 			// aapt resource value: 0x7f020054
 			public const int avd_hide_password = 2130837588;
 			
-			// aapt resource value: 0x7f020134
-			public const int avd_hide_password_1 = 2130837812;
-			
-			// aapt resource value: 0x7f020135
-			public const int avd_hide_password_2 = 2130837813;
-			
-			// aapt resource value: 0x7f020136
-			public const int avd_hide_password_3 = 2130837814;
-			
 			// aapt resource value: 0x7f020055
 			public const int avd_show_password = 2130837589;
-			
-			// aapt resource value: 0x7f020137
-			public const int avd_show_password_1 = 2130837815;
-			
-			// aapt resource value: 0x7f020138
-			public const int avd_show_password_2 = 2130837816;
-			
-			// aapt resource value: 0x7f020139
-			public const int avd_show_password_3 = 2130837817;
 			
 			// aapt resource value: 0x7f020056
 			public const int cancel = 2130837590;
@@ -2999,11 +2981,11 @@ namespace WhenToDig.Droid
 			// aapt resource value: 0x7f02012c
 			public const int notification_icon_background = 2130837804;
 			
-			// aapt resource value: 0x7f020132
-			public const int notification_template_icon_bg = 2130837810;
+			// aapt resource value: 0x7f02013a
+			public const int notification_template_icon_bg = 2130837818;
 			
-			// aapt resource value: 0x7f020133
-			public const int notification_template_icon_low_bg = 2130837811;
+			// aapt resource value: 0x7f02013b
+			public const int notification_template_icon_low_bg = 2130837819;
 			
 			// aapt resource value: 0x7f02012d
 			public const int notification_tile_bg = 2130837805;
@@ -3019,6 +3001,30 @@ namespace WhenToDig.Droid
 			
 			// aapt resource value: 0x7f020131
 			public const int tooltip_frame_light = 2130837809;
+			
+			// aapt resource value: 0x7f020132
+			public const int ttblank = 2130837810;
+			
+			// aapt resource value: 0x7f020133
+			public const int ttc = 2130837811;
+			
+			// aapt resource value: 0x7f020134
+			public const int ttcg = 2130837812;
+			
+			// aapt resource value: 0x7f020135
+			public const int ttcgp = 2130837813;
+			
+			// aapt resource value: 0x7f020136
+			public const int ttcp = 2130837814;
+			
+			// aapt resource value: 0x7f020137
+			public const int ttg = 2130837815;
+			
+			// aapt resource value: 0x7f020138
+			public const int ttgp = 2130837816;
+			
+			// aapt resource value: 0x7f020139
+			public const int ttp = 2130837817;
 			
 			static Drawable()
 			{

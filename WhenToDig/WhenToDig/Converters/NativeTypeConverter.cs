@@ -29,8 +29,10 @@ namespace WhenToDig.Converters
                 return decimal.Parse(value.ToString());
             if (type == "Int")
                 return int.Parse(value.ToString());
-            //if (type == "DateTime")
-            //    return DateTime.Parse(value.ToString());
+            if (type == "DateTime")
+            {
+                return new DateTimeOffset(new DateTime(((DateTime)value).Year, ((DateTime)value).Month, ((DateTime)value).Day));
+            }
             if (type == "DateTimeOffset")
             {
                 if (value.GetType() == typeof(DateTime))

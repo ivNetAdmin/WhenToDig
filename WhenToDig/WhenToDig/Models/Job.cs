@@ -1,5 +1,6 @@
 ﻿using Realms;
 using System;
+using Xamarin.Forms;
 
 namespace WhenToDig.Models
 {
@@ -12,5 +13,8 @@ namespace WhenToDig.Models
         public string Plant { get; set; }
         public string Notes { get; set; }
         public DateTimeOffset Date { get; set; }
+
+        [Ignored]
+        public Color TextColor { get; set; }
     }
 }
