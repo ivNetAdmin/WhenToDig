@@ -14,34 +14,31 @@
     <ContentPage.Content>
         <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
             <StackLayout>
-
-                <StackLayout Orientation="Horizontal" Margin="5,5">
-                    <Frame Margin="2,2" Padding="2,2">
+                <Frame Margin="2,2" Padding="2,2">
+                    <StackLayout Orientation="Horizontal" Margin="5,5">
                         <Label Text="Name"/>
                         <Entry Text="{Binding Plant.Name, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
                             <Entry.Behaviors>
                                 <behaviors:RequiredValidationBehavior />
                             </Entry.Behaviors>
                         </Entry>
-                    </Frame>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" Margin="5,5">
-                    <Frame Margin="2,2" Padding="2,2">
+                    </StackLayout>
+                </Frame>
+                <Frame Margin="2,2" Padding="2,2">
+                    <StackLayout Orientation="Horizontal" Margin="5,5">
                         <Label Text="Variety"/>
                         <Entry Text="{Binding Plant.Variety, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Placeholder="Common" />
-                    </Frame>
-                </StackLayout>
-                <StackLayout>
-                    <Frame Margin="2,2" Padding="2,2">
+                    </StackLayout>
+                </Frame>
+                <Frame Margin="2,2" Padding="2,2">
+                    <StackLayout Margin="5,5">
+                        <Label Text="Notes"/>
                         <ContentView HeightRequest="200">
                             <Editor Text="{Binding Plant.Notes, Mode=TwoWay}"/>
                         </ContentView>
-                    </Frame>
-                </StackLayout>
-
-
+                    </StackLayout>
+                </Frame>
             </StackLayout>
-
         </Frame>
     </ContentPage.Content>
 </ContentPage>
