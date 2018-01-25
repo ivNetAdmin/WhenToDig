@@ -178,19 +178,6 @@ namespace WhenToDig.ViewModels
             _jobList.Clear();
             #endregion
 
-            #region get jobs for date range
-            var jobs = GetJobsForDateRange(startDate, endDate);
-
-            foreach (var job in jobs)
-            {
-                var fontColour = Color.DarkSlateGray;
-                if (job.Date.Month < _currentDate.Month || job.Date.Month > _currentDate.Month) fontColour = Color.Gray;
-
-                job.TextColor = fontColour;
-                _jobList.Add(job);
-            }
-            #endregion
-
             #region set calendar cell values
             for (int i = 0; i < 42; i++)
             {
@@ -214,15 +201,43 @@ namespace WhenToDig.ViewModels
                 SetCellBackgroundImage(date);
 
             }
+            #endregion
+
+            #region get jobs for date range
+            var visibleDate = GetVisibleDate();
+            var jobs = GetJobsForDateRange(startDate, visibleDate);
+
+            foreach (var job in jobs)
+            {
+             //   if(job.Date<visibleDate)
+                var fontColour = Color.DarkSlateGray;
+                if (job.Date.Month < _currentDate.Month || job.Date.Month > _currentDate.Month) fontColour = Color.Gray;
+
+                job.TextColor = fontColour;
+                _jobList.Add(job);
+            }
+            #endregion
+
             CalendarDates = _calendarDates;
             DateRangeDate = _dateRangeDate;
             DateRangeJobType = _dateRangeJobType;
             DateRangeTextColour = _dateRangeTextColour;
             DateRangeVisible = _dateRangeVisible;
             JobList = _jobList;
-
-            #endregion
         }
+
+        private DateTime GetVisibleDate()
+        {
+            for (int i = 41; i >= 0; i--)
+            {
+                if (_dateRangeVisible[i])
+                {
+                    return _calendarDates[i];
+                }
+            }
+            return _calendarDates.Last() ;
+        }
+
         private void SetCellBackgroundImage(DateTime date)
         {
             var startDate = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
