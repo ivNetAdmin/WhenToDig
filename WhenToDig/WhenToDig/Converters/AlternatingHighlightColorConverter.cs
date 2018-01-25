@@ -14,8 +14,9 @@ namespace WhenToDig.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Color rowcolor = Color.FromHex(LIST_COLOR);
             if (value == null || parameter == null) return Color.White;
+
+            Color rowcolor = Color.FromHex(LIST_COLOR);            
             var index = ((ListView)parameter).ItemsSource.Cast<object>().ToList().IndexOf(value);
             if (index % 2 == 0)
             {

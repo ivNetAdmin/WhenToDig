@@ -19,7 +19,6 @@ namespace WhenToDig.ViewModels
 
             _job = _realmInstance.Find<Job>(jobId);
 
-            TypeList = new ObservableCollection<string> { "Cultivate", "General", "Preparation" };
             PlantList = GetPlantNameVarieties();
         }
         #endregion
@@ -34,8 +33,7 @@ namespace WhenToDig.ViewModels
                 OnPropertyChanged(); // Add the OnPropertyChanged();
             }
         }
-
-        private ObservableCollection<string> _typeList;
+       
         public ObservableCollection<string> TypeList
         {
             get { return _typeList; }

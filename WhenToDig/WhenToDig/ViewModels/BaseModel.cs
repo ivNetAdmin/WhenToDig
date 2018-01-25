@@ -18,9 +18,11 @@ namespace WhenToDig.ViewModels
     public class BaseModel : INotifyPropertyChanged
     {
         internal Realm _realmInstance;
+        internal ObservableCollection<string> _typeList 
+            = new ObservableCollection<string> { "Cultivate", "General", "Preparation" };
 
-        #region application colours                
-        internal string _frameBackground = "#fffafa";
+    #region application colours                
+    internal string _frameBackground = "#fffafa";
         internal string _frameBorder = "#212121";
 
         internal string _calendarBackground = "#ffffff";

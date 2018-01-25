@@ -15,9 +15,7 @@ namespace WhenToDig.ViewModels
         public AddJobViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
-            Title = "Add Job";
-
-            TypeList = new ObservableCollection<string> { "Cultivate", "General", "Preparation" };
+            Title = "Add Job";            
 
             PlantList = GetPlantNameVarieties();           
 
@@ -36,8 +34,7 @@ namespace WhenToDig.ViewModels
                 OnPropertyChanged(); // Add the OnPropertyChanged();
             }
         }
-
-        private ObservableCollection<string> _typeList;
+       
         public ObservableCollection<string> TypeList
         {
             get { return _typeList; }
@@ -70,8 +67,6 @@ namespace WhenToDig.ViewModels
                     if (!string.IsNullOrEmpty(_job.Name))
                     {
                         if (string.IsNullOrEmpty(_job.Type)) _job.Type = "General";
-                        if (string.IsNullOrEmpty(_job.Plant)) _job.Type = "All";
-
                         _job.JobId = string.Format("{0}{1}{2}{3}",
                             _job.Name,
                             _job.Plant,
