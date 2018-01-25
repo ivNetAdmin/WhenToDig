@@ -17,7 +17,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="{Binding SaveIcon}" Command="{Binding UpdateFrostCommand}"/>
         <ToolbarItem Icon="{Binding DeleteIcon}" Command="{Binding DeleteFrostCommand}"/>
-        <ToolbarItem Icon="{Binding CancelIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Cancel}"/>
+        <!--<ToolbarItem Icon="{Binding CancelIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Cancel}"/>-->
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
