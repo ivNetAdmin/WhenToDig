@@ -22,7 +22,7 @@
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="{Binding AddIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.AddJob}"/>
-        <ToolbarItem Icon="{Binding MainPageIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Home}"/>
+        <!--<ToolbarItem Icon="{Binding MainPageIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Home}"/>-->
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
