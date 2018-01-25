@@ -13,57 +13,59 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <TableView Intent="Form" HasUnevenRows="True">
-            <TableRoot>
-                <TableSection Title="Yield Details">
+        <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
+            <TableView Intent="Form" HasUnevenRows="True">
+                <TableRoot>
+                    <TableSection Title="Yield Details">
 
-                    <ViewCell>
-                        <ViewCell.View>
-                            <StackLayout Orientation="Horizontal" Padding="13, 0">
-                                <Label Text="Year"/>
-                                <Picker x:Name="YearList" HorizontalOptions="FillAndExpand"
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" Padding="13, 0">
+                                    <Label Text="Year"/>
+                                    <Picker x:Name="YearList" HorizontalOptions="FillAndExpand"
                                     ItemsSource="{Binding Years}"
                                     ItemDisplayBinding="{Binding .}" 
                                     SelectedItem="{Binding Yield.Year}" />
-                            </StackLayout>
-                        </ViewCell.View>
-                    </ViewCell>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
 
-                    <ViewCell>
-                        <ViewCell.View>
-                            <StackLayout Orientation="Horizontal" Padding="13, 0">
-                                <Label Text="Plant Variety"/>
-                                <Picker x:Name="PlantList" HorizontalOptions="FillAndExpand"
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" Padding="13, 0">
+                                    <Label Text="Plant Variety"/>
+                                    <Picker x:Name="PlantList" HorizontalOptions="FillAndExpand"
                                     ItemsSource="{Binding Plants}"
                                     ItemDisplayBinding="{Binding .}" 
                                     SelectedItem="{Binding Yield.Plant}" />
-                            </StackLayout>
-                        </ViewCell.View>
-                    </ViewCell>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
 
-                    <ViewCell>
-                        <ViewCell.View>
-                            <StackLayout Orientation="Horizontal" Margin="15,10,10,10">
-                                <Label Text="Crop"/>
-                                <Entry Text="{Binding Yield.Crop, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
-                                    <Entry.Behaviors>
-                                        <behaviors:RequiredValidationBehavior />
-                                    </Entry.Behaviors>
-                                </Entry>
-                            </StackLayout>
-                        </ViewCell.View>
-                    </ViewCell>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" Margin="15,10,10,10">
+                                    <Label Text="Crop"/>
+                                    <Entry Text="{Binding Yield.Crop, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
+                                        <Entry.Behaviors>
+                                            <behaviors:RequiredValidationBehavior />
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
 
 
-                </TableSection>
-                <TableSection Title="Notes">
-                    <ViewCell>
-                        <ContentView HeightRequest="200" Margin="15,10,10,10">
-                            <Editor Text="{Binding Yield.Notes, Mode=TwoWay}"/>
-                        </ContentView>
-                    </ViewCell>
-                </TableSection>
-            </TableRoot>
-        </TableView>
+                    </TableSection>
+                    <TableSection Title="Notes">
+                        <ViewCell>
+                            <ContentView HeightRequest="200" Margin="15,10,10,10">
+                                <Editor Text="{Binding Yield.Notes, Mode=TwoWay}"/>
+                            </ContentView>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

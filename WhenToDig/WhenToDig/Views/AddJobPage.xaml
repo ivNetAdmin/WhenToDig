@@ -20,67 +20,69 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <TableView Intent="Form" HasUnevenRows="True">
-            <TableRoot>
-                <TableSection Title="Job Details">
+        <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
+            <TableView Intent="Form" HasUnevenRows="True">
+                <TableRoot>
+                    <TableSection Title="Job Details">
 
-                    <ViewCell>
-                        <ViewCell.View>
-                            <StackLayout Orientation="Horizontal" Margin="15,10,10,10" HorizontalOptions="FillAndExpand">
-                                <Label Text="Date"/>
-                                <DatePicker Date="{Binding Job.Date, Mode=TwoWay, Converter={StaticResource NativeTypeConverter}, ConverterParameter=DateTime}">
-                                    <DatePicker.Format>dd-MMM-yy</DatePicker.Format>
-                                </DatePicker>
-                            </StackLayout>
-                        </ViewCell.View>
-                    </ViewCell>
-                    
-                    <ViewCell>
-                        <ViewCell.View>
-                            <StackLayout Orientation="Horizontal" Margin="15,10,10,10">
-                                <Label Text="Name"/>
-                                <Entry Text="{Binding Job.Name, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
-                                    <Entry.Behaviors>
-                                        <behaviors:RequiredValidationBehavior />
-                                    </Entry.Behaviors>
-                                </Entry>
-                            </StackLayout>
-                        </ViewCell.View>
-                    </ViewCell>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" Margin="15,10,10,10" HorizontalOptions="FillAndExpand">
+                                    <Label Text="Date"/>
+                                    <DatePicker Date="{Binding Job.Date, Mode=TwoWay, Converter={StaticResource NativeTypeConverter}, ConverterParameter=DateTime}">
+                                        <DatePicker.Format>dd-MMM-yy</DatePicker.Format>
+                                    </DatePicker>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
 
-                    <ViewCell>
-                        <ViewCell.View>
-                            <StackLayout Orientation="Horizontal" Padding="13, 0">
-                                <Label Text="Type"/>
-                                <Picker x:Name="TypeList" HorizontalOptions="FillAndExpand"
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" Margin="15,10,10,10">
+                                    <Label Text="Name"/>
+                                    <Entry Text="{Binding Job.Name, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
+                                        <Entry.Behaviors>
+                                            <behaviors:RequiredValidationBehavior />
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" Padding="13, 0">
+                                    <Label Text="Type"/>
+                                    <Picker x:Name="TypeList" HorizontalOptions="FillAndExpand"
                                     ItemsSource="{Binding TypeList}"
                                     ItemDisplayBinding="{Binding .}" 
                                     SelectedItem="{Binding Job.Type}" />
-                            </StackLayout>
-                        </ViewCell.View>
-                    </ViewCell>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
 
-                    <ViewCell>
-                        <ViewCell.View>
-                            <StackLayout Orientation="Horizontal" Padding="13, 0">
-                                <Label Text="Plant"/>
-                                <Picker x:Name="PlantList" HorizontalOptions="FillAndExpand"
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" Padding="13, 0">
+                                    <Label Text="Plant"/>
+                                    <Picker x:Name="PlantList" HorizontalOptions="FillAndExpand"
                                     ItemsSource="{Binding PlantList}"
                                     ItemDisplayBinding="{Binding .}" 
                                     SelectedItem="{Binding Job.Plant}" />
-                            </StackLayout>
-                        </ViewCell.View>
-                    </ViewCell>
-                    
-                </TableSection>
-                <TableSection Title="Notes">
-                    <ViewCell>
-                        <ContentView HeightRequest="200" Margin="15,10,10,10">
-                            <Editor Text="{Binding Job.Notes, Mode=TwoWay}"/>
-                        </ContentView>
-                    </ViewCell>
-                </TableSection>
-            </TableRoot>
-        </TableView>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+
+                    </TableSection>
+                    <TableSection Title="Notes">
+                        <ViewCell>
+                            <ContentView HeightRequest="200" Margin="15,10,10,10">
+                                <Editor Text="{Binding Job.Notes, Mode=TwoWay}"/>
+                            </ContentView>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>
