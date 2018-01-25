@@ -183,13 +183,13 @@ namespace WhenToDig.ViewModels
             {
                 var date = startDate.Date.AddDays(i);
                 var day = date.Day;
-                var fontColour = Color.White;
+                var fontColour = Color.FromHex(_calendarFontColor);
 
                 if (date.Day == DateTime.Now.Day
                     && date.Month == DateTime.Now.Month
-                    && date.Year == DateTime.Now.Year) fontColour = Color.Aqua;
-                if (i < 7 && day > 10) fontColour = Color.Gray;
-                if (i > 20 && day < 10) fontColour = Color.Gray;
+                    && date.Year == DateTime.Now.Year) fontColour = Color.FromHex(_calendarToday);
+                if (i < 7 && day > 10) fontColour = Color.FromHex(_calendarLowlight);
+                if (i > 20 && day < 10) fontColour = Color.FromHex(_calendarLowlight);
 
                 _dateRangeTextColour.Add(fontColour);
                 _dateRangeDate.Add(day.ToString("D2"));

@@ -19,6 +19,32 @@ namespace WhenToDig.ViewModels
     {
         internal Realm _realmInstance;
 
+        #region application colours                
+        internal string _frameBackground = "#fffafa";
+        internal string _frameBorder = "#212121";
+
+        internal string _calendarBackground = "#ffffff";
+        internal string _calendarNavigationBackground = "#bdbdbd";
+        internal string _calendarNavigationButton = "#f2f2f2";
+        internal string _calendarNavigationButtonText = "#00000";
+        internal string _calendarNavigationLabelText = "#ffffff";
+        internal string _calendarDayOfWeekText = "#4caf50";
+        internal string _calendarFontColor = "#212121";
+        internal string _calendarLowlight = "#bdbdbd";
+        internal string _calendarToday = "#ffa000";
+
+        public string FRAME_BACKGROUND { get { return _frameBackground; } }
+        public string FRAME_BORDER { get { return _frameBackground; } }
+
+        public string CALENDAR_BACKGROUND { get { return _calendarBackground; } }
+        public string CALENDAR_NAVIGATION_BACKGROUND { get { return _calendarNavigationBackground; } }
+        public string CALENDAR_NAVIGATION_BUTTON { get { return _calendarNavigationButton; } }
+        public string CALENDAR_NAVIGATION_BUTTON_TEXT { get { return _calendarNavigationButtonText; } }
+        public string CALENDAR_NAVIGATION_LABEL_TEXT { get { return _calendarNavigationLabelText; } }
+        public string CALENDAR_DAY_OF_WEEK_TEXT { get { return _calendarDayOfWeekText; } }
+
+        #endregion
+
         #region Constructors
         public BaseModel()
         {

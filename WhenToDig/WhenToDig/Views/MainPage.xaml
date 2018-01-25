@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:WhenToDig"
              xmlns:behaviors="clr-namespace:WhenToDig.Behaviors"     
              xmlns:converters="clr-namespace:WhenToDig.Converters"
+             xmlns:effects="clr-namespace:WhenToDig.Effects"      
              xmlns:helpers="clr-namespace:WhenToDig.Helpers"             
              x:Class="WhenToDig.MainPage"
              Title="{Binding Title}">
@@ -30,31 +31,53 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <StackLayout Padding="10,10,10,10">
-            <StackLayout BackgroundColor="DarkSlateGray" Padding="10">
-                <Grid VerticalOptions="Start">
+        <StackLayout>
+
+            <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
+                <StackLayout BackgroundColor="{Binding CALENDAR_BACKGROUND}">
+                    <Grid VerticalOptions="Start" BackgroundColor="{Binding CALENDAR_NAVIGATION_BACKGROUND}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
-                    <Button Text="&lt;&lt;" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Command="{Binding ChangeCalendarCommand}" CommandParameter="LastYear"/>
-                    <Button Text="&lt;" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Command="{Binding ChangeCalendarCommand}" CommandParameter="LastMonth"/>
-                    <Label TextColor="White" Text="{Binding DisplayCalendarDate}" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    <Button Text="&gt;" Grid.Row="0" Grid.Column="5" HorizontalOptions="Center"  Command="{Binding ChangeCalendarCommand}" CommandParameter="NextMonth"/>
-                    <Button Text="&gt;&gt;" Grid.Row="0" Grid.Column="6" HorizontalOptions="Center" Command="{Binding ChangeCalendarCommand}" CommandParameter="NextYear"/>
+                        <Button BackgroundColor="{Binding CALENDAR_NAVIGATION_BUTTON}" 
+                                TextColor="{Binding CALENDAR_NAVIGATION_BUTTON_TEXT}" 
+                                Text="&lt;&lt;" 
+                                Grid.Row="0" Grid.Column="0" 
+                                HorizontalOptions="Center" 
+                                Command="{Binding ChangeCalendarCommand}" CommandParameter="LastYear"/>
+                        <Button BackgroundColor="{Binding CALENDAR_NAVIGATION_BUTTON}" 
+                                TextColor="{Binding CALENDAR_NAVIGATION_BUTTON_TEXT}" 
+                                Text="&lt;" Grid.Row="0" 
+                                Grid.Column="1" HorizontalOptions="Center" 
+                                Command="{Binding ChangeCalendarCommand}" CommandParameter="LastMonth"/>
+                        <Label TextColor="{Binding CALENDAR_NAVIGATION_LABEL_TEXT}" 
+                               Text="{Binding DisplayCalendarDate}" 
+                               Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" 
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Button BackgroundColor="{Binding CALENDAR_NAVIGATION_BUTTON}" 
+                                TextColor="{Binding CALENDAR_NAVIGATION_BUTTON_TEXT}" 
+                                Text="&gt;" Grid.Row="0" 
+                                Grid.Column="5" HorizontalOptions="Center"  
+                                Command="{Binding ChangeCalendarCommand}" CommandParameter="NextMonth"/>
+                        <Button BackgroundColor="{Binding CALENDAR_NAVIGATION_BUTTON}" 
+                                TextColor="{Binding CALENDAR_NAVIGATION_BUTTON_TEXT}" 
+                                Text="&gt;&gt;" 
+                                Grid.Row="0" Grid.Column="6"                                  
+                                Command="{Binding ChangeCalendarCommand}" CommandParameter="NextYear"/>
                 </Grid>
-                <Grid>
+                    <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Label Text="Mo" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" TextColor="Aqua"/>
-                    <Label Text="Tu" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" TextColor="Aqua"/>
-                    <Label Text="We" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" TextColor="Aqua"/>
-                    <Label Text="Th" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" TextColor="Aqua"/>
-                    <Label Text="Fr" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" TextColor="Aqua"/>
-                    <Label Text="Sa" Grid.Row="0" Grid.Column="5" HorizontalOptions="Center" TextColor="Aqua"/>
-                    <Label Text="Su" Grid.Row="0" Grid.Column="6" HorizontalOptions="Center" TextColor="Aqua"/>
+                        <Label Text="Mo" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" TextColor="{Binding CALENDAR_DAY_OF_WEEK_TEXT}"/>
+                        <Label Text="Tu" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" TextColor="{Binding CALENDAR_DAY_OF_WEEK_TEXT}"/>
+                        <Label Text="We" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" TextColor="{Binding CALENDAR_DAY_OF_WEEK_TEXT}"/>
+                        <Label Text="Th" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" TextColor="{Binding CALENDAR_DAY_OF_WEEK_TEXT}"/>
+                        <Label Text="Fr" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" TextColor="{Binding CALENDAR_DAY_OF_WEEK_TEXT}"/>
+                        <Label Text="Sa" Grid.Row="0" Grid.Column="5" HorizontalOptions="Center" TextColor="{Binding CALENDAR_DAY_OF_WEEK_TEXT}"/>
+                        <Label Text="Su" Grid.Row="0" Grid.Column="6" HorizontalOptions="Center" TextColor="{Binding CALENDAR_DAY_OF_WEEK_TEXT}"/>
                 </Grid>
-                <Grid x:Name="CalendarGrid">
+                    <Grid x:Name="CalendarGrid">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
@@ -312,9 +335,11 @@
                     </Label>
                     <Image IsVisible="{Binding DateRangeVisible[41]}" Grid.Row="5" Grid.Column="6" Source="{Binding DateRangeJobType[41]}" />
                 </Grid>
-            </StackLayout>
+                </StackLayout>
+            </Frame>
 
-            <StackLayout>
+
+            <Frame Margin="5,0,5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
                 <ListView x:Name="JobList" ItemsSource="{Binding JobList}" HasUnevenRows="True">
                     <ListView.Behaviors>
                         <behaviors:EventToCommandBehavior
@@ -331,7 +356,7 @@
                                         <Label Text="{Binding Date, 
                                     Converter={StaticResource NativeTypeConverter}, 
                                     ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}"/>
-                                        <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" TextColor="#4caf50"/>
                                         <Label Text="{Binding Type}" FontAttributes="Italic"/>
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal">
@@ -349,7 +374,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-            </StackLayout>
+            </Frame>
         </StackLayout>
         
     </ContentPage.Content>
