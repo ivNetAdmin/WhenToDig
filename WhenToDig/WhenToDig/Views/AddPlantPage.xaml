@@ -10,38 +10,38 @@
         <ToolbarItem Icon="{Binding SaveIcon}" Command="{Binding AddPlantCommand}"/>
         <!--<ToolbarItem Icon="{Binding CancelIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Cancel}"/>-->
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
         <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
-            <TableView Intent="Form" HasUnevenRows="True">
-                <TableRoot>
-                    <TableSection Title="Plant Details">
-                        <!--<EntryCell Label="Name" Text="{Binding Plant.Name, Mode=TwoWay}" Placeholder="{Binding PlantNameRequired}" LabelColor="{Binding PlantNameRequiredColour}"/>-->
+            <StackLayout>
 
-                        <ViewCell>
-                            <ViewCell.View>
-                                <StackLayout Orientation="Horizontal" Margin="15,10,10,10">
-                                    <Label Text="Name"/>
-                                    <Entry Text="{Binding Plant.Name, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
-                                        <Entry.Behaviors>
-                                            <behaviors:RequiredValidationBehavior />
-                                        </Entry.Behaviors>
-                                    </Entry>
-                                </StackLayout>
-                            </ViewCell.View>
-                        </ViewCell>
+                <StackLayout Orientation="Horizontal" Margin="5,5">
+                    <Frame Margin="2,2" Padding="2,2">
+                        <Label Text="Name"/>
+                        <Entry Text="{Binding Plant.Name, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
+                            <Entry.Behaviors>
+                                <behaviors:RequiredValidationBehavior />
+                            </Entry.Behaviors>
+                        </Entry>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="5,5">
+                    <Frame Margin="2,2" Padding="2,2">
+                        <Label Text="Variety"/>
+                        <Entry Text="{Binding Plant.Variety, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Placeholder="Common" />
+                    </Frame>
+                </StackLayout>
+                <StackLayout>
+                    <Frame Margin="2,2" Padding="2,2">
+                        <ContentView HeightRequest="200">
+                            <Editor Text="{Binding Plant.Notes, Mode=TwoWay}"/>
+                        </ContentView>
+                    </Frame>
+                </StackLayout>
 
-                        <EntryCell Label="Variety" Text="{Binding Plant.Variety, Mode=TwoWay}" Placeholder="Common" />
-                    </TableSection>
-                    <TableSection Title="Notes">
-                        <ViewCell>
-                            <ContentView HeightRequest="200" Margin="15,10,10,10">
-                                <Editor Text="{Binding Plant.Notes, Mode=TwoWay}"/>
-                            </ContentView>
-                        </ViewCell>
-                    </TableSection>
-                </TableRoot>
-            </TableView>
+
+            </StackLayout>
+
         </Frame>
     </ContentPage.Content>
 </ContentPage>

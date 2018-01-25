@@ -26,20 +26,24 @@
                     <TableSection Title="Frost Details">
                         <ViewCell>
                             <ViewCell.View>
-                                <StackLayout Orientation="Horizontal" Margin="15,10,10,10" HorizontalOptions="FillAndExpand">
-                                    <Label Text="Date"/>
-                                    <DatePicker Date="{Binding Frost.Date, Mode=TwoWay, Converter={StaticResource NativeTypeConverter}, ConverterParameter=DateTime}">
-                                        <DatePicker.Format>dd-MMM-yy</DatePicker.Format>
-                                    </DatePicker>
-                                </StackLayout>
+                                <Frame Margin="2,2" Padding="2,2">
+                                    <StackLayout Orientation="Horizontal" Margin="15,10,10,10" HorizontalOptions="FillAndExpand">
+                                        <Label Text="Date"/>
+                                        <DatePicker Date="{Binding Frost.Date, Mode=TwoWay, Converter={StaticResource NativeTypeConverter}, ConverterParameter=DateTime}">
+                                            <DatePicker.Format>dd-MMM-yy</DatePicker.Format>
+                                        </DatePicker>
+                                    </StackLayout>
+                                </Frame>
                             </ViewCell.View>
                         </ViewCell>
                     </TableSection>
                     <TableSection Title="Notes">
                         <ViewCell>
-                            <ContentView HeightRequest="200" Margin="15,10,10,10">
-                                <Editor Text="{Binding Frost.Notes, Mode=TwoWay}"/>
-                            </ContentView>
+                            <Frame Margin="2,2" Padding="2,2">
+                                <ContentView HeightRequest="200" Margin="15,10,10,10">
+                                    <Editor Text="{Binding Frost.Notes, Mode=TwoWay}"/>
+                                </ContentView>
+                            </Frame>
                         </ViewCell>
                     </TableSection>
                 </TableRoot>
