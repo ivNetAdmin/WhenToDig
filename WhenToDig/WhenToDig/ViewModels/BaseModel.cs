@@ -35,6 +35,8 @@ namespace WhenToDig.ViewModels
         internal string _calendarLowlight = "#bdbdbd";
         internal string _calendarToday = "#ffa000";
 
+        internal string _frostGraph = "#8dbff2";        
+
         public string FRAME_BACKGROUND { get { return _frameBackground; } }
         public string FRAME_BORDER { get { return _frameBackground; } }
 
@@ -45,6 +47,7 @@ namespace WhenToDig.ViewModels
         public string CALENDAR_NAVIGATION_LABEL_TEXT { get { return _calendarNavigationLabelText; } }
         public string CALENDAR_DAY_OF_WEEK_TEXT { get { return _calendarDayOfWeekText; } }
 
+        public string FROST_GRAPH { get { return _frostGraph; } }
         #endregion
 
         #region Constructors

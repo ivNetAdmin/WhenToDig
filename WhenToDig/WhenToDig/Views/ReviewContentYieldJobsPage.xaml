@@ -18,7 +18,9 @@
         <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
             <StackLayout>
                 <Frame Margin="2,2" Padding="2,2">
-                    <Label Text="Yield Review Details" FontAttributes="Bold"/>
+                    <StackLayout Orientation="Vertical" Margin="5,5">
+                        <Label Text="Yield Review Details" FontAttributes="Bold"/>
+                    </StackLayout>
                 </Frame>
                 <Frame Margin="2,2" Padding="2,2">
                     <StackLayout Margin="5,5">
@@ -51,10 +53,11 @@
                     </StackLayout>
                 </Frame>
                 <Frame Margin="2,2" Padding="2,2" IsVisible="{Binding RelatedJobs,Converter={StaticResource ListNullBoolConverter}}">
-                    <Label Text="Related Jobs" FontAttributes="Bold"/>
+                    <StackLayout Orientation="Vertical" Margin="5,5">
+                        <Label Text="Related Jobs" FontAttributes="Bold"/>
+                    </StackLayout>
                 </Frame>
-                
-                    <StackLayout Margin="5,5">
+                <StackLayout Margin="5,5">
                         <ListView x:Name="RelatedJobList" ItemsSource="{Binding RelatedJobs}" HasUnevenRows="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -77,12 +80,13 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackLayout>
-             
+
                 <Frame Margin="2,2" Padding="2,2" IsVisible="{Binding UnrelatedJobs,Converter={StaticResource ListNullBoolConverter}}">
-                    <Label Text="Unrelated Jobs" FontAttributes="Bold"/>
+                    <StackLayout Orientation="Vertical" Margin="5,5">
+                        <Label Text="Unrelated Jobs" FontAttributes="Bold"/>
+                    </StackLayout>
                 </Frame>
-               
-                    <StackLayout Margin="5,5">
+                <StackLayout Margin="5,5">
                         <ListView x:Name="UnrelatedJobList" ItemsSource="{Binding UnrelatedJobs}" HasUnevenRows="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -105,12 +109,13 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackLayout>
-            
+
                 <Frame Margin="2,2" Padding="2,2" IsVisible="{Binding MoreYields,Converter={StaticResource ListNullBoolConverter}}">
-                    <Label Text="More Yields" FontAttributes="Bold"/>
+                    <StackLayout Orientation="Vertical" Margin="5,5">
+                        <Label Text="More Yields" FontAttributes="Bold"/>
+                    </StackLayout>
                 </Frame>
-               
-                    <StackLayout Margin="5,5">
+                <StackLayout Margin="5,5">
                         <ListView x:Name="MoreYieldsList" ItemsSource="{Binding MoreYields}" HasUnevenRows="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>

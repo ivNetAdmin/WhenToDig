@@ -23,7 +23,7 @@
         <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
             <StackLayout>
                 <Frame Margin="2,2" Padding="2,2">
-                    <StackLayout Orientation="Horizontal" Margin="15,10,10,10" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal" Margin="5,5" HorizontalOptions="FillAndExpand">
                         <Label Text="Date"/>
                         <DatePicker Date="{Binding Frost.Date, Mode=TwoWay, Converter={StaticResource NativeTypeConverter}, ConverterParameter=DateTime}">
                             <DatePicker.Format>dd-MMM-yy</DatePicker.Format>
