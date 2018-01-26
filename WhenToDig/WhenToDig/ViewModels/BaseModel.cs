@@ -22,12 +22,12 @@ namespace WhenToDig.ViewModels
             = new ObservableCollection<string> { "Cultivate", "General", "Preparation" };
 
     #region application colours                
-    internal string _frameBackground = "#fffafa";
-        internal string _frameBorder = "#212121";
+    internal string _frameBackground = "#edf8ed";
+        internal string _frameBorder = "#604439"; // "#388e3c";
 
-        internal string _calendarBackground = "#ffffff";
-        internal string _calendarNavigationBackground = "#bdbdbd";
-        internal string _calendarNavigationButton = "#f2f2f2";
+        internal string _calendarBackground = "#f5f1ef";
+        internal string _calendarNavigationBackground = "#b38d80"; //"#bdbdbd";
+        internal string _calendarNavigationButton = "#d9c6bf"; //"#f2f2f2";
         internal string _calendarNavigationButtonText = "#00000";
         internal string _calendarNavigationLabelText = "#ffffff";
         internal string _calendarDayOfWeekText = "#4caf50";

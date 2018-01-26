@@ -8,6 +8,8 @@
         <ResourceDictionary>
             <converters:NativeTypeConverter
                 x:Key="NativeTypeConverter" />
+            <converters:ListNullBoolConverter
+                x:Key="ListNullBoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
