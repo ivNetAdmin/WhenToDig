@@ -59,24 +59,27 @@ namespace WhenToDig.Converters
 
             //return DateTimeOffset.Parse(value.ToString()).ToString("dd-MMM");
 
-            if (format == "PlantName")
-            {
-                var plantName = (string)value;
-                if (plantName.IndexOf("*")!=-1)
-                {
-                    return plantName.Substring(0, plantName.IndexOf("*") - 1).Trim();
-                }                
-            }
+            var plantName = (string)value;
 
-            if (format == "PlantVariety")
+            if (!string.IsNullOrEmpty(plantName))
             {
-                var plantVariety = (string)value;
-                if (plantVariety.IndexOf("*") != -1)
+                if (format == "PlantName")
                 {
-                    return plantVariety.Substring(plantVariety.IndexOf("*") + 1).Trim();
-                }                
-            }
 
+                    if (plantName.IndexOf("*") != -1)
+                    {
+                        return plantName.Substring(0, plantName.IndexOf("*") - 1).Trim();
+                    }
+                }
+
+                if (format == "PlantVariety")
+                {
+                    if (plantName.IndexOf("*") != -1)
+                    {
+                        return plantName.Substring(plantName.IndexOf("*") + 1).Trim();
+                    }
+                }
+            }
             return System.Convert.ToString(value);
         }
     }

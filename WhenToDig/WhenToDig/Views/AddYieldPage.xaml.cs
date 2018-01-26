@@ -22,8 +22,10 @@ namespace WhenToDig.Views
         {
             base.OnAppearing();
             BindingContext = new AddYieldViewModel(Navigation);
-            YearList.SelectedIndex = YearList.ItemsSource.Count - 1;
-            PlantList.SelectedIndex = 0;
+            if (Years.ItemsSource != null)
+                Years.SelectedIndex = Years.ItemsSource.Count - 1;
+
+            Plants.SelectedIndex = 0;
         }
 
         protected override void OnDisappearing()
