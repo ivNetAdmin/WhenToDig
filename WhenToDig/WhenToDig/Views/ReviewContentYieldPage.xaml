@@ -15,52 +15,61 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout Padding="10,10,10,10">
-            <Label Text="{Binding Title}" FontAttributes="Bold"/>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Year"/>
-                <Picker x:Name="YearList" HorizontalOptions="FillAndExpand"
+        <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
+            <StackLayout>
+                <Frame Margin="2,2" Padding="2,2">
+                    <Label Text="{Binding Title}" FontAttributes="Bold"/>
+                </Frame>
+                <Frame Margin="2,2" Padding="2,2">
+                    <StackLayout Orientation="Horizontal" Margin="5,5">
+                        <Label Text="Year"/>
+                        <Picker x:Name="YearList" HorizontalOptions="FillAndExpand"
                                     ItemsSource="{Binding Years}"
                                     ItemDisplayBinding="{Binding .}" 
                                     SelectedItem="{Binding Year}"/>
-            </StackLayout>
-        
-            <StackLayout Orientation="Horizontal" Padding="0, 0">
-                <ListView x:Name="YieldList" ItemsSource="{Binding Yields}" Margin="10,10,10,10" HasUnevenRows="True">
-                    <ListView.Behaviors>
-                        <behaviors:EventToCommandBehavior
+                    </StackLayout>
+                </Frame>
+
+                <StackLayout Margin="5,5">
+                    <ListView x:Name="YieldList" ItemsSource="{Binding Yields}" HasUnevenRows="True">
+                        <ListView.Behaviors>
+                            <behaviors:EventToCommandBehavior
                     EventName="ItemSelected"
                     Command="{Binding ItemSelectedCommand}"
                     Converter="{StaticResource SelectedItemConverter}"/>
-                    </ListView.Behaviors>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding Year}" Grid.Row="0" Grid.Column="0"/>
-                                    <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
-                                        <Label Text="{Binding Plant, 
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame Margin="2,2" Padding="2,2">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding Year}" Grid.Row="0" Grid.Column="0"/>
+                                            <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                                                <Label Text="{Binding Plant, 
                                         Converter={StaticResource NativeTypeConverter}, 
                                         ConverterParameter='PlantName,PlantName'}}" FontAttributes="Bold"/>
-                                        <Label Text="{Binding Plant, 
+                                                <Label Text="{Binding Plant, 
                                         Converter={StaticResource NativeTypeConverter}, 
                                         ConverterParameter='PlantName,PlantVariety'}}" FontAttributes="Italic"/>
-                                    </StackLayout>
-                                    <Label Text="{Binding Crop}" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"/>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                            </StackLayout>
+                                            <Label Text="{Binding Crop}" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"/>
+                                        </Grid>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
             </StackLayout>
-        </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

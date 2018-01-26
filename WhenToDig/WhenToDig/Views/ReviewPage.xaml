@@ -10,12 +10,4 @@
         <ToolbarItem Icon="{Binding MainPageIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Home}"/>
     </ContentPage.ToolbarItems>
 
-    <!--<CarouselPage.ItemTemplate>
-        <DataTemplate>
-            <ContentPage BackgroundColor="Red">
-                <Label Text="Hello world!"/>
-            </ContentPage>
-        </DataTemplate>
-    </CarouselPage.ItemTemplate>-->
-    
 </CarouselPage>

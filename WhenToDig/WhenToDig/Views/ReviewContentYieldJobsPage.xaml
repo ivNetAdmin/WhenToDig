@@ -12,116 +12,139 @@
                 x:Key="StringNullOrEmptyBoolConverter" />
             <converters:ListNullBoolConverter
                 x:Key="ListNullBoolConverter" />
-            <converters:AlternatingHighlightColorConverter
-                x:Key="AlternatingHighlightColorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="10,10,10,10">
-            <Label Text="Yield Details"/>
-            <StackLayout Orientation="Horizontal">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Label Text="{Binding Yield.Year}" Grid.Row="0" Grid.Column="0"/>
-                    <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
-                        <Label Text="{Binding Yield.Plant, 
+        <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
+            <StackLayout>
+                <Frame Margin="2,2" Padding="2,2">
+                    <Label Text="Yield Review Details" FontAttributes="Bold"/>
+                </Frame>
+                <Frame Margin="2,2" Padding="2,2">
+                    <StackLayout Margin="5,5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Yield.Year}" Grid.Row="0" Grid.Column="0"/>
+                            <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                                <Label Text="{Binding Yield.Plant, 
                                         Converter={StaticResource NativeTypeConverter}, 
                                         ConverterParameter='PlantName,PlantName'}}" FontAttributes="Bold"/>
-                        <Label Text="{Binding Yield.Plant, 
+                                <Label Text="{Binding Yield.Plant, 
                                         Converter={StaticResource NativeTypeConverter}, 
                                         ConverterParameter='PlantName,PlantVariety'}}" FontAttributes="Italic"/>
+                            </StackLayout>
+                            <Label Text="{Binding Yield.Crop}" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"/>
+                        </Grid>
                     </StackLayout>
-                    <Label Text="{Binding Yield.Crop}" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"/>
-                </Grid>
-            </StackLayout>
-            <StackLayout IsVisible="{Binding Yield.Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}">
-                <Label Text="Yield Notes"/>
-                <Label Text="{Binding Yield.Notes}"/>
-            </StackLayout>
-            <StackLayout IsVisible="{Binding RelatedJobs,Converter={StaticResource ListNullBoolConverter}}">
-                <Label Text="Related Jobs"/>
-                <ListView x:Name="RelatedJobList" ItemsSource="{Binding RelatedJobs}" HasUnevenRows="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Orientation="Vertical" Padding="5,5"                                      
-                                         BackgroundColor="{Binding .,Converter={StaticResource AlternatingHighlightColorConverter}, ConverterParameter={x:Reference RelatedJobList}}">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Date, 
+                </Frame>
+                <Frame Margin="2,2" Padding="2,2" IsVisible="{Binding Yield.Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}">
+                    <StackLayout Margin="5,5">
+                        <Label Text="Notes"/>
+                        <Label Text="{Binding Yield.Notes}"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Margin="2,2" Padding="2,2" IsVisible="{Binding RelatedJobs,Converter={StaticResource ListNullBoolConverter}}">
+                    <Label Text="Related Jobs" FontAttributes="Bold"/>
+                </Frame>
+                
+                    <StackLayout Margin="5,5">
+                        <ListView x:Name="RelatedJobList" ItemsSource="{Binding RelatedJobs}" HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame Margin="2,2" Padding="2,2">
+                                            <StackLayout Orientation="Vertical" Padding="5,5">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Date, 
                                         Converter={StaticResource NativeTypeConverter}, 
                                         ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}"/>
-                                        <Label Text="{Binding Name}" FontAttributes="Bold"/>
-                                        <Label Text="{Binding Type}" FontAttributes="Italic"/>
-                                    </StackLayout>
+                                                    <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                                    <Label Text="{Binding Type}" FontAttributes="Italic"/>
+                                                </StackLayout>
 
-                                    <Label Text="{Binding Notes}" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-            <StackLayout IsVisible="{Binding UnrelatedJobs,Converter={StaticResource ListNullBoolConverter}}">
-                <Label Text="Unrelated Jobs"/>
-                <ListView x:Name="UnrelatedJobList" ItemsSource="{Binding UnrelatedJobs}" HasUnevenRows="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Orientation="Vertical" Padding="5,5"                                      
-                                     BackgroundColor="{Binding .,Converter={StaticResource AlternatingHighlightColorConverter}, ConverterParameter={x:Reference UnrelatedJobList}}">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Date, 
-                                    Converter={StaticResource NativeTypeConverter}, 
-                                    ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}"/>
-                                        <Label Text="{Binding Name}" FontAttributes="Bold"/>
-                                        <Label Text="{Binding Type}" FontAttributes="Italic"/>
-                                    </StackLayout>
+                                                <Label Text="{Binding Notes}" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+             
+                <Frame Margin="2,2" Padding="2,2" IsVisible="{Binding UnrelatedJobs,Converter={StaticResource ListNullBoolConverter}}">
+                    <Label Text="Unrelated Jobs" FontAttributes="Bold"/>
+                </Frame>
+               
+                    <StackLayout Margin="5,5">
+                        <ListView x:Name="UnrelatedJobList" ItemsSource="{Binding UnrelatedJobs}" HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame Margin="2,2" Padding="2,2">
+                                            <StackLayout Orientation="Vertical" Padding="5,5">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Date, 
+                                        Converter={StaticResource NativeTypeConverter}, 
+                                        ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}"/>
+                                                    <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                                    <Label Text="{Binding Type}" FontAttributes="Italic"/>
+                                                </StackLayout>
 
-                                    <Label Text="{Binding Notes}" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-            <StackLayout IsVisible="{Binding MoreYields,Converter={StaticResource ListNullBoolConverter}}">
-                <Label Text="More Yields"/>
-                <ListView x:Name="MoreYieldsList" ItemsSource="{Binding MoreYields}" HasUnevenRows="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding Year}" Grid.Row="0" Grid.Column="0"/>
-                                    <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
-                                        <Label Text="{Binding Plant, 
+                                                <Label Text="{Binding Notes}" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+            
+                <Frame Margin="2,2" Padding="2,2" IsVisible="{Binding MoreYields,Converter={StaticResource ListNullBoolConverter}}">
+                    <Label Text="More Yields" FontAttributes="Bold"/>
+                </Frame>
+               
+                    <StackLayout Margin="5,5">
+                        <ListView x:Name="MoreYieldsList" ItemsSource="{Binding MoreYields}" HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame Margin="2,2" Padding="2,2">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Label Text="{Binding Year}" Grid.Row="0" Grid.Column="0"/>
+                                                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                                                    <Label Text="{Binding Plant, 
                                         Converter={StaticResource NativeTypeConverter}, 
                                         ConverterParameter='PlantName,PlantName'}}" FontAttributes="Bold"/>
-                                        <Label Text="{Binding Plant, 
+                                                    <Label Text="{Binding Plant, 
                                         Converter={StaticResource NativeTypeConverter}, 
                                         ConverterParameter='PlantName,PlantVariety'}}" FontAttributes="Italic"/>
-                                    </StackLayout>
-                                    <Label Text="{Binding Crop}" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"/>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                                </StackLayout>
+                                                <Label Text="{Binding Crop}" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"/>
+                                            </Grid>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+       
             </StackLayout>
-        </StackLayout>
+
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

@@ -56,6 +56,8 @@
                                     ItemsSource="{Binding PlantList}"
                                     ItemDisplayBinding="{Binding .}" 
                                     SelectedItem="{Binding Job.Plant}" />
+                    </StackLayout>
+                </Frame>
                 <Frame Margin="2,2" Padding="2,2">
                     <StackLayout Margin="5,5">
                         <Label Text="Notes"/>
@@ -63,9 +65,7 @@
                             <Editor Text="{Binding Job.Notes, Mode=TwoWay}"/>
                         </ContentView>
                     </StackLayout>
-                </Frame>    </StackLayout>
                 </Frame>
-                
             </StackLayout>
         </Frame>
     </ContentPage.Content>
