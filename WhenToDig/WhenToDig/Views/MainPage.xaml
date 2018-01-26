@@ -6,7 +6,7 @@
              xmlns:converters="clr-namespace:WhenToDig.Converters"
              xmlns:effects="clr-namespace:WhenToDig.Effects"      
              xmlns:helpers="clr-namespace:WhenToDig.Helpers"             
-             x:Class="WhenToDig.MainPage"
+             x:Class="WhenToDig.MainPage"             
              Title="{Binding Title}">
 
     <ContentPage.Resources>
@@ -32,7 +32,6 @@
     
     <ContentPage.Content>
         <StackLayout>
-
             <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
                 <StackLayout BackgroundColor="{Binding CALENDAR_BACKGROUND}">
                     <Grid VerticalOptions="Start" BackgroundColor="{Binding CALENDAR_NAVIGATION_BACKGROUND}">

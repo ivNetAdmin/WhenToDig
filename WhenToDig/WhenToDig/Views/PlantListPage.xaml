@@ -18,7 +18,7 @@
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="{Binding AddIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.AddPlant}"/>
-        <!--<ToolbarItem Icon="{Binding MainPageIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Home}"/>-->
+        <ToolbarItem Icon="{Binding MainPageIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Home}"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>

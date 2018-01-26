@@ -7,7 +7,7 @@
              Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
-        <!--<ToolbarItem Icon="{Binding MainPageIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Home}"/>-->
+        <ToolbarItem Icon="{Binding MainPageIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Home}"/>
     </ContentPage.ToolbarItems>
 
     <!--<CarouselPage.ItemTemplate>

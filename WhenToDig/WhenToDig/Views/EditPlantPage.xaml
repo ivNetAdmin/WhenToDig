@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:WhenToDig.Behaviors" 
              xmlns:helpers="clr-namespace:WhenToDig.Helpers"   
              x:Class="WhenToDig.Views.EditPlantPage"
              Title="{Binding Title}">
@@ -13,21 +14,32 @@
 
     <ContentPage.Content>
         <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
-            <TableView Intent="Form" HasUnevenRows="True">
-                <TableRoot>
-                    <TableSection Title="Plant Details">
-                        <EntryCell Label="Name" Text="{Binding Plant.Name, Mode=TwoWay}" Placeholder="Enter Plant Name" />
-                        <EntryCell Label="Variety" Text="{Binding Plant.Variety, Mode=TwoWay}" Placeholder="Enter Plant Variety (default: 'common'" />
-                    </TableSection>
-                    <TableSection Title="Notes">
-                        <ViewCell>
-                            <ContentView HeightRequest="200" Margin="15,10,10,10">
-                                <Editor Text="{Binding Plant.Notes, Mode=TwoWay}"/>
-                            </ContentView>
-                        </ViewCell>
-                    </TableSection>
-                </TableRoot>
-            </TableView>
+            <StackLayout>
+                <Frame Margin="2,2" Padding="2,2">
+                    <StackLayout Orientation="Horizontal" Margin="5,5">
+                        <Label Text="Name"/>
+                        <Entry Text="{Binding Plant.Name, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
+                            <Entry.Behaviors>
+                                <behaviors:RequiredValidationBehavior />
+                            </Entry.Behaviors>
+                        </Entry>
+                    </StackLayout>
+                </Frame>
+                <Frame Margin="2,2" Padding="2,2">
+                    <StackLayout Orientation="Horizontal" Margin="5,5">
+                        <Label Text="Variety"/>
+                        <Entry Text="{Binding Plant.Variety, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Placeholder="Common" />
+                    </StackLayout>
+                </Frame>
+                <Frame Margin="2,2" Padding="2,2">
+                    <StackLayout Margin="5,5">
+                        <Label Text="Notes"/>
+                        <ContentView HeightRequest="200">
+                            <Editor Text="{Binding Plant.Notes, Mode=TwoWay}"/>
+                        </ContentView>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
         </Frame>
     </ContentPage.Content>
 </ContentPage>
