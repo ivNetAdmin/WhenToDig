@@ -103,7 +103,7 @@ namespace WhenToDig.ViewModels
         private void GetYearList()
         {
             var years = new List<string> { "All" };
-            var frosts = new List<Frost>(GetFrosts("All"));
+            var frosts = new List<Frost>(GetFrosts());
             foreach (var frost in frosts)
             {
                 var year = string.Format("{0}/{1}", frost.Year, frost.Year + 1);

@@ -136,13 +136,30 @@ namespace WhenToDig.ViewModels
         #endregion
 
         #region Shared Methods
-        internal ObservableCollection<Job> GetJobs()
+        internal ObservableCollection<Job> GetJobs(string year = "All")
         {
-            return new ObservableCollection<Job>(
+
+            if (year == "All")
+            {
+                return new ObservableCollection<Job>(
                 _realmInstance.All<Job>()
                 .OrderBy(x => x.Date)
                 .ThenBy(x => x.Plant)
                 .ThenBy(x => x.Type).ToList());
+            }
+            else
+            {
+                var yearPair = year.Split('/');
+                var firstYear = Convert.ToInt16(yearPair[0]);
+                var secondYear = Convert.ToInt16(yearPair[1]);
+                var startDate = new DateTimeOffset(new DateTime(firstYear, 8, 31));
+                var endDate = new DateTimeOffset(new DateTime(secondYear, 8, 31));
+
+                return new ObservableCollection<Job>(
+                     _realmInstance.All<Job>()
+                     .Where(x => (x.Date > startDate && x.Date <= endDate))
+                     .OrderBy(x => x.Date).ToList());
+            }
 
         }
         internal ObservableCollection<Plant> GetPlants()
@@ -232,7 +249,8 @@ namespace WhenToDig.ViewModels
 
             return rtnList;
         }
-        internal ObservableCollection<Frost> GetFrosts(string year)
+       
+        internal ObservableCollection<Frost> GetFrosts(string year = "All")
         {
             if (year == "All")
             {

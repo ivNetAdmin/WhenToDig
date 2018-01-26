@@ -17,5 +17,17 @@ namespace WhenToDig.Views
 			InitializeComponent ();
             BindingContext = vm;
 		}
-	}
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            YearList.SelectedItem = "All";
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            ((ReviewContentJobViewModel)BindingContext).DisposeRealm();
+        }
+    }
 }
