@@ -26,14 +26,18 @@ namespace WhenToDig.ViewModels
         internal string _frameBorder = "#604439"; // "#388e3c";
 
         internal string _calendarBackground = "#f5f1ef";
-        internal string _calendarNavigationBackground = "#b38d80"; //"#bdbdbd";
+        internal string _calendarNavigationBackground = "#b38d80"; //"#e6e6e6";
         internal string _calendarNavigationButton = "#d9c6bf"; //"#f2f2f2";
         internal string _calendarNavigationButtonText = "#00000";
         internal string _calendarNavigationLabelText = "#ffffff";
         internal string _calendarDayOfWeekText = "#4caf50";
         internal string _calendarFontColor = "#212121";
-        internal string _calendarLowlight = "#bdbdbd";
+        internal string _calendarLowlight = "#e6e6e6";
         internal string _calendarToday = "#ffa000";
+
+        internal string _cultivateColor = "#c8e9ca";
+        internal string _preparationColor = "#c8e9ca";
+        internal string _generalColor = "#e6e6e6";
 
         internal string _frostGraph = "#8dbff2";        
 
@@ -46,6 +50,10 @@ namespace WhenToDig.ViewModels
         public string CALENDAR_NAVIGATION_BUTTON_TEXT { get { return _calendarNavigationButtonText; } }
         public string CALENDAR_NAVIGATION_LABEL_TEXT { get { return _calendarNavigationLabelText; } }
         public string CALENDAR_DAY_OF_WEEK_TEXT { get { return _calendarDayOfWeekText; } }
+
+        public string CULTIVATE_COLOR { get { return _cultivateColor; } }
+        public string PREPARATION_COLOR { get { return _preparationColor; } }
+        public string GENERAL_COLOR { get { return _generalColor; } }
 
         public string FROST_GRAPH { get { return _frostGraph; } }
         #endregion
@@ -65,11 +73,11 @@ namespace WhenToDig.ViewModels
 
         #region Navigation Icons
         public ImageSource MainPageIcon { get { return ImageSource.FromFile("home.png"); } }
-        public ImageSource PlantListIcon { get { return ImageSource.FromFile("icon.png"); } }
-        public ImageSource JobListIcon { get { return ImageSource.FromFile("icon.png"); } }
-        public ImageSource FrostListIcon { get { return ImageSource.FromFile("icon.png"); } }
-        public ImageSource YieldListIcon { get { return ImageSource.FromFile("icon.png"); } }
-        public ImageSource ReviewIcon { get { return ImageSource.FromFile("icon.png"); } }
+        public ImageSource PlantListIcon { get { return ImageSource.FromFile("plant.png"); } }
+        public ImageSource JobListIcon { get { return ImageSource.FromFile("job.png"); } }
+        public ImageSource FrostListIcon { get { return ImageSource.FromFile("frost.png"); } }
+        public ImageSource YieldListIcon { get { return ImageSource.FromFile("crop.png"); } }
+        public ImageSource ReviewIcon { get { return ImageSource.FromFile("review.png"); } }
         public ImageSource AddIcon { get { return ImageSource.FromFile("add.png"); } }
         public ImageSource CancelIcon { get { return ImageSource.FromFile("cancel.png"); } }
         public ImageSource DeleteIcon { get { return ImageSource.FromFile("delete.png"); } }

@@ -98,9 +98,9 @@ namespace WhenToDig.ViewModels
             }
 
             JobTypeCounts = new ObservableCollection<JobTypeCount>(new List<JobTypeCount> {
-                new JobTypeCount { Name = "Cultivate", Count = cultivate==0?1:Convert.ToInt32((cultivate/jobs.Count)*100) },
-                new JobTypeCount { Name = "Preparation", Count = preparation==0?1:Convert.ToInt32((preparation/jobs.Count)*100) },
-                new JobTypeCount { Name = "General", Count = general==0?1:Convert.ToInt32((general/jobs.Count)*100) }
+                new JobTypeCount { Name = "Cultivate", Count = cultivate, Total = jobs.Count},
+                new JobTypeCount { Name = "Preparation", Count = preparation, Total = jobs.Count },
+                new JobTypeCount { Name = "General", Count = general, Total = jobs.Count}
             });
         }
 

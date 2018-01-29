@@ -10,9 +10,9 @@ namespace WhenToDig.Converters
 {
     public class JobTypeHighlightColorConverter : IValueConverter
     {
-        const string CULTIVATE_COLOR = "#edf8ed";
-        const string PREPARATION_COLOR = "#ece3df";
-        const string GENERAL_COLOR = "#ffffff";
+        const string CULTIVATE_COLOR = "#c8e9ca";
+        const string PREPARATION_COLOR = "#e2d4cf";
+        const string GENERAL_COLOR = "#f2f2f2";
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

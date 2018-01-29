@@ -61,7 +61,7 @@
                                         <Frame Margin="2,2" Padding="2,2" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="{Binding Count}">
                                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="#8dbff2"/>
                                         </Frame>
-                                        <StackLayout Grid.Row="0" Grid.Column="{Binding StartSpan}" Grid.ColumnSpan="{Binding CountWidth}" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <StackLayout Grid.Row="0" Grid.Column="{Binding StartSpan}" Grid.ColumnSpan="{Binding ColWidth}" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                             <Label Text="{Binding Count}" FontAttributes="Italic" HorizontalOptions="FillAndExpand"/>
                                         </StackLayout>
                                     </Grid>

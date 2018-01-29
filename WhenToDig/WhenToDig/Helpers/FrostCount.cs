@@ -9,7 +9,7 @@ namespace WhenToDig.Helpers
         public string Month { get; set; }
         public int Count { get; set; }
         public int MaxFrostCount { get; set; }
-        public int CountWidth
+        public int ColWidth
         {
             get
             {
