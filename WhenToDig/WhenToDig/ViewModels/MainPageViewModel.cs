@@ -184,8 +184,7 @@ namespace WhenToDig.ViewModels
             {
                 return new Command((param) =>
                 {
-                    var cakes = param;
-                    //var job = new Job { Description = string.Empty, PlantName = string.Empty, Notes = string.Empty, Date = new DateTimeOffset((DateTime)param), Type = 1 };
+                    Navigation.PushAsync(new AddJobPage(_calendarDates[Convert.ToInt32(param)]));
                 });
             }
         }

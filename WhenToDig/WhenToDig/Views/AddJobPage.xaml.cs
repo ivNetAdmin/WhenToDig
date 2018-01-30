@@ -12,17 +12,25 @@ namespace WhenToDig.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AddJobPage : ContentPage
 	{
-		public AddJobPage ()
+        private DateTimeOffset _jobDate;
+
+        public AddJobPage ()
 		{
 			InitializeComponent ();
 		}
+
+        public AddJobPage(DateTimeOffset jobDate)
+        {
+            InitializeComponent();
+            this._jobDate = jobDate;
+        }
 
         #region Page Events
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            BindingContext = new AddJobViewModel(Navigation);
+            BindingContext = new AddJobViewModel(Navigation, _jobDate);
             TypeList.SelectedItem = "General";
         }
 

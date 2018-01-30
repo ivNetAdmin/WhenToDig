@@ -12,14 +12,21 @@ namespace WhenToDig.ViewModels
     {
 
         #region Constructors
-        public AddJobViewModel(INavigation navigation)
+        public AddJobViewModel(INavigation navigation, DateTimeOffset jobDate)
         {
             this.Navigation = navigation;
             Title = "Add Job";            
 
-            PlantList = GetPlantNameVarieties();           
+            PlantList = GetPlantNameVarieties();
 
-            Job.Date = DateTimeOffset.Now;
+            if (jobDate.Date > DateTime.MinValue)
+            {
+                Job.Date = jobDate;
+            }
+            else
+            {
+                Job.Date = DateTimeOffset.Now;
+            }
         }        
         #endregion
 
