@@ -72,7 +72,7 @@ namespace WhenToDig.ViewModels
         #endregion
 
         #region Navigation Icons
-        public ImageSource MainPageIcon { get { return ImageSource.FromFile("home.png"); } }
+        public ImageSource MainPageIcon { get { return ImageSource.FromFile("digit.png"); } }
         public ImageSource PlantListIcon { get { return ImageSource.FromFile("plant.png"); } }
         public ImageSource JobListIcon { get { return ImageSource.FromFile("job.png"); } }
         public ImageSource FrostListIcon { get { return ImageSource.FromFile("frost.png"); } }

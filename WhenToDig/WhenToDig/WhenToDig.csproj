@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Product>DiGiT</Product>
+    <Company>ivNet.co.uk</Company>
+    <Authors>ivNet.co.uk</Authors>
   </PropertyGroup>
 
   <ItemGroup>
