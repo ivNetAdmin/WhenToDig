@@ -37,7 +37,7 @@ namespace WhenToDig.ViewModels
 
         internal string _cultivateColor = "#c8e9ca";
         internal string _preparationColor = "#c8e9ca";
-        internal string _generalColor = "#e6e6e6";
+        internal string _generalColor = "#ffcc99";
 
         internal string _footerBackgroundr = "#388e3c";
 
