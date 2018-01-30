@@ -12,6 +12,9 @@ namespace WhenToDig.ViewModels
     public class MainPageViewModel : BaseModel
     {
         private DateTimeOffset _currentDate;
+        private Frost _frost;
+        private string _frostId;
+        private string _frostImage = "quickFrostOff.png";
 
         #region Constructors
         public MainPageViewModel(INavigation navigation)
@@ -23,7 +26,14 @@ namespace WhenToDig.ViewModels
 
             _currentDate = DateTimeOffset.Now;
             DisplayCalendarDate = _currentDate.ToString("MMM yyyy");
-            // SetDateRange();
+
+            _frostId = string.Format("{0}{1}{2}", _currentDate.Date.Year, _currentDate.Date.Month, _currentDate.Date.Day);
+
+            Frost = _realmInstance.Find<Frost>(_frostId);
+
+            if (_frost != null) _frostImage = "quickFrostOn.png";
+
+            QuickFrostIcon = _frostImage;
         }        
         #endregion
 
@@ -39,6 +49,25 @@ namespace WhenToDig.ViewModels
                     _displayCalendarDate = value;                   
                     OnPropertyChanged();
                 }
+            }
+        }
+        public Frost Frost
+        {
+            get { return _frost; }
+            set
+            {
+                _frost = value;
+                OnPropertyChanged(); // Add the OnPropertyChanged();
+            }
+        }
+
+        public String QuickFrostIcon
+        {
+            get { return _frostImage; }
+            set
+            {
+                _frostImage = value;
+                OnPropertyChanged(); // Add the OnPropertyChanged();
             }
         }
 
@@ -110,6 +139,8 @@ namespace WhenToDig.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public ImageSource QuickFrostOffIcon { get { return ImageSource.FromFile(_frostImage); } }
         #endregion
 
         #region Commands
@@ -149,6 +180,32 @@ namespace WhenToDig.ViewModels
                 {
                     var cakes = param;
                     //var job = new Job { Description = string.Empty, PlantName = string.Empty, Notes = string.Empty, Date = new DateTimeOffset((DateTime)param), Type = 1 };
+                });
+            }
+        }
+
+        public Command OnQuickFrostButtonTapped
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    if (Frost == null)
+                    {
+                        Frost = new Frost { Date = DateTimeOffset.Now };
+                        _frost.FrostId = _frostId.ToLower().Replace(" ", "");
+                        _frost.Year = _frost.Date.Year;
+                        _frost.Month = _frost.Date.Month;
+                        _frost.Day = _frost.Date.Day;
+
+                        _realmInstance.Write(() =>
+                        {
+                            _realmInstance.Add(_frost, true); // Add the whole set of details
+                        });
+
+                        QuickFrostIcon = "quickFrostOn.png";
+                    }
+                    
                 });
             }
         }

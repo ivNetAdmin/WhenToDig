@@ -32,17 +32,21 @@ namespace WhenToDig.ViewModels
         internal string _calendarNavigationLabelText = "#ffffff";
         internal string _calendarDayOfWeekText = "#4caf50";
         internal string _calendarFontColor = "#212121";
-        internal string _calendarLowlight = "#e6e6e6";
+        internal string _calendarLowlight = "#d9d9d9";
         internal string _calendarToday = "#ffa000";
 
         internal string _cultivateColor = "#c8e9ca";
         internal string _preparationColor = "#c8e9ca";
         internal string _generalColor = "#e6e6e6";
 
+        internal string _footerBackgroundr = "#388e3c";
+
         internal string _frostGraph = "#8dbff2";        
 
         public string FRAME_BACKGROUND { get { return _frameBackground; } }
         public string FRAME_BORDER { get { return _frameBackground; } }
+        public string FOOTER_BACKGROUND { get { return _footerBackgroundr; } }
+        public string FOOTER_FONT_COLOR { get { return _calendarLowlight; } }
 
         public string CALENDAR_BACKGROUND { get { return _calendarBackground; } }
         public string CALENDAR_NAVIGATION_BACKGROUND { get { return _calendarNavigationBackground; } }
@@ -81,7 +85,8 @@ namespace WhenToDig.ViewModels
         public ImageSource AddIcon { get { return ImageSource.FromFile("add.png"); } }
         public ImageSource CancelIcon { get { return ImageSource.FromFile("cancel.png"); } }
         public ImageSource DeleteIcon { get { return ImageSource.FromFile("delete.png"); } }
-        public ImageSource SaveIcon { get { return ImageSource.FromFile("save.png"); } }
+        public ImageSource SaveIcon { get { return ImageSource.FromFile("save.png"); } }        
+        
         #endregion
 
         #region Navigation Commands

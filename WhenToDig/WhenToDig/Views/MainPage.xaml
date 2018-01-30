@@ -374,8 +374,16 @@
                 </ListView>
 
             </Frame>
+            <StackLayout Orientation="Horizontal" VerticalOptions="End"  Padding="5,5" HorizontalOptions="Fill" BackgroundColor="{Binding FOOTER_BACKGROUND}">
+                <Image x:Name="QuickFrostButton" Source="{Binding QuickFrostIcon}" HeightRequest="35"  HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding OnQuickFrostButtonTapped}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="© IvNet 2018" HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="{Binding FOOTER_FONT_COLOR}"/> 
+            </StackLayout>
         </StackLayout>
-        
     </ContentPage.Content>
 
 </ContentPage>
