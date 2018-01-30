@@ -54,7 +54,15 @@ namespace WhenToDig.Helpers
         {
             get
             {
-                return Convert.ToInt32((Total + 1) - Count);
+                return Count == 0 ? 1 : Convert.ToInt32(Count);
+            }
+        }
+
+        public int ReverseColWidth
+        {
+            get
+            {
+                return Count == 0 ? 1 : Convert.ToInt32((Total + 1) - Count);
             }
         }
 

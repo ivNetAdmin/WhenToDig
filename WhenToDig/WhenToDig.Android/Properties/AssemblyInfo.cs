@@ -9,7 +9,7 @@ using Android.App;
 [assembly: AssemblyTitle("WhenToDig.Android")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("ivNet.co.uk")]
 [assembly: AssemblyProduct("WhenToDig.Android")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]

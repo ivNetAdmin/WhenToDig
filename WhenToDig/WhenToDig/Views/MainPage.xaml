@@ -6,8 +6,8 @@
              xmlns:converters="clr-namespace:WhenToDig.Converters"
              xmlns:effects="clr-namespace:WhenToDig.Effects"      
              xmlns:helpers="clr-namespace:WhenToDig.Helpers"             
-             x:Class="WhenToDig.MainPage"             
-             Title="{Binding Title}">
+             x:Class="WhenToDig.MainPage"     
+             Icon="icon.png">
 
     <ContentPage.Resources>
         <ResourceDictionary>

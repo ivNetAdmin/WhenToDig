@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:WhenToDig.Converters"
              x:Class="WhenToDig.Views.ReviewContentJobPage">
 
-    <!--<ContentPage.Resources>
+    <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:NativeTypeConverter
-                x:Key="NativeTypeConverter" />
-            <converters:ListNullBoolConverter
-                x:Key="ListNullBoolConverter" />
+            <converters:ZeroBoolConverter
+                x:Key="ZeroBoolConverter" />
         </ResourceDictionary>
-    </ContentPage.Resources>-->
+    </ContentPage.Resources>
     
     <ContentPage.Content>
         <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
@@ -35,18 +34,17 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-
-                                    <Grid >
+                                    <Grid IsVisible="{Binding Count,Converter={StaticResource ZeroBoolConverter}}">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <StackLayout Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                             <Label Text="{Binding ShortName}" FontAttributes="Bold" />
                                         </StackLayout>
-                                        <Frame Margin="2,2" Padding="2,2" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="{Binding Count}">
+                                        <Frame Margin="2,2" Padding="2,2" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="{Binding ColWidth}">
                                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="{Binding JobColour}"/>
                                         </Frame>
-                                        <StackLayout Grid.Row="0" Grid.Column="{Binding StartSpan}" Grid.ColumnSpan="{Binding ColWidth}" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <StackLayout Grid.Row="0" Grid.Column="{Binding StartSpan}" Grid.ColumnSpan="{Binding ReverseColWidth}" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                             <Label Text="{Binding Percent}" FontAttributes="Italic" HorizontalOptions="FillAndExpand"/>
                                         </StackLayout>
                                     </Grid>
