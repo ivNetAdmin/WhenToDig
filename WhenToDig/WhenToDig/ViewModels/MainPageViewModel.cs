@@ -3,8 +3,12 @@ using Realms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using WhenToDig.Models;
+using WhenToDig.Views;
 using Xamarin.Forms;
 
 namespace WhenToDig.ViewModels
@@ -34,6 +38,8 @@ namespace WhenToDig.ViewModels
             if (_frost != null) _frostImage = "quickFrostOn.png";
 
             QuickFrostIcon = _frostImage;
+
+            ItemSelectedCommand = new Command<Job>(HandleItemSelected);
         }        
         #endregion
 
@@ -144,6 +150,7 @@ namespace WhenToDig.ViewModels
         #endregion
 
         #region Commands
+        public ICommand ItemSelectedCommand { get; private set; }
         public Command ChangeCalendarCommand // for ADD
         {
             get
@@ -171,7 +178,6 @@ namespace WhenToDig.ViewModels
                 });
             }
         }
-
         public Command CalendarDatePickedCommand
         {
             get
@@ -183,7 +189,6 @@ namespace WhenToDig.ViewModels
                 });
             }
         }
-
         public Command OnQuickFrostButtonTapped
         {
             get
@@ -211,6 +216,20 @@ namespace WhenToDig.ViewModels
         }
         #endregion
 
+        #region Events
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void RaisePropertyChanged(
+    [CallerMemberName] string caller = "")
+        {
+            PropertyChanged(this, new PropertyChangedEventArgs(caller));
+        }
+
+        private void HandleItemSelected(Job job)
+        {
+            if (job == null) return;
+            Navigation.PushAsync(new EditJobPage(job.JobId));
+        }
+        #endregion
         #region Public methods
         public void PageAppearingSetDateRange()
         {
