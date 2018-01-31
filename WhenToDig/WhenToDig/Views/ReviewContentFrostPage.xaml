@@ -82,7 +82,7 @@
                                     Converter={StaticResource NativeTypeConverter}, 
                                     ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}" 
                                                            FontAttributes="Bold"/>
-                                                <Label Text="{Binding Notes}"/>
+                                                <Label Text="{Binding Notes}" FontAttributes="Italic"/>
                                             </StackLayout>
                                         </StackLayout>
                                     </Frame>

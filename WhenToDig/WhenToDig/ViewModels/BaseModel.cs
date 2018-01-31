@@ -21,8 +21,11 @@ namespace WhenToDig.ViewModels
         internal ObservableCollection<string> _typeList 
             = new ObservableCollection<string> { "Cultivate", "General", "Preparation" };
 
-    #region application colours                
-    internal string _frameBackground = "#edf8ed";
+        #region application colours                
+        internal string _mainColor = "#4caf50";
+        internal string _mainColorAccent = "#795548";
+        
+        internal string _frameBackground = "#edf8ed";
         internal string _frameBorder = "#604439"; // "#388e3c";
 
         internal string _calendarBackground = "#f5f1ef";
@@ -37,13 +40,16 @@ namespace WhenToDig.ViewModels
 
         internal string _cultivateColor = "#c8e9ca";
         internal string _preparationColor = "#c8e9ca";
-        internal string _generalColor = "#ffcc99";
+        internal string _generalColor = "#ffe6cc";
 
         internal string _footerBackgroundr = "#388e3c";
 
-        internal string _frostGraph = "#8dbff2";        
+        internal string _frostGraph = "#8dbff2";
 
-        public string FRAME_BACKGROUND { get { return _frameBackground; } }
+        public string MAIN_COLOR { get { return _mainColor; } }
+        public string MAIN_COLOR_ACCENT { get { return _mainColorAccent; } }
+
+        public string FRAME_BACKGROUND { get { return _frameBackground; } }       
         public string FRAME_BORDER { get { return _frameBackground; } }
         public string FOOTER_BACKGROUND { get { return _footerBackgroundr; } }
         public string FOOTER_FONT_COLOR { get { return _calendarLowlight; } }

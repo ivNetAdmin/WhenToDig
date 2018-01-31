@@ -66,6 +66,29 @@ namespace WhenToDig.ViewModels
         }
         #endregion
 
+        #region Commands
+        public Command AddYieldJobsCommand // for ADD
+        {
+            get
+            {
+                return new Command((param) =>
+                {
+
+                    switch ((string)param)
+                    {
+                        case "related":
+                            var cakes = _yield;
+                            break;
+                        case "unrelated":
+                            break;
+
+                    }
+
+                });
+            }
+        }
+        #endregion
+
         #region Private methods
         private List<Job> GetRelatedJobs(string plant,int year)
         {

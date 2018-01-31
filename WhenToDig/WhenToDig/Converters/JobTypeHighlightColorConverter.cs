@@ -12,7 +12,7 @@ namespace WhenToDig.Converters
     {
         const string CULTIVATE_COLOR = "#c8e9ca";
         const string PREPARATION_COLOR = "#e2d4cf";
-        const string GENERAL_COLOR = "#ffcc99";
+        const string GENERAL_COLOR = "#ffe6cc";
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

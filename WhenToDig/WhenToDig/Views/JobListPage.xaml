@@ -54,7 +54,7 @@
                                         Converter={StaticResource NativeTypeConverter}, 
                                         ConverterParameter='PlantName,PlantVariety'}}" IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}" FontAttributes="Italic"/>
                                     </StackLayout>
-                                    <Label Text="{Binding Notes}" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                                    <Label Text="{Binding Notes}" FontAttributes="Italic" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                                 </StackLayout>
                             </Frame>
                         </ViewCell>

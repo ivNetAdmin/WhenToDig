@@ -9,7 +9,7 @@ namespace WhenToDig.Helpers
     {
         const string CULTIVATE_COLOR = "#c8e9ca";
         const string PREPARATION_COLOR = "#e2d4cf";
-        const string GENERAL_COLOR = "#ffcc99";
+        const string GENERAL_COLOR = "#ffe6cc";
 
         public string Name { get; set; }
         public decimal Count { get; set; }        
