@@ -65,8 +65,7 @@ namespace WhenToDig.ViewModels
 
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged(
-    [CallerMemberName] string caller = "")
+        protected void RaisePropertyChanged([CallerMemberName] string caller = "")
         {
             PropertyChanged(this, new PropertyChangedEventArgs(caller));
         }

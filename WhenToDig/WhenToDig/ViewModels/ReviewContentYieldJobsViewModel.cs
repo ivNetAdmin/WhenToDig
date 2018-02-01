@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
 using WhenToDig.Helpers;
 using WhenToDig.Models;
+using WhenToDig.Views;
 using Xamarin.Forms;
 
 namespace WhenToDig.ViewModels
@@ -22,6 +26,8 @@ namespace WhenToDig.ViewModels
             RelatedJobs = new ObservableCollection<Job>(GetRelatedJobs(_yield.Plant, _yield.Year));
             UnrelatedJobs = new ObservableCollection<Job>(GetUnRelatedJobs(_yield.Year));
             MoreYields = new ObservableCollection<Yield>(GetMoreYields(_yield.Plant, _yield.Year));
+
+            ItemSelectedCommand = new Command<Yield>(HandleItemSelected);
         }
         #endregion
 
@@ -68,7 +74,22 @@ namespace WhenToDig.ViewModels
         }
         #endregion
 
-        #region Commands
+        #region Events
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void RaisePropertyChanged([CallerMemberName] string caller = "")
+        {
+            PropertyChanged(this, new PropertyChangedEventArgs(caller));
+        }
+        private void HandleItemSelected(Yield yield)
+        {
+            if (yield == null) return;            
+            Navigation.PushAsync(new ReviewContentYieldJobsPage(yield.YieldId));
+            this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 2]);
+        }
+        #endregion    
+
+        #region Commands#
+        public ICommand ItemSelectedCommand { get; private set; }
         public Command AddYieldJobsCommand // for ADD
         {
             get
