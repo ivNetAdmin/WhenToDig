@@ -18,8 +18,7 @@ namespace WhenToDig
         #region Page Events
         protected override void OnAppearing()
         {
-            base.OnAppearing();
-           
+            base.OnAppearing();           
             BindingContext = new MainPageViewModel(Navigation);                       
             ((MainPageViewModel)BindingContext).PageAppearingSetDateRange();
         }

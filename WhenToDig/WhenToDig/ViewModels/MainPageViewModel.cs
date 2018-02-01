@@ -192,7 +192,7 @@ namespace WhenToDig.ViewModels
         {
             get
             {
-                return new Command(() =>
+                return new Command(async () =>
                 {
                     if (Frost == null)
                     {
@@ -208,6 +208,7 @@ namespace WhenToDig.ViewModels
                         });
 
                         QuickFrostIcon = "quickFrostOn.png";
+                        await Application.Current.MainPage.DisplayAlert("", "Frost for today added successfully", "Ok");
                     }
                     
                 });
@@ -217,8 +218,7 @@ namespace WhenToDig.ViewModels
 
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged(
-    [CallerMemberName] string caller = "")
+        protected void RaisePropertyChanged([CallerMemberName] string caller = "")
         {
             PropertyChanged(this, new PropertyChangedEventArgs(caller));
         }
