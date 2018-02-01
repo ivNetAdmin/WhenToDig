@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using WhenToDig.Helpers;
 using WhenToDig.Models;
 using Xamarin.Forms;
 
@@ -10,7 +11,7 @@ namespace WhenToDig.ViewModels
 {
     public class ReviewContentYieldJobsViewModel : BaseModel
     {
-        
+        #region Constructors
         public ReviewContentYieldJobsViewModel(INavigation navigation, string yieldId)
         {
             this.Navigation = navigation;
@@ -21,7 +22,8 @@ namespace WhenToDig.ViewModels
             RelatedJobs = new ObservableCollection<Job>(GetRelatedJobs(_yield.Plant, _yield.Year));
             UnrelatedJobs = new ObservableCollection<Job>(GetUnRelatedJobs(_yield.Year));
             MoreYields = new ObservableCollection<Yield>(GetMoreYields(_yield.Plant, _yield.Year));
-        }      
+        }
+        #endregion
 
         #region Properties
         private Yield _yield;
@@ -71,22 +73,22 @@ namespace WhenToDig.ViewModels
         {
             get
             {
-                return new Command((param) =>
+                return new Command(async (param) =>
                 {
 
                     switch ((string)param)
                     {
                         case "related":
-                            var cakes = _yield;
+                            AddRelatedJobs();                           
                             break;
                         case "unrelated":
                             break;
 
                     }
-
+                    await Application.Current.MainPage.DisplayAlert("", "All related jobs added sucessfully", "Ok");
                 });
             }
-        }
+        }       
         #endregion
 
         #region Private methods
@@ -120,6 +122,31 @@ namespace WhenToDig.ViewModels
                .OrderByDescending(x => x.Crop)
                .ThenBy(x => x.Year).ToList());
 
+        }
+
+        private void AddRelatedJobs()
+        {
+            foreach (Job job in _listOfRelatedJobs)
+            {
+                _realmInstance.Write(() =>
+                {
+                    var newJob = new Job
+                    {
+                        Name = job.Name,
+                        Plant = job.Plant,
+                        Type = job.Type,
+                        Date = NextSeasonDate.Date(job.Date)
+                    };
+
+                   newJob.JobId = string.Format("{0}{1}{2}{3}",
+                   newJob.Name,
+                   newJob.Plant,
+                   newJob.Type,
+                   newJob.Date.ToString("yyyyMMdd")).ToLower().Replace(" ", "");
+
+                    _realmInstance.Add(newJob, true); // Add the whole set of details
+                });
+            }
         }
         #endregion
     }

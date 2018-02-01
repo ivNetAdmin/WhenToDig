@@ -132,7 +132,7 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Frame Margin="2,2" Padding="2,2">
+                                        <Frame Margin="5,5">
                                             <Grid>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto" />
