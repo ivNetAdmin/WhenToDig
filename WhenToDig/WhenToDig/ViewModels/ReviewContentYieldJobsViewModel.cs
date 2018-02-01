@@ -75,11 +75,6 @@ namespace WhenToDig.ViewModels
         #endregion
 
         #region Events
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged([CallerMemberName] string caller = "")
-        {
-            PropertyChanged(this, new PropertyChangedEventArgs(caller));
-        }
         private void HandleItemSelected(Yield yield)
         {
             if (yield == null) return;            

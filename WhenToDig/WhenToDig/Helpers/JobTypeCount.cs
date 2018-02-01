@@ -21,12 +21,12 @@ namespace WhenToDig.Helpers
                 switch (Name)
                 {
                     case "Cultivate":
-                        return "Cult";
+                        return "C";
                     case "Preparation":
-                        return "Prep";
+                        return "P";
                 }
 
-                return "Gen";
+                return "G";
             }
         }
         public Color JobColour

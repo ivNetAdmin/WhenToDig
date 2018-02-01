@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
 using WhenToDig.Helpers;
 using WhenToDig.Models;
+using Xamarin.Forms;
 
 namespace WhenToDig.ViewModels
 {
@@ -13,9 +18,31 @@ namespace WhenToDig.ViewModels
         {
             GetYearList();
             Title = "Job Review";
+
+            ItemSelectedCommand = new Command<object>(HandleItemSelected);
         }
 
-        #region Properties
+        #region Properties   
+        private ObservableCollection<Job> _jobs;
+        public ObservableCollection<Job> Jobs
+        {
+            get { return _jobs; }
+            set
+            {
+                _jobs = value;
+                OnPropertyChanged(); // Added the OnPropertyChanged Method
+            }
+        }
+        private int _jobTotal;
+        public int JobTotal
+        {
+            get { return _jobTotal; }
+            set
+            {
+                _jobTotal = value;
+                OnPropertyChanged(); // Added the OnPropertyChanged Method
+            }
+        }
         private ObservableCollection<string> _listOfYears;
         public ObservableCollection<string> Years
         {
@@ -47,10 +74,57 @@ namespace WhenToDig.ViewModels
                 OnPropertyChanged(); // Added the OnPropertyChanged Method
                 ProcessJobData();
             }
-        }       
+        }
+        #endregion
+
+        #region Commands
+        public ICommand ItemSelectedCommand { get; private set; }
+        #endregion
+
+        #region Events
+        private void HandleItemSelected(object itemSelected)
+        {
+            if (itemSelected == null) return;
+
+            if (itemSelected.GetType() == typeof(JobTypeCount))
+            {
+                Jobs = GetJobsByTypeYear(((JobTypeCount)itemSelected).Name);
+            }
+            else
+            {
+                //await Application.Current.MainPage.DisplayAlert("", "All related jobs added sucessfully", "Ok");
+            }
+        }
         #endregion
 
         #region Private Methods
+        private ObservableCollection<Job> GetJobsByTypeYear(string type)
+        {
+            
+            if (_year == "All")
+            {
+                return new ObservableCollection<Job>(
+                _realmInstance.All<Job>()
+                .Where(x=>x.Type == type)
+                .OrderBy(x => x.Date)
+                .ThenBy(x => x.Plant)
+                .ThenBy(x => x.Type).ToList());
+            }
+            else
+            {
+                var yearPair = _year.Split('/');
+                var firstYear = Convert.ToInt16(yearPair[0]);
+                var secondYear = Convert.ToInt16(yearPair[1]);
+                var startDate = new DateTimeOffset(new DateTime(firstYear, 8, 31));
+                var endDate = new DateTimeOffset(new DateTime(secondYear, 8, 31));
+
+                return new ObservableCollection<Job>(
+                     _realmInstance.All<Job>()
+                     .Where(x => x.Type == type && (x.Date > startDate && x.Date <= endDate))
+                     .OrderBy(x => x.Date).ToList());
+            }
+
+        }
         private void GetYearList()
         {
             var years = new List<string> { "All" };
@@ -96,6 +170,7 @@ namespace WhenToDig.ViewModels
                         break;
                 }
             }
+            JobTotal = jobs.Count;
 
             JobTypeCounts = new ObservableCollection<JobTypeCount>(new List<JobTypeCount> {
                 new JobTypeCount { Name = "Cultivate", Count = cultivate, Total = jobs.Count},
