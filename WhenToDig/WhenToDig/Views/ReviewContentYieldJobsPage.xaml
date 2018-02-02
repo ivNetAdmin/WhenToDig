@@ -28,7 +28,7 @@
                     </StackLayout>
                 </Frame>
                 <Frame Margin="2,2" Padding="2,2">
-                    <StackLayout Margin="5,5">
+                    <StackLayout Orientation="Vertical" Margin="5,5">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -47,8 +47,12 @@
                                         Converter={StaticResource NativeTypeConverter}, 
                                         ConverterParameter='PlantName,PlantVariety'}}" FontAttributes="Italic"/>
                             </StackLayout>
-                            <Label Text="{Binding Yield.Crop}" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"/>
-                            <Label Text="{Binding Notes}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                            <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="2">
+                                <Label Text="{Binding Yield.Crop}" HorizontalOptions="End"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsVisible="{Binding Yield.Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}">
+                                <Label Text="{Binding Yield.Notes}"/>
+                            </StackLayout>
                         </Grid>
                     </StackLayout>
                 </Frame>
@@ -157,7 +161,12 @@
                                         Converter={StaticResource NativeTypeConverter}, 
                                         ConverterParameter='PlantName,PlantVariety'}}" FontAttributes="Italic"/>
                                                 </StackLayout>
-                                                <Label Text="{Binding Crop}" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"/>
+                                                <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="2">
+                                                    <Label Text="{Binding Crop}" HorizontalOptions="End"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Vertical" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}">
+                                                    <Label Text="{Binding Notes}" />
+                                                </StackLayout>
                                             </Grid>
                                         </StackLayout>
                                     </Frame>
