@@ -77,7 +77,7 @@
                                                 <StackLayout Orientation="Horizontal">
                                                     <Label Text="{Binding Date, 
                                         Converter={StaticResource NativeTypeConverter}, 
-                                        ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}"/>
+                                        ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}" MinimumWidthRequest="50"/>
                                                 <Label Text="{Binding Name}" FontAttributes="Bold"/>
                                             </StackLayout>
 

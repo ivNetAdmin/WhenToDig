@@ -19,7 +19,7 @@
 
     <ContentPage.Content>
         <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
-            <StackLayout>
+            <StackLayout VerticalOptions="StartAndExpand">
                 <Frame Margin="2,2" Padding="2,2">
                     <StackLayout Orientation="Vertical" Margin="5,5">
                         <Label Text="{Binding Title}" FontAttributes="Bold" TextColor="{Binding MAIN_COLOR}"/>
@@ -39,7 +39,7 @@
                 </Frame>
                 <!--BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}"-->
                 <Frame Margin="5,5" Padding="5,5">
-                    <ListView x:Name="SearchResultList" ItemsSource="{Binding SearchResults}" HasUnevenRows="True" >
+                    <ListView x:Name="SearchResultList" ItemsSource="{Binding SearchResults}" HasUnevenRows="True" VerticalOptions="StartAndExpand" >
                         
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -60,7 +60,7 @@
                                                 </StackLayout>
 
                                                 <StackLayout x:Name="DateDisplay" IsVisible="{Binding Date,Converter={StaticResource StringNullOrEmptyBoolConverter}}">
-                                                    <Label Text="{Binding Date}"/>
+                                                    <Label Text="{Binding Date}" MinimumWidthRequest="50"/>
                                                 </StackLayout>
 
                                                 <StackLayout x:Name="NameDisplay" IsVisible="{Binding Name,Converter={StaticResource StringNullOrEmptyBoolConverter}}">

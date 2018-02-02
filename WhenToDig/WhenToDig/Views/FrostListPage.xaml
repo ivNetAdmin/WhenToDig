@@ -41,7 +41,7 @@
                                         <Label Text="{Binding Date,                                    
                                     Converter={StaticResource NativeTypeConverter}, 
                                     ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}"
-                                       FontAttributes="Bold"/>
+                                       FontAttributes="Bold" MinimumWidthRequest="50" />
                                     </StackLayout>
                                     <Label Text="{Binding Notes}" FontAttributes="Italic" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}" Margin="10,0,0,0"/>
                                 </StackLayout>
