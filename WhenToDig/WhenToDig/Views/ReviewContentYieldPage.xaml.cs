@@ -23,6 +23,7 @@ namespace WhenToDig.Views
         {
             base.OnAppearing();
             YearList.SelectedItem = "All";
+            YieldList.SelectedItem = null;
         }
 
         protected override void OnDisappearing()

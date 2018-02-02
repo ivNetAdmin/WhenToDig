@@ -292,6 +292,32 @@ namespace WhenToDig.ViewModels
                      .ThenBy(x => x.Day).ToList());
             }
         }
+
+        internal void AddJobToNextSeason(Job job)
+        {
+            var firstYear = Convert.ToInt16(job.Date.Year + 1);
+            var secondYear = Convert.ToInt16(job.Date.Year + 2);
+
+            _realmInstance.Write(() =>
+            {
+                var newJob = new Job
+                {
+                    Name = job.Name,
+                    Plant = job.Plant,
+                    Type = job.Type,
+                    Date = NextSeasonDate.Date(job.Date)
+                };
+
+                newJob.JobId = string.Format("{0}{1}{2}{3}",
+                newJob.Name,
+                newJob.Plant,
+                newJob.Type,
+                newJob.Date.ToString("yyyyMMdd")).ToLower().Replace(" ", "");
+
+                _realmInstance.Add(newJob, true); // Add the whole set of details
+            });
+        }
+
         #endregion
         internal void DisposeRealm()
         {

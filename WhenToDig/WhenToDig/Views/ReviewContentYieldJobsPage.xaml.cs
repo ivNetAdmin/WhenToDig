@@ -24,6 +24,8 @@ namespace WhenToDig.Views
         {
             base.OnAppearing();
             BindingContext = new ReviewContentYieldJobsViewModel(Navigation, _yieldId);
+            RelatedJobList.SelectedItem = null;
+            MoreYieldsList.SelectedItem = null;            
         }
 
         protected override void OnDisappearing()

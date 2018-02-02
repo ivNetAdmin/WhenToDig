@@ -48,13 +48,8 @@
                                         ConverterParameter='PlantName,PlantVariety'}}" FontAttributes="Italic"/>
                             </StackLayout>
                             <Label Text="{Binding Yield.Crop}" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"/>
+                            <Label Text="{Binding Notes}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                         </Grid>
-                    </StackLayout>
-                </Frame>
-                <Frame Margin="2,2" Padding="2,2" IsVisible="{Binding Yield.Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}">
-                    <StackLayout Margin="5,5">
-                        <Label Text="Notes"/>
-                        <Label Text="{Binding Yield.Notes}" FontAttributes="Italic"/>
                     </StackLayout>
                 </Frame>
                 <Frame Margin="2,2" Padding="2,2" IsVisible="{Binding RelatedJobs,Converter={StaticResource ListNullBoolConverter}}">
@@ -91,18 +86,18 @@
                         </ListView>
                     </StackLayout>
 
-                <Frame Margin="2,2" Padding="2,2" IsVisible="{Binding UnrelatedJobs,Converter={StaticResource ListNullBoolConverter}}">
+                <!--<Frame Margin="2,2" Padding="2,2" IsVisible="{Binding UnrelatedJobs,Converter={StaticResource ListNullBoolConverter}}">
                     <StackLayout Orientation="Horizontal" Margin="5,5" HorizontalOptions="FillAndExpand">
                         <Label Text="Unrelated Jobs" FontAttributes="Bold" TextColor="{Binding MAIN_COLOR}" HorizontalOptions="StartAndExpand"/>
-                        <!--<Image Source="{Binding AddIcon}" HorizontalOptions="EndAndExpand" HeightRequest="20">
+                        --><!--<Image Source="{Binding AddIcon}" HorizontalOptions="EndAndExpand" HeightRequest="20">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding AddYieldJobsCommand}" CommandParameter="unrelated" />
                             </Image.GestureRecognizers>
-                        </Image>-->
+                        </Image>--><!--
                     </StackLayout>
-                </Frame>
+                </Frame>-->
           
-                <StackLayout Margin="2,2">
+                <!--<StackLayout Margin="2,2">
                         <ListView x:Name="UnrelatedJobList" ItemsSource="{Binding UnrelatedJobs}" HasUnevenRows="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -123,7 +118,7 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                    </StackLayout>
+                    </StackLayout>-->
 
                 <Frame Margin="2,2" Padding="2,2" IsVisible="{Binding MoreYields,Converter={StaticResource ListNullBoolConverter}}">
                     <StackLayout Orientation="Vertical" Margin="5,5">

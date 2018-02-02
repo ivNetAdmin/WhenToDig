@@ -56,6 +56,7 @@
                                         ConverterParameter='PlantName,PlantVariety'}}" FontAttributes="Italic"/>
                                         </StackLayout>
                                         <Label Text="{Binding Crop}" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"/>
+                                        <Label Text="{Binding Notes}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                                     </Grid>
                                 </StackLayout>
                             </Frame>

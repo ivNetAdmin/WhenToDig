@@ -92,9 +92,15 @@ namespace WhenToDig.ViewModels
             }
             else
             {
-                //await Application.Current.MainPage.DisplayAlert("", "All related jobs added sucessfully", "Ok");
+                var job = (Job)itemSelected;                
+
+                AddJobToNextSeason(job);
+
+                Application.Current.MainPage.DisplayAlert("",
+                    string.Format("Job added sucessfully to {0}/{1} Season", job.Date.Year, job.Date.Year + 1), "Ok");
             }
         }
+       
         #endregion
 
         #region Private Methods

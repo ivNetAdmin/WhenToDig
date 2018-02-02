@@ -100,8 +100,12 @@ namespace WhenToDig.ViewModels
                         case "unrelated":
                             break;
 
-                    }
-                    await Application.Current.MainPage.DisplayAlert("", "All related jobs added sucessfully", "Ok");
+                    }                    
+                    var firstYear = Convert.ToInt16(_yield.Year);
+                    var secondYear = Convert.ToInt16(_yield.Year + 1);
+
+                    await Application.Current.MainPage.DisplayAlert("", 
+                        string.Format("All related jobs added sucessfully to {0}/{1} Season", firstYear, secondYear), "Ok");
                 });
             }
         }       
@@ -144,24 +148,7 @@ namespace WhenToDig.ViewModels
         {
             foreach (Job job in _listOfRelatedJobs)
             {
-                _realmInstance.Write(() =>
-                {
-                    var newJob = new Job
-                    {
-                        Name = job.Name,
-                        Plant = job.Plant,
-                        Type = job.Type,
-                        Date = NextSeasonDate.Date(job.Date)
-                    };
-
-                   newJob.JobId = string.Format("{0}{1}{2}{3}",
-                   newJob.Name,
-                   newJob.Plant,
-                   newJob.Type,
-                   newJob.Date.ToString("yyyyMMdd")).ToLower().Replace(" ", "");
-
-                    _realmInstance.Add(newJob, true); // Add the whole set of details
-                });
+                AddJobToNextSeason(job);                
             }
         }
         #endregion
