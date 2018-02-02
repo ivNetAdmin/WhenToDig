@@ -6,8 +6,9 @@ namespace WhenToDig.Helpers
 {
     public class SearchResult
     {
-        public string Title { get; internal set; }
-        public string Notes { get; internal set; }
-        public string Extra { get; internal set; }
+        public string Name { get; internal set; }
+        public string Plant { get; internal set; }
+        public string Date { get; internal set; }       
+        public string Notes { get; internal set; }      
     }
 }

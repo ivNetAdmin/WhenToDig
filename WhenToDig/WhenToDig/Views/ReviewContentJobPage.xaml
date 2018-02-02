@@ -72,7 +72,8 @@
                     <Label Text="Total:" FontAttributes="Bold"/>
                     <Label Text="{Binding JobTotal}" FontAttributes="Italic"/>
                 </StackLayout>
-                <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
+                <!--BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}"-->
+                <Frame Margin="5,5" Padding="5,5">
                     <ListView x:Name="JobList" ItemsSource="{Binding Jobs}" HasUnevenRows="True" >
                         <ListView.Behaviors>
                             <behaviors:EventToCommandBehavior

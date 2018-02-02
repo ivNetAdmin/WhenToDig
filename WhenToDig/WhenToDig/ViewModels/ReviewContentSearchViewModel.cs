@@ -83,7 +83,7 @@ namespace WhenToDig.ViewModels
             {
                 rtnList.Add(new SearchResult
                 {
-                    Title = string.Format("{0} * {1}", plant.Name, plant.Variety),
+                    Plant = string.Format("{0} * {1}", plant.Name, plant.Variety),
                     Notes = plant.Notes
                 });
             }
@@ -92,9 +92,9 @@ namespace WhenToDig.ViewModels
             {
                 rtnList.Add(new SearchResult
                 {
-                    Title = string.Format("[{0}]  {1}", job.Date, job.Name),
-                    Notes = job.Notes,
-                    Extra = job.Type
+                    Name = string.Format("{0} ({1})", job.Name, job.Type),
+                    Date = (((DateTimeOffset)job.Date).LocalDateTime).ToString("dd-MMM-yy"),
+                    Notes = job.Notes
                 });
             }
 
@@ -102,9 +102,9 @@ namespace WhenToDig.ViewModels
             {
                 rtnList.Add(new SearchResult
                 {
-                    Title = string.Format("[{0}]  {1}", yield.Year, yield.Plant),
-                    Notes = yield.Notes,
-                    Extra = yield.Crop
+                    Name = yield.Crop,
+                    Plant = yield.Plant,
+                    Notes = yield.Notes
                 });
             }
 
@@ -112,7 +112,8 @@ namespace WhenToDig.ViewModels
             {
                 rtnList.Add(new SearchResult
                 {
-                    Title = string.Format("{0}/{1}/{2}", frost.Day, frost.Month, frost.Year),
+                    Name = "Frost",
+                    Date = string.Format("{0}/{1}/{2}", frost.Day, frost.Month, frost.Year),
                     Notes = frost.Notes
                 });
             }

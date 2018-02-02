@@ -6,15 +6,17 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-
+            <converters:SelectedItemEventArgsToSelectedItemConverter
+                x:Key="SelectedItemConverter" />
             <converters:StringNullOrEmptyBoolConverter
                 x:Key="StringNullOrEmptyBoolConverter" />
             <converters:NativeTypeConverter
                 x:Key="NativeTypeConverter" />
-
+            <converters:JobTypeHighlightColorConverter
+                x:Key="JobTypeHighlightColorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <ContentPage.Content>
         <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
             <StackLayout>
@@ -27,7 +29,7 @@
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                         <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand" >
                             <Entry Text="{Binding SearchTerm}" HorizontalOptions="FillAndExpand"/>
-                            <Image Source="{Binding SearchIcon}" HorizontalOptions="EndAndExpand" HeightRequest="40">
+                            <Image Source="{Binding SearchIcon}" HorizontalOptions="End" HeightRequest="40">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SearchCommand}" />
                                 </Image.GestureRecognizers>
@@ -35,26 +37,40 @@
                         </StackLayout>
                     </StackLayout>
                 </Frame>
-
-                <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
+                <!--BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}"-->
+                <Frame Margin="5,5" Padding="5,5">
                     <ListView x:Name="SearchResultList" ItemsSource="{Binding SearchResults}" HasUnevenRows="True" >
                         
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <!--BackgroundColor="{Binding .,Converter={StaticResource JobTypeHighlightColorConverter}, ConverterParameter={x:Reference JobList}}"-->
                                     <Frame Margin="2,2" Padding="2,2">
-                                        <StackLayout Orientation="Horizontal" >
-                                            <StackLayout Orientation="Vertical" Padding="5,5" HorizontalOptions="StartAndExpand">
+                                        <StackLayout Orientation="Vertical" Padding="5,5" HorizontalOptions="StartAndExpand">
+                                            <StackLayout Orientation="Horizontal" >
 
-                                                <StackLayout Orientation="Horizontal">
-                                                    <Label Text="{Binding Title}" FontAttributes="Bold"/>
-                                                    <Label Text="{Binding Extra}" IsVisible="{Binding Extra,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                                                <StackLayout x:Name="PlantDisplay" IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="{Binding Plant, 
+                                        Converter={StaticResource NativeTypeConverter}, 
+                                        ConverterParameter='PlantName,PlantName'}}" FontAttributes="Bold"/>
+                                                        <Label Text="{Binding Plant, 
+                                        Converter={StaticResource NativeTypeConverter}, 
+                                        ConverterParameter='PlantName,PlantVariety'}}" FontAttributes="Italic"/>
+                                                    </StackLayout>
                                                 </StackLayout>
-                                                <Label Text="{Binding Notes}" FontAttributes="Italic" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                                            </StackLayout>
-                                        </StackLayout>
 
+                                                <StackLayout x:Name="DateDisplay" IsVisible="{Binding Date,Converter={StaticResource StringNullOrEmptyBoolConverter}}">
+                                                    <Label Text="{Binding Date}"/>
+                                                </StackLayout>
+
+                                                <StackLayout x:Name="NameDisplay" IsVisible="{Binding Name,Converter={StaticResource StringNullOrEmptyBoolConverter}}">
+                                                    <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                                </StackLayout>
+
+                                            </StackLayout>
+                                            <Label Text="{Binding Notes}" FontAttributes="Italic" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                                        </StackLayout>
+                                        
                                     </Frame>
                                 </ViewCell>
                             </DataTemplate>
