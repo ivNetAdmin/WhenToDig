@@ -69,7 +69,7 @@ namespace WhenToDig.ViewModels
         {
             get
             {
-                return new Command(() =>
+                return new Command(async () =>
                 {
                     if (!string.IsNullOrEmpty(_job.Name))
                     {
@@ -85,7 +85,7 @@ namespace WhenToDig.ViewModels
                             _realmInstance.Add(_job, true); // Add the whole set of details
                         });
 
-                        Navigation.PopAsync();
+                        await Navigation.PopAsync();
                     }
                 });
             }

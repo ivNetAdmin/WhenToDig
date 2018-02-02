@@ -37,7 +37,7 @@ namespace WhenToDig.ViewModels
         {
             get
             {
-                return new Command(() =>
+                return new Command(async () =>
                 {
                     _realmInstance.Write(() =>
                     {
@@ -46,7 +46,7 @@ namespace WhenToDig.ViewModels
                         _frost.Day = _frost.Date.Day;
                         _realmInstance.Add(_frost, true); // Add the whole set of details
                         });
-                    Navigation.PopAsync();
+                    await Navigation.PopAsync();
                 });
             }
         }
@@ -55,13 +55,13 @@ namespace WhenToDig.ViewModels
         {
             get
             {
-                return new Command(() => {
+                return new Command(async () => {
                     _realmInstance.Write(() =>
                     {
                         _realmInstance.Remove(_frost);
                     });
 
-                    Navigation.PopAsync();
+                    await Navigation.PopAsync();
                 });
             }
         }

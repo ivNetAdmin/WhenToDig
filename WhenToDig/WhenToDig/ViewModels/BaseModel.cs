@@ -91,8 +91,9 @@ namespace WhenToDig.ViewModels
         public ImageSource AddIcon { get { return ImageSource.FromFile("add.png"); } }
         public ImageSource CancelIcon { get { return ImageSource.FromFile("cancel.png"); } }
         public ImageSource DeleteIcon { get { return ImageSource.FromFile("delete.png"); } }
-        public ImageSource SaveIcon { get { return ImageSource.FromFile("save.png"); } }        
-        
+        public ImageSource SaveIcon { get { return ImageSource.FromFile("save.png"); } }
+        public ImageSource SearchIcon { get { return ImageSource.FromFile("search.png"); } }
+
         #endregion
 
         #region Navigation Commands
@@ -100,43 +101,43 @@ namespace WhenToDig.ViewModels
 
             get
             {
-                return new Command<WTGPage>((pageId) =>
+                return new Command<WTGPage>(async (pageId) =>
                 {
                     switch (pageId)
                     {
                         case WTGPage.PlantList:
-                            Navigation.PushAsync(new PlantListPage());
+                            await Navigation.PushAsync(new PlantListPage());
                             break;
                         case WTGPage.JobList:
-                            Navigation.PushAsync(new JobListPage());
+                            await Navigation.PushAsync(new JobListPage());
                             break;                      
                         case WTGPage.YieldList:
-                            Navigation.PushAsync(new YieldListPage());
+                            await Navigation.PushAsync(new YieldListPage());
                             break;
                         case WTGPage.FrostList:
-                            Navigation.PushAsync(new FrostListPage());
+                            await Navigation.PushAsync(new FrostListPage());
                             break;
                         case WTGPage.Review:
-                            Navigation.PushAsync(new ReviewPage());
+                            await Navigation.PushAsync(new ReviewPage());
                             break;
                         case WTGPage.AddPlant:
-                            Navigation.PushAsync(new AddPlantPage());
+                            await Navigation.PushAsync(new AddPlantPage());
                             break;
                         case WTGPage.AddJob:
-                            Navigation.PushAsync(new AddJobPage());
+                            await Navigation.PushAsync(new AddJobPage());
                             break;
                         case WTGPage.AddYield:
-                            Navigation.PushAsync(new AddYieldPage());
+                            await Navigation.PushAsync(new AddYieldPage());
                             break;
                         case WTGPage.AddFrost:
-                            Navigation.PushAsync(new AddFrostPage());
+                            await Navigation.PushAsync(new AddFrostPage());
                             break;
                         case WTGPage.Cancel:
-                            Navigation.PopAsync();
+                            await Navigation.PopAsync();
                             break;
                         default:
                             //App.Current.MainPage = new NavigationPage(new MainPage());
-                            Navigation.PopToRootAsync();
+                            await Navigation.PopToRootAsync();
                             break;
                     }
                 });

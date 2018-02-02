@@ -20,6 +20,7 @@ namespace WhenToDig.Views
             this.Children.Add(new ReviewContentYieldPage(new ReviewContentYieldViewModel(Navigation)));            
             this.Children.Add(new ReviewContentJobPage(new ReviewContentJobViewModel()));
             this.Children.Add(new ReviewContentFrostPage(new ReviewContentFrostViewModel()));
+            this.Children.Add(new ReviewContentSearchPage(new ReviewContentSearchViewModel()));
 
             BindingContext = new ReviewViewModel(Navigation);
 

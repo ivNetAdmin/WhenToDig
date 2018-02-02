@@ -38,7 +38,7 @@ namespace WhenToDig.ViewModels
         {
             get
             {                
-                return new Command(() => {
+                return new Command(async () => {
                     if (!string.IsNullOrEmpty(_plant.Name))
                     {                        
                         if (string.IsNullOrEmpty(_plant.Variety)) _plant.Variety = "Common";
@@ -48,7 +48,7 @@ namespace WhenToDig.ViewModels
                             _realmInstance.Add(_plant,true); // Add the whole set of details
                     });
 
-                        Navigation.PopAsync();
+                        await Navigation.PopAsync();
                     }
                 });
             }

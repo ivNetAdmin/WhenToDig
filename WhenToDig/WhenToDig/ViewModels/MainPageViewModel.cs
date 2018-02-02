@@ -182,9 +182,9 @@ namespace WhenToDig.ViewModels
         {
             get
             {
-                return new Command((param) =>
+                return new Command(async (param) =>
                 {
-                    Navigation.PushAsync(new AddJobPage(_calendarDates[Convert.ToInt32(param)]));
+                    await Navigation.PushAsync(new AddJobPage(_calendarDates[Convert.ToInt32(param)]));
                 });
             }
         }
@@ -192,7 +192,7 @@ namespace WhenToDig.ViewModels
         {
             get
             {
-                return new Command(async () =>
+                return new Command(() =>
                 {
                     if (Frost == null)
                     {
@@ -208,9 +208,8 @@ namespace WhenToDig.ViewModels
                         });
 
                         QuickFrostIcon = "quickFrostOn.png";
-                        await Application.Current.MainPage.DisplayAlert("", "Frost for today added successfully", "Ok");
                     }
-                    
+
                 });
             }
         }

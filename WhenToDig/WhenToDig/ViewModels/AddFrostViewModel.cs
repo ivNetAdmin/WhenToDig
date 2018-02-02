@@ -36,7 +36,7 @@ namespace WhenToDig.ViewModels
         {
             get
             {
-                return new Command(() => {
+                return new Command(async () => {
                     var frostId = string.Format("{0}{1}{2}", _frost.Date.Year, _frost.Date.Month, _frost.Date.Day);
                     if (!string.IsNullOrEmpty(frostId))
                     {
@@ -49,7 +49,7 @@ namespace WhenToDig.ViewModels
                         {
                             _realmInstance.Add(_frost, true); // Add the whole set of details
                         });
-                        Navigation.PopAsync();
+                        await Navigation.PopAsync();
                     }
                 });
             }

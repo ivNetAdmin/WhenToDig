@@ -24,7 +24,7 @@ namespace WhenToDig.ViewModels
             Yield = _realmInstance.Find<Yield>(yieldId);
 
             RelatedJobs = new ObservableCollection<Job>(GetRelatedJobs(_yield.Plant, _yield.Year));
-            UnrelatedJobs = new ObservableCollection<Job>(GetUnRelatedJobs(_yield.Year));
+           // UnrelatedJobs = new ObservableCollection<Job>(GetUnRelatedJobs(_yield.Year));
             MoreYields = new ObservableCollection<Yield>(GetMoreYields(_yield.Plant, _yield.Year));
 
             ItemSelectedCommand = new Command<Yield>(HandleItemSelected);

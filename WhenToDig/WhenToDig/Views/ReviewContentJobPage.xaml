@@ -103,7 +103,7 @@
                                                 <Label Text="{Binding Notes}" FontAttributes="Italic" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                                             </StackLayout>
                                             <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" Padding="5,5">
-                                                <Image Source="add.png" HeightRequest="20" VerticalOptions="Center"/>
+                                                <Image Source="add.png" HeightRequest="20"/>
                                             </StackLayout>
                                         </StackLayout>
                                         

@@ -57,7 +57,7 @@ namespace WhenToDig.ViewModels
         {
             get
             {
-                return new Command(() =>
+                return new Command(async () =>
                 {
                     if (!string.IsNullOrEmpty(_yield.Crop))
                     {
@@ -70,7 +70,7 @@ namespace WhenToDig.ViewModels
                             _realmInstance.Add(_yield, true); // Add the whole set of details
                         });
 
-                        Navigation.PopAsync();
+                        await Navigation.PopAsync();
                     }
                 });
             }

@@ -61,7 +61,7 @@ namespace WhenToDig.ViewModels
         {
             get
             {
-                return new Command(() => {
+                return new Command(async () => {
                     if (!string.IsNullOrEmpty(_job.Name))
                     {
                         _realmInstance.Write(() =>
@@ -69,7 +69,7 @@ namespace WhenToDig.ViewModels
                             _realmInstance.Add(_job, update: true); // Add the whole set of details
                     });
 
-                        Navigation.PopAsync();
+                        await Navigation.PopAsync();
                     }
                 });
             }
@@ -79,13 +79,13 @@ namespace WhenToDig.ViewModels
         {
             get
             {
-                return new Command(() => {
+                return new Command(async () => {
                     _realmInstance.Write(() =>
                     {
                         _realmInstance.Remove(_job);
                     });
 
-                    Navigation.PopAsync();
+                    await Navigation.PopAsync();
                 });
             }
         }
