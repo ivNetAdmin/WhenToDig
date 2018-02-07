@@ -41,7 +41,12 @@
                                         <Label Text="{Binding Date,                                    
                                     Converter={StaticResource NativeTypeConverter}, 
                                     ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}"
-                                       FontAttributes="Bold" MinimumWidthRequest="50" />
+                                       FontAttributes="Bold" MinimumWidthRequest="50" HorizontalOptions="Start"/>
+                                        <Image Source="{Binding ImagePath}" HeightRequest="30"  HorizontalOptions="EndAndExpand">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnImageButtonTapped"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
                                     </StackLayout>
                                     <Label Text="{Binding Notes}" FontAttributes="Italic" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}" Margin="10,0,0,0"/>
                                 </StackLayout>

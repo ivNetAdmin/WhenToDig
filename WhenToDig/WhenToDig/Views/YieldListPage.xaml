@@ -50,10 +50,15 @@
                                         <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                                             <Label Text="{Binding Plant, 
                                         Converter={StaticResource NativeTypeConverter}, 
-                                        ConverterParameter='PlantName,PlantName'}}" FontAttributes="Bold"/>
+                                        ConverterParameter='PlantName,PlantName'}}" FontAttributes="Bold" HorizontalOptions="Start"/>
                                             <Label Text="{Binding Plant, 
                                         Converter={StaticResource NativeTypeConverter}, 
-                                        ConverterParameter='PlantName,PlantVariety'}}" FontAttributes="Italic"/>
+                                        ConverterParameter='PlantName,PlantVariety'}}" FontAttributes="Italic" HorizontalOptions="Start"/>
+                                            <Image Source="{Binding ImagePath}" HeightRequest="30"  HorizontalOptions="EndAndExpand">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnImageButtonTapped"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
                                         </StackLayout>
                                         <Label Text="{Binding Crop}" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"/>
                                         <Label Text="{Binding Notes}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>

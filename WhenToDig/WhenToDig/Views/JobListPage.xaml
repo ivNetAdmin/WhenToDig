@@ -47,12 +47,20 @@
                                         <Label Text="{Binding Name}" FontAttributes="Bold"/>
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Plant,
+                                        Converter={StaticResource NativeTypeConverter}, 
+                                        ConverterParameter='PlantName,PlantName'}}" IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+                                               HorizontalOptions="Start"/>
                                         <Label Text="{Binding Plant, 
                                         Converter={StaticResource NativeTypeConverter}, 
-                                        ConverterParameter='PlantName,PlantName'}}" IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                                        <Label Text="{Binding Plant, 
-                                        Converter={StaticResource NativeTypeConverter}, 
-                                        ConverterParameter='PlantName,PlantVariety'}}" IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}" FontAttributes="Italic"/>
+                                        ConverterParameter='PlantName,PlantVariety'}}" IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
+                                               HorizontalOptions="Start"
+                                               FontAttributes="Italic"/>
+                                        <Image Source="{Binding ImagePath}" HeightRequest="30"  HorizontalOptions="EndAndExpand">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnImageButtonTapped"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
                                     </StackLayout>
                                     <Label Text="{Binding Notes}" FontAttributes="Italic" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                                 </StackLayout>

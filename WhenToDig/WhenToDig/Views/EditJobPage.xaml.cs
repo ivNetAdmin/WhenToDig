@@ -1,4 +1,6 @@
-﻿using WhenToDig.ViewModels;
+﻿using System;
+using WhenToDig.Helpers;
+using WhenToDig.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,13 +21,45 @@ namespace WhenToDig.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            BindingContext = new EditJobViewModel(Navigation, _jobId);
+            if(BindingContext==null) BindingContext = new EditJobViewModel(Navigation, _jobId);
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
             ((EditJobViewModel)BindingContext).DisposeRealm();
+        }
+        #endregion
+
+        #region Commands
+        private async void OnCameraButtonTapped(object sender, EventArgs e)
+        {
+            ImagePath.Text = string.Empty;
+            Image.Source = string.Empty;
+
+            var file = await Camera.TappedAsync();
+            if (file != null)
+            {
+                ImagePath.Text = file.Path;
+                Image = new Image { Source = ImageSource.FromStream(() => file.GetStream()) };
+            }
+        }
+        private async void OnLibraryButtonTapped(object sender, EventArgs e)
+        {
+            ImagePath.Text = string.Empty;
+            Image.Source = string.Empty;
+
+            var file = await Camera.LibraryTappedAsync();
+            if (file != null)
+            {
+                ImagePath.Text = file.Path;
+                Image = new Image { Source = ImageSource.FromStream(() => file.GetStream()) };
+            }
+        }
+        private void OnRemoveImageButtonTapped(object sender, EventArgs e)
+        {
+            ImagePath.Text = string.Empty;
+            Image.Source = string.Empty;
         }
         #endregion
     }

@@ -31,5 +31,12 @@ namespace WhenToDig.Views
             ((YieldListViewModel)BindingContext).DisposeRealm();
         }
         #endregion
+        #region Commands
+        private async void OnImageButtonTapped(object sender, EventArgs e)
+        {
+            //var file = ((Image)sender).Source;
+            await Navigation.PushAsync(new ViewImagePage((Image)sender));
+        }
+        #endregion
     }
 }

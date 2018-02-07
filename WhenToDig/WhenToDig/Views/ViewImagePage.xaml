@@ -5,7 +5,7 @@
              Title="Image Viewer">
     <ContentPage.Content>
         <StackLayout>
-            <Image x:Name="ShowImage" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+            <Image x:Name="ShowImage" VerticalOptions="FillAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

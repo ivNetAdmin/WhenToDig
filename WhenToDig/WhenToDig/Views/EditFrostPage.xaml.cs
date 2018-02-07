@@ -4,6 +4,8 @@ using WhenToDig.ViewModels;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using WhenToDig.Helpers;
+using System;
 
 namespace WhenToDig.Views
 {
@@ -29,6 +31,37 @@ namespace WhenToDig.Views
         {
             base.OnDisappearing();
             ((EditFrostViewModel)BindingContext).DisposeRealm();
+        }
+        #endregion
+        #region Commands
+        private async void OnCameraButtonTapped(object sender, EventArgs e)
+        {
+            ImagePath.Text = string.Empty;
+            Image.Source = string.Empty;
+
+            var file = await Camera.TappedAsync();
+            if (file != null)
+            {
+                ImagePath.Text = file.Path;
+                Image = new Image { Source = ImageSource.FromStream(() => file.GetStream()) };
+            }
+        }
+        private async void OnLibraryButtonTapped(object sender, EventArgs e)
+        {
+            ImagePath.Text = string.Empty;
+            Image.Source = string.Empty;
+
+            var file = await Camera.LibraryTappedAsync();
+            if (file != null)
+            {
+                ImagePath.Text = file.Path;
+                Image = new Image { Source = ImageSource.FromStream(() => file.GetStream()) };
+            }
+        }
+        private void OnRemoveImageButtonTapped(object sender, EventArgs e)
+        {
+            ImagePath.Text = string.Empty;
+            Image.Source = string.Empty;
         }
         #endregion
     }

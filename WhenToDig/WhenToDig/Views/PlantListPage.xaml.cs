@@ -35,7 +35,7 @@ namespace WhenToDig.Views
         #region Commands
         private async void OnImageButtonTapped(object sender, EventArgs e)
         {
-            var file = ((Image)sender).Source;
+            //var file = ((Image)sender).Source;
             await Navigation.PushAsync(new ViewImagePage((Image)sender));
         }
         #endregion
