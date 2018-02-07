@@ -1,4 +1,5 @@
-﻿using Realms;
+﻿using Plugin.Media;
+using Realms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -52,7 +53,7 @@ namespace WhenToDig.ViewModels
                     }
                 });
             }
-        }
+        }       
         #endregion
     }
 }

@@ -1,0 +1,46 @@
+﻿using Plugin.Media;
+using Plugin.Media.Abstractions;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+
+namespace WhenToDig.Helpers
+{
+    public static class Camera
+    {
+        public static async Task<MediaFile> TappedAsync()
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await Application.Current.MainPage.DisplayAlert("No camera", ":( No camera avaialble.", "OK");
+                return null;
+            }
+
+           var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                // Directory="Test",
+                SaveToAlbum = true,
+                Name = string.Format("digit_{0}.jpg", DateTime.Now.ToString("yyyyMMddmmss"))
+            });
+
+            return file;           
+        }
+
+        public static async Task<MediaFile> LibraryTappedAsync()
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await Application.Current.MainPage.DisplayAlert("No upload", ":( Picking a photo is not supported.", "OK");
+                return null;
+            }
+
+            return await CrossMedia.Current.PickPhotoAsync();          
+        }
+    }
+}

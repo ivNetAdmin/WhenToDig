@@ -93,7 +93,8 @@ namespace WhenToDig.ViewModels
         public ImageSource DeleteIcon { get { return ImageSource.FromFile("delete.png"); } }
         public ImageSource SaveIcon { get { return ImageSource.FromFile("save.png"); } }
         public ImageSource SearchIcon { get { return ImageSource.FromFile("search.png"); } }
-
+        public ImageSource CameraIcon { get { return ImageSource.FromFile("camera.png"); } }
+        public ImageSource LibraryIcon { get { return ImageSource.FromFile("library.png"); } }
         #endregion
 
         #region Navigation Commands

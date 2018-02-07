@@ -21,7 +21,7 @@ namespace WhenToDig.Behaviors
 
         private void OnEntryTextChanged(object sender, TextChangedEventArgs e)
         {
-            bool isValid = e.NewTextValue.Length > 0;
+            bool isValid = e.NewTextValue == null || e.NewTextValue.Length > 0;
             Entry entry = sender as Entry;
             entry.BackgroundColor = isValid ? Color.Default : Color.LightPink;
         }

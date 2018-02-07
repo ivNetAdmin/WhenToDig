@@ -14,5 +14,6 @@ namespace WhenToDig.Models
         public int Month { get; set; }
         public int Day { get; set; }
         public string Notes { get; set; }
+        public string ImagePath { get; set; }
     }
 }

@@ -10,5 +10,6 @@ namespace WhenToDig.Models
         public string Name { get; set; }
         public string Variety { get; set; }
         public string Notes { get; set; }
+        public string ImagePath { get; set; }
     }
 }

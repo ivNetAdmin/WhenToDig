@@ -7,6 +7,8 @@ using WhenToDig.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using WhenToDig.ViewModels;
+using Plugin.Media;
+using WhenToDig.Helpers;
 
 namespace WhenToDig.Views
 {
@@ -25,13 +27,33 @@ namespace WhenToDig.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            BindingContext = new EditPlantViewModel(Navigation, _plantId);
+            if (BindingContext == null) BindingContext = new EditPlantViewModel(Navigation, _plantId);
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
             ((EditPlantViewModel)BindingContext).DisposeRealm();
+        }
+        #endregion
+
+        #region Commands
+        private async void OnCameraButtonTapped(object sender, EventArgs e)
+        {
+            var file = await Camera.TappedAsync();
+            ImagePath.Text = file.Path;
+            Image.Source = ImageSource.FromStream(() => file.GetStream());
+        }
+        private async void OnLibraryButtonTapped(object sender, EventArgs e)
+        {
+            var file = await Camera.LibraryTappedAsync();
+            ImagePath.Text = file.Path;
+            Image.Source = ImageSource.FromStream(() => file.GetStream());
+        }
+        private void OnRemoveImageButtonTapped(object sender, EventArgs e)
+        {
+            ImagePath.Text = string.Empty;
+            Image.Source = null;
         }
         #endregion
     }

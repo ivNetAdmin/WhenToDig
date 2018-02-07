@@ -13,5 +13,6 @@ namespace WhenToDig.Models
         public string Crop { get; set; }
         public int Year { get; set; }
         public string Notes { get; set; }
+        public string ImagePath { get; set; }
     }
 }

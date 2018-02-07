@@ -12,6 +12,7 @@ namespace WhenToDig.Models
         public string Type { get; set; }
         public string Plant { get; set; }
         public string Notes { get; set; }
+        public string ImagePath { get; set; }
         public DateTimeOffset Date { get; set; }
 
         [Ignored]
