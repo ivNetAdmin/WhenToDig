@@ -15,12 +15,12 @@
                 x:Key="StringNullOrEmptyBoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="{Binding AddIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.AddPlant}"/>
         <ToolbarItem Icon="{Binding MainPageIcon}" Command="{Binding NavigationClickedCommand}" CommandParameter="{x:Static helpers:WTGPage.Home}"/>
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
         <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
             <ListView x:Name="PlantList" ItemsSource="{Binding Plants}" HasUnevenRows="True">
@@ -38,7 +38,11 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"/>
                                         <Label Text="{Binding Variety}" FontAttributes="Italic" HorizontalOptions="Start"/>
-                                        <Image Source="{Binding ImagePath}" HeightRequest="30"  HorizontalOptions="EndAndExpand"/>
+                                        <Image Source="{Binding ImagePath}" HeightRequest="30"  HorizontalOptions="EndAndExpand">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnImageButtonTapped"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
                                     </StackLayout>
                                     <Label Text="{Binding Notes}" FontAttributes="Italic" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}" Margin="10,0,0,0"/>
                                 </StackLayout>

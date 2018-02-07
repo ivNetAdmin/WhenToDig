@@ -15,7 +15,7 @@ namespace WhenToDig.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EditPlantPage : ContentPage
 	{
-        string _plantId;
+        private string _plantId;
 
         public EditPlantPage (string plantId)
 		{
@@ -40,20 +40,32 @@ namespace WhenToDig.Views
         #region Commands
         private async void OnCameraButtonTapped(object sender, EventArgs e)
         {
+            ImagePath.Text = string.Empty;
+            Image.Source = string.Empty;
+
             var file = await Camera.TappedAsync();
-            ImagePath.Text = file.Path;
-            Image.Source = ImageSource.FromStream(() => file.GetStream());
+            if (file != null)
+            {
+                ImagePath.Text = file.Path;
+                Image = new Image { Source = ImageSource.FromStream(() => file.GetStream()) };
+            }
         }
         private async void OnLibraryButtonTapped(object sender, EventArgs e)
         {
+            ImagePath.Text = string.Empty;
+            Image.Source = string.Empty;
+
             var file = await Camera.LibraryTappedAsync();
-            ImagePath.Text = file.Path;
-            Image.Source = ImageSource.FromStream(() => file.GetStream());
+            if (file != null)
+            {
+                ImagePath.Text = file.Path;
+                Image = new Image { Source = ImageSource.FromStream(() => file.GetStream()) };
+            }
         }
         private void OnRemoveImageButtonTapped(object sender, EventArgs e)
         {
             ImagePath.Text = string.Empty;
-            Image.Source = null;
+            Image.Source = string.Empty;
         }
         #endregion
     }
