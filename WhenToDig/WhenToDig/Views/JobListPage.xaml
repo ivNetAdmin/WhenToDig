@@ -40,29 +40,50 @@
                             <Frame Margin="2,1" Padding="2,0">
                                 <StackLayout Orientation="Vertical" Padding="4,2"                                               
                                      BackgroundColor="{Binding .,Converter={StaticResource JobTypeHighlightColorConverter}, ConverterParameter={x:Reference JobList}}">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Date, 
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="4*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                                            <Label Text="{Binding Date, 
                                     Converter={StaticResource NativeTypeConverter}, 
                                     ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}" MinimumWidthRequest="50" HorizontalOptions="Start"/>
-                                        <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"/>
-                                        <Image Source="{Binding ImagePath}" HeightRequest="30"  HorizontalOptions="EndAndExpand" VerticalOptions="Center">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="OnImageButtonTapped"/>
-                                            </Image.GestureRecognizers>
-                                        </Image>
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Plant,
+
+                                            <Label Text="{Binding Plant,
                                         Converter={StaticResource NativeTypeConverter}, 
-                                        ConverterParameter='PlantName,PlantName'}}" IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}"
-                                               HorizontalOptions="Start"/>
-                                        <Label Text="{Binding Plant, 
+                                        ConverterParameter='PlantName,PlantName'}}" 
+                                               HorizontalOptions="Start"  IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                                            <Label Text="{Binding Plant, 
                                         Converter={StaticResource NativeTypeConverter}, 
                                         ConverterParameter='PlantName,PlantVariety'}}" IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
                                                HorizontalOptions="Start"
                                                FontAttributes="Italic"/>
-                                    </StackLayout>
-                                    <Label Text="{Binding Notes}" FontAttributes="Italic" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                                        </StackLayout>
+
+                                        <Image Source="{Binding ImagePath}" HeightRequest="40" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                                                   HorizontalOptions="EndAndExpand" VerticalOptions="Center"
+                                                   IsVisible="{Binding ImagePath,Converter={StaticResource StringNullOrEmptyBoolConverter}}">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnImageButtonTapped"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
+                                        <StackLayout Grid.Row="1" Grid.Column="0">
+
+                                            <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"/>
+
+                                        </StackLayout>
+
+                                        <Label Text="{Binding Notes}" FontAttributes="Italic" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}" Grid.Row="2" Grid.Column="0"/>
+                                    </Grid>
+
                                 </StackLayout>
                             </Frame>
                         </ViewCell>
