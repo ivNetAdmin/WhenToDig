@@ -54,7 +54,7 @@
                                             <Label Text="{Binding Plant, 
                                         Converter={StaticResource NativeTypeConverter}, 
                                         ConverterParameter='PlantName,PlantVariety'}}" FontAttributes="Italic" HorizontalOptions="Start"/>
-                                            <Image Source="{Binding ImagePath}" HeightRequest="30"  HorizontalOptions="EndAndExpand">
+                                            <Image Source="{Binding ImagePath}" HeightRequest="30"  HorizontalOptions="EndAndExpand" VerticalOptions="Center">
                                                 <Image.GestureRecognizers>
                                                     <TapGestureRecognizer Tapped="OnImageButtonTapped"/>
                                                 </Image.GestureRecognizers>

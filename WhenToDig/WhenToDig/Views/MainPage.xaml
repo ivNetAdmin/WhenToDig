@@ -516,22 +516,31 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame Margin="2,2" Padding="2,2">
-                                    <StackLayout Orientation="Vertical" Padding="5,5"                                      
+                                <Frame Margin="2,1" Padding="2,0">
+                                    <StackLayout Orientation="Vertical" Padding="4,2"                                      
                                      BackgroundColor="{Binding .,Converter={StaticResource JobTypeHighlightColorConverter}, ConverterParameter={x:Reference JobList}}">
                                         <StackLayout Orientation="Horizontal">
                                             <Label Text="{Binding Date, 
                                     Converter={StaticResource NativeTypeConverter}, 
-                                    ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}"/>
-                                            <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                    ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}" HorizontalOptions="Start"/>
+                                            <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"/>
+                                            <Image Source="{Binding ImagePath}" HeightRequest="30"  HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnImageButtonTapped"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
                                             <Label Text="{Binding Plant, 
                                         Converter={StaticResource NativeTypeConverter}, 
-                                        ConverterParameter='PlantName,PlantName'}}" IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                                        ConverterParameter='PlantName,PlantName'}}" 
+                                                   HorizontalOptions="Start"
+                                                   IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                                             <Label Text="{Binding Plant, 
                                         Converter={StaticResource NativeTypeConverter}, 
-                                        ConverterParameter='PlantName,PlantVariety'}}" IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}" FontAttributes="Italic"/>
+                                        ConverterParameter='PlantName,PlantVariety'}}" 
+                                                   HorizontalOptions="Start"
+                                                   IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}" FontAttributes="Italic"/>
                                         </StackLayout>
                                         <Label Text="{Binding Notes}" FontAttributes="Italic" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                                     </StackLayout>

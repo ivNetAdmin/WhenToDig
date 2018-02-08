@@ -38,7 +38,7 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"/>
                                         <Label Text="{Binding Variety}" FontAttributes="Italic" HorizontalOptions="Start"/>
-                                        <Image Source="{Binding ImagePath}" HeightRequest="30"  HorizontalOptions="EndAndExpand">
+                                        <Image Source="{Binding ImagePath}" HeightRequest="30"  HorizontalOptions="EndAndExpand" VerticalOptions="Center">
                                             <Image.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="OnImageButtonTapped"/>
                                             </Image.GestureRecognizers>

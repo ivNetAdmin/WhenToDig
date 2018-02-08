@@ -33,6 +33,7 @@ namespace WhenToDig.Views
             ((EditFrostViewModel)BindingContext).DisposeRealm();
         }
         #endregion
+   
         #region Commands
         private async void OnCameraButtonTapped(object sender, EventArgs e)
         {

@@ -37,14 +37,19 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Frame Margin="2,2" Padding="2,2">
-                                <StackLayout Orientation="Vertical" Padding="5,5"                                      
+                            <Frame Margin="2,1" Padding="2,0">
+                                <StackLayout Orientation="Vertical" Padding="4,2"                                               
                                      BackgroundColor="{Binding .,Converter={StaticResource JobTypeHighlightColorConverter}, ConverterParameter={x:Reference JobList}}">
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Date, 
                                     Converter={StaticResource NativeTypeConverter}, 
-                                    ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}" MinimumWidthRequest="50"/>
-                                        <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                    ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}" MinimumWidthRequest="50" HorizontalOptions="Start"/>
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"/>
+                                        <Image Source="{Binding ImagePath}" HeightRequest="30"  HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnImageButtonTapped"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Plant,
@@ -56,11 +61,6 @@
                                         ConverterParameter='PlantName,PlantVariety'}}" IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
                                                HorizontalOptions="Start"
                                                FontAttributes="Italic"/>
-                                        <Image Source="{Binding ImagePath}" HeightRequest="30"  HorizontalOptions="EndAndExpand">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="OnImageButtonTapped"/>
-                                            </Image.GestureRecognizers>
-                                        </Image>
                                     </StackLayout>
                                     <Label Text="{Binding Notes}" FontAttributes="Italic" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                                 </StackLayout>

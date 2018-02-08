@@ -27,6 +27,7 @@ namespace WhenToDig.Views
                 Years.SelectedIndex = Years.ItemsSource.Count - 1;
 
             Plants.SelectedIndex = 0;
+            Years.SelectedIndex = 0;
         }
 
         protected override void OnDisappearing()

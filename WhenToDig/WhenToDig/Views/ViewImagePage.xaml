@@ -4,8 +4,10 @@
              x:Class="WhenToDig.Views.ViewImagePage"
              Title="{Binding Title}">
     <ContentPage.Content>
-        <StackLayout>
-            <Image Source="{Binding Source}" Aspect="AspectFit"/>
-        </StackLayout>
+        <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
+            <StackLayout>
+                <Image Source="{Binding Source}" Aspect="AspectFit" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

@@ -19,52 +19,6 @@ namespace WhenToDig.Views
 		public AddPlantPage ()
 		{
             InitializeComponent();
-            
-
-            //takePhoto.Clicked += async (sender, args) =>
-            //{
-            //    await CrossMedia.Current.Initialize();
-
-            //    if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-            //    {
-            //        await DisplayAlert("No Camera", ":( No camera avaialble.", "OK");
-            //        return;
-            //    }
-
-            //    var cakes =  Environment.GetFolderPath(Environment.SpecialFolder.MyPictures); // data/user/0/co.uk.ivNet.DiGiT/files
-
-
-            //    var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            //    {                   
-            //       // Directory = "Sample",
-            //        Name = "test.jpg"
-            //    });
-
-            //    //var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            //    //{
-            //    //    Directory = "Pictures",
-            //    //    Name = DateTime.Now + ".jpg",
-            //    //    SaveToAlbum = true,
-            //    //    CompressionQuality = 75,
-            //    //    CustomPhotoSize = 50,
-            //    //    PhotoSize = PhotoSize.MaxWidthHeight,
-            //    //    MaxWidthHeight = 2000,
-            //    //    DefaultCamera = CameraDevice.Front
-            //    //});
-
-            //    if (file == null)
-            //        return;
-
-            //    await DisplayAlert("File Location", file.Path, "OK");
-
-            //    image.Source = ImageSource.FromStream(() =>
-            //    {
-            //        var stream = file.GetStream();
-            //        file.Dispose();
-            //        return stream;
-            //    });
-            //};
-
         }
 
         #region Page Events
