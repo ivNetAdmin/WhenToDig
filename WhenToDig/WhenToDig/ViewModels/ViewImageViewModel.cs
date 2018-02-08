@@ -7,26 +7,19 @@ namespace WhenToDig.ViewModels
 {
     public class ViewImageViewModel : BaseModel
     {
-        private Image _image;
+        private string _source;
 
         public ViewImageViewModel(INavigation navigation, Image image)
         {
             Navigation = navigation;
             Title = "Image Viewer";
 
-            ShowImage = image;
+            _source = image.Source.ToString().Substring(6);
+                //"/storage/emulated/0/Android/data/co.uk.ivNet.DiGiT/files/Pictures/temp/IMG-20180128-WA0000.jpg";
         }
 
-        #region Properties
-        public Image ShowImage
-        {
-            get { return _image; }
-            set
-            {
-                _image = value;
-                OnPropertyChanged(); // Add the OnPropertyChanged();
-            }
-        }
+        #region Properties      
+        public ImageSource Source { get { return ImageSource.FromFile(_source); } }
         #endregion
     }
 }

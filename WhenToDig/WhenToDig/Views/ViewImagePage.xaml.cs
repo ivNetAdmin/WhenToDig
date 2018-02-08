@@ -21,8 +21,9 @@ namespace WhenToDig.Views
 
         #region Page Events
         protected override void OnAppearing()
-        {
-            ShowImage = new Image { Source = _image.Source };
+        {           
+            BindingContext = new ViewImageViewModel(Navigation, _image);
+            //ShowImage = new Image { Source = _image.Source };
             base.OnAppearing();            
         }
 
