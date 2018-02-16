@@ -20,6 +20,8 @@ namespace WhenToDig.Droid
                 TabLayoutResource = Resource.Layout.Tabbar;
                 ToolbarResource = Resource.Layout.Toolbar;
 
+                RequestedOrientation = ScreenOrientation.Portrait;
+
                 base.Window.RequestFeature(WindowFeatures.ActionBar);
                 base.SetTheme(Resource.Style.MainTheme);
 
