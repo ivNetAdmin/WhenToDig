@@ -18,15 +18,16 @@ namespace WhenToDig.Helpers
         {
             get
             {
-                switch (Name)
-                {
-                    case "Cultivate":
-                        return "Cult";
-                    case "Preparation":
-                        return "Prep";
-                }
+                return Name.Substring(0, 1);
+                //switch (Name)
+                //{
+                //    case "Cultivate":
+                //        return "C";
+                //    case "Preparation":
+                //        return "P";
+                //}
 
-                return "Gen";
+                //return "G";
             }
         }
         public Color JobColour

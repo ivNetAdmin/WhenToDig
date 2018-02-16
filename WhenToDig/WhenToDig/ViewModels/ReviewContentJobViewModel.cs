@@ -89,6 +89,7 @@ namespace WhenToDig.ViewModels
             if (itemSelected.GetType() == typeof(JobTypeCount))
             {
                 Jobs = GetJobsByTypeYear(((JobTypeCount)itemSelected).Name);
+                JobTotal = Jobs.Count;
             }
             else
             {
