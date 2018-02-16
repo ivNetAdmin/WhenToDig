@@ -6,7 +6,9 @@
     <ContentPage.Content>
         <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
             <StackLayout>
-                <Image Source="{Binding Source}" Aspect="AspectFit" VerticalOptions="CenterAndExpand"/>
+                <Image x:Name="ViewImage" Source="{Binding Source}"  Aspect="AspectFit"  HorizontalOptions="FillAndExpand"/>
+                <Label Text="{Binding Size}"/>
+                <Label Text="{Binding Path}"/>
             </StackLayout>
         </Frame>
     </ContentPage.Content>

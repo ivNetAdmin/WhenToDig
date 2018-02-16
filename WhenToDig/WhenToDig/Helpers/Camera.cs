@@ -20,11 +20,13 @@ namespace WhenToDig.Helpers
                 return null;
             }
 
-           var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+           var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
             {
-                // Directory="Test",
-                SaveToAlbum = true,
-                Name = string.Format("digit_{0}.jpg", DateTime.Now.ToString("yyyyMMddmmss"))
+               PhotoSize = PhotoSize.MaxWidthHeight,
+               MaxWidthHeight = 1200,
+               RotateImage = true,
+               SaveToAlbum = true,
+               Name = string.Format("digit_{0}.jpg", DateTime.Now.ToString("yyyyMMddmmss"))               
             });
 
             return file;           
