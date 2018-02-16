@@ -7,8 +7,7 @@
         <Frame Margin="5,5" Padding="5,5" BackgroundColor="{Binding FRAME_BACKGROUND}" OutlineColor="{Binding FRAME_BORDER}">
             <StackLayout>
                 <Image x:Name="ViewImage" Source="{Binding Source}"  Aspect="AspectFit"  HorizontalOptions="FillAndExpand"/>
-                <Label Text="{Binding Size}"/>
-                <Label Text="{Binding Path}"/>
+                <Label Text="{Binding Path}" FontAttributes="Italic"/>
             </StackLayout>
         </Frame>
     </ContentPage.Content>

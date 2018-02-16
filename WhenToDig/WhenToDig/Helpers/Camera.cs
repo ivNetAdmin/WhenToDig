@@ -42,7 +42,12 @@ namespace WhenToDig.Helpers
                 return null;
             }
 
-            return await CrossMedia.Current.PickPhotoAsync();          
+            return await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+            {
+                PhotoSize = PhotoSize.MaxWidthHeight,
+                MaxWidthHeight = 1200,
+                RotateImage = true
+            });       
         }
     }
 }

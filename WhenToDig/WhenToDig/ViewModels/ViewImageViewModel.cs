@@ -28,7 +28,6 @@ namespace WhenToDig.ViewModels
 
             Source = ImageSource.FromStream(() => new MemoryStream(resizeBytes));
             Path = path;
-            Size = bytes.Length;
 
             //_source = image.Source.ToString().Substring(6);
             //"/storage/emulated/0/Android/data/co.uk.ivNet.DiGiT/files/Pictures/temp/IMG-20180128-WA0000.jpg";
