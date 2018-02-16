@@ -532,17 +532,16 @@
 
                                             <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
                                                 <Label Text="{Binding Date, 
-                                    Converter={StaticResource NativeTypeConverter}, 
-                                    ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}" MinimumWidthRequest="50" HorizontalOptions="Start"/>
-
+                                        Converter={StaticResource NativeTypeConverter}, 
+                                        ConverterParameter='DateTimeOffsetString,DateTimeOffsetString'}}" MinimumWidthRequest="50" HorizontalOptions="Start"/>
                                                 <Label Text="{Binding Plant,
                                         Converter={StaticResource NativeTypeConverter}, 
                                         ConverterParameter='PlantName,PlantName'}}" 
-                                               HorizontalOptions="Start"  IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                                               HorizontalOptions="EndAndExpand" IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                                                 <Label Text="{Binding Plant, 
                                         Converter={StaticResource NativeTypeConverter}, 
                                         ConverterParameter='PlantName,PlantVariety'}}" IsVisible="{Binding Plant,Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
-                                               HorizontalOptions="Start"
+                                               HorizontalOptions="End"
                                                FontAttributes="Italic"/>
                                             </StackLayout>
 
@@ -560,9 +559,8 @@
 
                                             </StackLayout>
 
-                                            <Label Text="{Binding Notes}" FontAttributes="Italic" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}" Grid.Row="2" Grid.Column="0"/>
                                         </Grid>
-
+                                        <Label Text="{Binding Notes}" FontAttributes="Italic" IsVisible="{Binding Notes,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                                     </StackLayout>
                                 </Frame>
                             </ViewCell>

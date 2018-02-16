@@ -66,6 +66,8 @@ namespace WhenToDig.ViewModels
         public string GENERAL_COLOR { get { return _generalColor; } }
 
         public string FROST_GRAPH { get { return _frostGraph; } }
+
+        public string JOB_LIST_PLANT_NAME_TEXT { get { return _calendarLowlight; } }
         #endregion
 
         #region Constructors
